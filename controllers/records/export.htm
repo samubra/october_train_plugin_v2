@@ -1,17 +1,17 @@
 <?= Form::open(['class' => 'layout']) ?>
 
 <div class="layout-row">
-    <?= $this->importRender() ?>
+    <?= $this->exportRender() ?>
 </div>
 
 <div class="form-buttons">
     <button
             type="submit"
             data-control="popup"
-            data-handler="onImportLoadForm"
+            data-handler="onExportLoadForm"
             data-keyboard="false"
             class="btn btn-primary">
-        导入申请
+        导出证书
     </button>
 </div>
 

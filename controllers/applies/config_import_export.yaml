@@ -1,12 +1,12 @@
 import:
-    title: 倒入培训记录
+    title: 导入培训记录
     modelClass: Samubra\Train\Models\AppliesImport
     list: $/samubra/train/models/apply/columns.yaml
     form: $/samubra/train/models/apply/import_fields.yaml
 
 export:
     title: 导出培训记录
-    fileName: 培训记录导出.xls
+    fileName: 导出培训记录.xls
     modelClass: Samubra\Train\Models\AppliesExport
     list: $/samubra/train/models/apply/export_columns.yaml
     form: $/samubra/train/models/apply/export_fields.yaml

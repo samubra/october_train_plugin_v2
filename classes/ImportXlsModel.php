@@ -11,6 +11,15 @@ class ImportXlsModel extends ImportModel
 {
 
     /**
+     * Called when data is being imported.
+     * The $results array should be in the format of:
+     *
+     *    [
+     *        'db_name1' => 'Some value',
+     *        'db_name2' => 'Another value'
+     *    ],
+     *    [...]
+     *
      * @var array The rules to be applied to the data.
      */
     public $rules = [];
@@ -48,7 +57,7 @@ class ImportXlsModel extends ImportModel
         ];
 
         $options = array_merge($defaultOptions, $options);
-        dd($filePath);
+        //dd($filePath);
         /*
          * Read CSV
          */

@@ -1,0 +1,5 @@
+import:
+    title: 导入培训证书
+    modelClass: Samubra\Train\Models\RecordsImport
+    list: $/samubra/train/models/record/columns.yaml
+    form: $/samubra/train/models/record/import_fields.yaml

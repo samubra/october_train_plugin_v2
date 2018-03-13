@@ -22,9 +22,9 @@ class Member extends Model
     public $rules = [
         'member_name'    => 'required|between:2,255',
         'member_identity'=>'required|identity|unique:samubra_train_members',
-        'member_phone'=>'required|phone',
+        'member_phone'=>'nullable|phone',
         'member_address'  =>'nullable|between:3,200',
-        'member_edu_id'  =>'required|exists:samubra_train_lookups,id',
+        'member_edu_id'  =>'nullable|exists:samubra_train_lookups,id',
         'member_company'  =>'nullable',
         //'member_user_id'    => 'nullable',
         'avatar' => 'nullable|max:300'

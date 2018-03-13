@@ -1,5 +1,6 @@
 <?php namespace Samubra\Train\Models;
 use Samubra\Train\Classes\ImportXlsModel;
+use \Backend\Models\ImportModel;
 
 /**
  * Created by PhpStorm.
@@ -8,10 +9,19 @@ use Samubra\Train\Classes\ImportXlsModel;
  * Time: 下午2:34
  */
 
-class AppliesImport extends ImportXlsModel
+class AppliesImport extends ImportModel
 {
 
     /**
+     * Called when data is being imported.
+     * The $results array should be in the format of:
+     *
+     *    [
+     *        'db_name1' => 'Some value',
+     *        'db_name2' => 'Another value'
+     *    ],
+     *    [...]
+     *
      * @var array The rules to be applied to the data.
      */
     public $rules = [];
@@ -19,7 +29,7 @@ class AppliesImport extends ImportXlsModel
     public function importData($results, $sessionKey = null)
     {
         foreach ($results as $row => $data) {
-
+dd($data);
             try {
                 $subscriber = new Subscriber;
                 $subscriber->fill($data);

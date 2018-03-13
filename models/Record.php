@@ -17,6 +17,8 @@ class Record extends Model
         'is_valid' => 'boolean',
     ];
     protected $jsonable = ['remark'];
+    public $fillable = ['member_id','type_id','edu_id','first_get_date','print_date','is_valid','phone','address','company','remark'];
+
     /**
      * @var array Validation rules
      */
@@ -27,9 +29,9 @@ class Record extends Model
         'first_get_date'=>'nullable|date|before:print_date',
         'print_date'=>'nullable|date|after:first_get_date',
         'is_valid'=>'boolean',
-        'phone'=>'required|phone',
-        'address'=>'required',
-        'company'=>'required',
+        'phone'=>'nullable|phone',
+        'address'=>'nullable',
+        'company'=>'nullable',
         'remark'=>'nullable'
     ];
     public $attributeNames = [
