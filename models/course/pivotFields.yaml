@@ -1,0 +1,44 @@
+fields:
+    course_title:
+        label: 课程标题
+        span: auto
+        required: 1
+        type: text
+    course_type:
+        label: 课程类型
+        emptyOption: 请选择课程类型
+        span: auto
+        required: 1
+        type: dropdown
+    'pivot[teacher]':
+        label: 授课教师
+        span: auto
+        required: 1
+        nameFrom: teacher_name
+        descriptionFrom: teacher_qualification_number
+        prompt: 点击%s选择授课教师
+        list: $/samubra/train/models/teacher/columns.yaml
+        type: recordfinder
+    'pivot[hours]':
+        label: 学时
+        span: auto
+        required: 1
+        type: number
+    'pivot[start_time]':
+        label: 课程开始时间
+        mode: datetime
+        span: auto
+        required: 1
+        type: datepicker
+    'pivot[end_time]':
+        label: 课程结束时间
+        mode: datetime
+        span: auto
+        required: 1
+        defaultFrom: start_time
+        type: datepicker
+    'pivot[teaching_form]':
+        label: 授课方式
+        span: full
+        required: 1
+        type: text

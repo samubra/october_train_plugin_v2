@@ -1,0 +1,97 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    title:
+        label: 标题
+        type: text
+        searchable: true
+        invisible: false
+        sortable: true
+    type_id:
+        label: 培训类别
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: type
+    is_new:
+        label: 新/复训
+        type: switch
+        searchable: true
+        sortable: true
+    create_user_id:
+        label: 创建用户
+        type: text
+        invisible: true
+        sortable: true
+    target:
+        label: 适用对象
+        type: text
+        searchable: true
+        invisible: true
+    result:
+        label: 培训目标
+        type: text
+        searchable: true
+        invisible: true
+    material:
+        label: 培训教材
+        type: text
+        searchable: true
+        invisible: true
+    claim:
+        label: 培训要求
+        type: text
+        searchable: true
+        invisible: true
+    document:
+        label: 需交资料
+        type: text
+        searchable: true
+        invisible: true
+        sortable: false
+    operate_hours:
+        label: 操作学时
+        type: number
+        invisible: true
+        sortable: true
+    theory_hours:
+        label: 理论学时
+        type: number
+        invisible: true
+        sortable: true
+    address:
+        label: 培训地点
+        type: text
+        invisible: true
+        sortable: true
+    contact_person:
+        label: 联系人
+        type: text
+        sortable: true
+    contact_phone:
+        label: 联系电话
+        type: text
+        sortable: true
+    remark:
+        label: 备注
+        type: text
+        searchable: true
+        invisible: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: 删除时间
+        type: datetime
+        invisible: true
+        sortable: true

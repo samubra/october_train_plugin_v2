@@ -1,0 +1,15 @@
+name: 培训证书
+modelClass: Samubra\Train\Models\Record
+form: $/samubra/train/models/record/fields.yaml
+defaultRedirect: samubra/train/records
+create:
+    title: 添加培训证书
+    redirect: 'samubra/train/records/update/:id'
+    redirectClose: samubra/train/records
+    flashSave: 培训证书添加成功
+update:
+    title: 修改培训证书信息
+    redirect: samubra/train/records
+    redirectClose: samubra/train/records
+    flashSave: 培训证书信息修改成功
+    flashDelete: 培训证书删除成功

@@ -1,0 +1,39 @@
+
+scopes:
+    plan:
+        label: 培训方案
+        type: group
+        modelClass: Samubra\Train\Models\Plan
+        conditions: plan_id in (:filtered)
+        nameFrom: title
+    status:
+        label: 受理状态
+        modelClass: Samubra\Train\Models\Lookup
+        conditions: status_id in (:filtered)
+        options: getStatusOptions
+    can_apply:
+        label: 是否允许申请培训
+        type: switch
+        conditions:
+            - can_apply <> true
+            - can_apply = true
+    start_date:
+        label: 培训开始日期
+        type: daterange
+        yearRange: 2
+        conditions: start_date >= ':after' AND start_date <= ':before'
+    end_date:
+        label: 培训结束日期
+        type: daterange
+        yearRange: 2
+        conditions: end_date >= ':after' AND end_date <= ':before'
+    exam_date:
+        label: 预计考试日期
+        type: daterange
+        yearRange: 2
+        conditions: exam_date >= ':after' AND exam_date <= ':before'
+    end_apply_date:
+        label: 受理截止日期
+        type: daterange
+        yearRange: 2
+        conditions: end_apply_date >= ':after' AND end_apply_date <= ':before'

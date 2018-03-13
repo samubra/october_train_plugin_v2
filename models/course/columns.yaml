@@ -1,0 +1,24 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    course_title:
+        label: 课程名称
+        type: text
+        searchable: true
+        sortable: true
+    course_type_text:
+        label: 课程类型
+        type: text
+        default: 未设置
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        sortable: true

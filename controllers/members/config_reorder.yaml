@@ -1,0 +1,4 @@
+title: Members
+modelClass: Samubra\Train\Models\Member
+toolbar:
+    buttons: reorder_toolbar

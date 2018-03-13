@@ -1,0 +1,48 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    teacher_name:
+        label: 姓名
+        type: text
+        searchable: true
+        sortable: true
+    teacher_identity:
+        label: 身份证号
+        type: text
+        searchable: true
+    teacher_qualification_number:
+        label: 资格证号
+        type: text
+        searchable: true
+    teacher_job_title:
+        label: 职称
+        type: text
+    teacher_phone:
+        label: 联系电话
+        type: text
+        searchable: true
+    teacher_company:
+        label: 工作单位
+        type: text
+        searchable: true
+        sortable: true
+    teacher_edu_id:
+        label: 文化程度
+        type: text
+        select: display_name
+        relation: teacherEdu
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+    updated_at:
+        label: 更新时间
+        type: datetime
+        invisible: true
+    deleted_at:
+        label: 删除时间
+        type: datetime
+        invisible: true

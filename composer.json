@@ -1,0 +1,23 @@
+{
+    "name": "samubra/train",
+    "description": "培训管理",
+    "keywords": [
+        "october",
+        "train",
+        "plugin"
+    ],
+    "authors": [
+        {
+            "name": "Samubra Peng",
+            "email": "samubra@live.cn"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "maatwebsite/excel": "~2.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+        }
+    }
+}

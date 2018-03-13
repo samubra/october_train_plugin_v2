@@ -1,0 +1,9 @@
+courses:
+    label: 授课列表
+    recordsPerPage: 10
+    view:
+        list: $/samubra/train/models/course/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/samubra/train/models/course/fields.yaml
+        list: $/samubra/train/models/course/columns.yaml

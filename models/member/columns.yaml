@@ -1,0 +1,55 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    member_name:
+        label: 姓名
+        type: text
+        searchable: true
+        sortable: true
+    member_identity:
+        label: 身份证号
+        type: text
+        searchable: true
+    member_phone:
+        label: 联系电话
+        type: text
+        searchable: true
+    member_address:
+        label: 联系地址
+        type: text
+        searchable: true
+    member_edu_id:
+        label: 文化程度
+        type: text
+        select: display_name
+        relation: member_edu
+    member_user_id:
+        label: 创建人
+        type: text
+        invisible: true
+        sortable: true
+        select: surname
+        relation: member_user
+    member_company:
+        label: 工作单位
+        type: text
+        searchable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
+    deleted_at:
+        label: 删除时间
+        type: datetime
+        invisible: true
+        sortable: true

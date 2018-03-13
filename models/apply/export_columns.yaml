@@ -1,0 +1,96 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    record_id:
+        label: 姓名
+        type: text
+        sortable: true
+        valueFrom: member_name
+    record_identity:
+        label: 身份证号
+        type: text
+        sortable: true
+        valueFrom: member_identity
+    training_id:
+        label: 培训类别
+        type: text
+        searchable: true
+        sortable: true
+        valueFrom: training_type
+    training:
+        label: 培训项目
+        type: text
+        searchable: true
+        sortable: true
+        select: title
+        relation: training
+    status_id:
+        label: 受理状态
+        type: text
+        searchable: true
+        sortable: true
+        select: display_name
+        relation: status
+    health_id:
+        label: 健康状况
+        type: text
+        searchable: true
+        invisible: false
+        sortable: true
+        select: display_name
+        relation: health
+    address:
+        label: 联系地址
+        type: text
+        searchable: true
+        invisible: true
+    company:
+        label: 单位名称
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    pay:
+        label: 已缴费
+        type: number
+        default: '0'
+        searchable: true
+        sortable: true
+    phone:
+        label: 联系电话
+        type: text
+        searchable: true
+    operate_score:
+        label: 操作成绩
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    theory_score:
+        label: 理论成绩
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        sortable: true
+    deleted_at:
+        label: 删除时间
+        type: datetime
+        invisible: true
+        sortable: true
+    remark:
+        label: 备注信息
+        type: text
+        searchable: true
+        invisible: true

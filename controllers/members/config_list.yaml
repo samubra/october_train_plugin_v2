@@ -1,0 +1,13 @@
+title: 培训学员
+modelClass: Samubra\Train\Models\Member
+list: $/samubra/train/models/member/columns.yaml
+recordUrl: 'samubra/train/members/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+filter: config_filter.yaml

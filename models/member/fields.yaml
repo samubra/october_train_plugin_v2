@@ -1,0 +1,49 @@
+fields:
+    member_name:
+        label: 姓名
+        span: auto
+        required: 1
+        type: text
+    member_identity:
+        label: 身份证号
+        span: auto
+        required: 1
+        type: text
+    member_phone:
+        label: 联系电话
+        span: auto
+        required: 1
+        type: text
+    member_address:
+        label: 联系地址
+        span: auto
+        default: 重庆市
+        type: text
+    member_edu:
+        label: 文化程度
+        nameFrom: display_name
+        descriptionFrom: description
+        span: auto
+        type: relation
+    member_company:
+        label: 工作单位
+        span: auto
+        default: 个体
+        type: text
+    avatar:
+        label: 头像
+        mode: image
+        imageWidth: '100'
+        imageHeight: '100'
+        fileTypes: 'jpeg,jpg,png'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    records:
+        label: 证件列表
+        span: full
+        path: records_field
+        type: partial

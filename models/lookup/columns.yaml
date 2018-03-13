@@ -1,0 +1,29 @@
+columns:
+    id:
+        label: '#'
+        type: number
+        searchable: true
+        sortable: true
+    display_name:
+        label: 显示名称
+        type: text
+        searchable: true
+    sort:
+        label: 排序
+        type: number
+        invisible: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+        sortable: true
+    lookup_type:
+        label: 类别
+        type: text
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 创建时间
+        type: datetime
+        invisible: false
+        sortable: true

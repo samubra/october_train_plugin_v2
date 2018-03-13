@@ -1,0 +1,104 @@
+plugin:
+    name: 'samubra.train::lang.plugin.name'
+    description: 'samubra.train::lang.plugin.description'
+    author: samubra
+    icon: oc-icon-database
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 基础数据
+        url: samubra/train/teachers
+        icon: icon-archive
+        permissions:
+            - manage_category
+            - manage_lookup
+        sideMenu:
+            teacher-item:
+                label: 教师管理
+                url: samubra/train/teachers
+                icon: icon-user-md
+                permissions:
+                    - manage_teacher
+            course-item:
+                label: 课程管理
+                url: samubra/train/courses
+                icon: icon-paperclip
+                permissions:
+                    - manage_course
+            category-item:
+                label: 分类管理
+                url: samubra/train/categories
+                icon: icon-th-list
+                permissions:
+                    - manage_category
+            lookup-item:
+                label: 元数据管理
+                url: samubra/train/lookups
+                icon: icon-stack-overflow
+                permissions:
+                    - manage_lookup
+    main-menu-item2:
+        label: 培训管理
+        url: samubra/train/trainings
+        icon: icon-user-secret
+        permissions:
+            - manage_teacher
+        sideMenu:
+            training-item:
+                label: 培训项目
+                url: samubra/train/trainings
+                icon: icon-table
+                permissions:
+                    - manage_training
+            plan-item:
+                label: 培训方案
+                url: samubra/train/plans
+                icon: icon-newspaper-o
+                permissions:
+                    - manage_plan
+            apply-item:
+                label: 培训申请
+                url: samubra/train/applies
+                icon: icon-tasks
+                permissions:
+                    - manage_apply
+            member-item:
+                label: 培训学员
+                url: samubra/train/members
+                icon: icon-users
+                permissions:
+                    - manage_member
+            record-item:
+                label: 证书管理
+                url: samubra/train/records
+                icon: icon-credit-card
+                permissions:
+                    - manage_record
+permissions:
+    manage_category:
+        tab: 管理分类
+        label: 分类管理
+    manage_lookup:
+        tab: 管理元数据
+        label: 元数据管理
+    manage_teacher:
+        tab: 管理教师
+        label: 教师管理
+    manage_member:
+        tab: 管理培训学员
+        label: 培训学员管理
+    manage_plan:
+        tab: 管理培训方案
+        label: 培训方案管理
+    manage_course:
+        tab: 管理课程
+        label: 课程管理
+    manage_training:
+        tab: 管理培训
+        label: 培训管理
+    manage_record:
+        tab: 管理操作证
+        label: 操作证管理
+    manage_apply:
+        tab: 管理培训申请
+        label: 申请管理

@@ -1,0 +1,16 @@
+name: 培训方案
+modelClass: Samubra\Train\Models\Plan
+form: $/samubra/train/models/plan/fields.yaml
+defaultRedirect: samubra/train/plans
+create:
+    title: 创建培训方案
+    redirect: 'samubra/train/plans/update/:id'
+    redirectClose: samubra/train/plans
+    flashSave: 培训方案创建成功
+update:
+    title: 修改培训方案
+    redirect: samubra/train/plans
+    redirectClose: samubra/train/plans
+    flashSave: 培训方案修改成功
+    flashDelete: 培训方案删除成功
+preview: {  }

@@ -1,0 +1,17 @@
+
+scopes:
+    lookup_type:
+        label: 数据类型
+        modelClass: Samubra\Train\Models\Lookup
+        conditions: lookup_type in (:filtered)
+        options: getLookupTypeOptions
+    created_at:
+        label: 创建日期
+        type: daterange
+        yearRange: 2
+        conditions: created_at >= ':after' AND created_at <= ':before'
+    updated_at:
+        label: 最后修改日期
+        type: daterange
+        yearRange: 2
+        conditions: updated_at >= ':after' AND updated_at <= ':before'

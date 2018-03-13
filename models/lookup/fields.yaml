@@ -1,0 +1,15 @@
+fields:
+    display_name:
+        label: 显示标题
+        span: auto
+        required: 1
+        type: text
+    sort:
+        label: 排序
+        span: auto
+        type: number
+    lookup_type:
+        label: 类别
+        span: auto
+        required: 1
+        type: dropdown

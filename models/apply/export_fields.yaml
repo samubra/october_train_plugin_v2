@@ -1,0 +1,45 @@
+fields:
+    export_by:
+        label: 选择导出方式
+        span: auto
+        required: 1
+        default: all
+        type: dropdown
+    training:
+        label: 培训项目
+        emptyOption: '---选择需要导出培训申请的培训项目---'
+        span: auto
+        hidden: 0
+        trigger:
+            action: show
+            field: export_by
+            condition: 'value[training]'
+        type: dropdown
+    record:
+        label: 培训证书
+        emptyOption: '---选择需要导出培训记录的证书---'
+        span: right
+        trigger:
+            action: show
+            field: export_by
+            condition: 'value[record]'
+        type: dropdown
+    member:
+        label: 培训学员
+        emptyOption: '---选择需要导出培训记录的学员---'
+        span: right
+        trigger:
+            action: show
+            field: export_by
+            condition: 'value[member]'
+        type: dropdown
+    status:
+        label: 受理状态
+        emptyOption: '---选择申请记录的受理状态---'
+        span: auto
+        type: dropdown
+    health:
+        label: 健康状况
+        emptyOption: '---选择申请记录的健康状况---'
+        span: auto
+        type: dropdown

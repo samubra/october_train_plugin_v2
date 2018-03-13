@@ -1,0 +1,11 @@
+name: 元数据
+modelClass: Samubra\Train\Models\Lookup
+form: $/samubra/train/models/lookup/fields.yaml
+defaultRedirect: samubra/train/lookups
+create:
+    redirect: 'samubra/train/lookups/update/:id'
+    redirectClose: samubra/train/lookups
+update:
+    redirect: samubra/train/lookups
+    redirectClose: samubra/train/lookups
+preview: {  }

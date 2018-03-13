@@ -1,0 +1,16 @@
+name: 培训项目
+modelClass: Samubra\Train\Models\Training
+form: $/samubra/train/models/training/fields.yaml
+defaultRedirect: samubra/train/trainings
+create:
+    title: 创建培训项目
+    redirect: 'samubra/train/trainings/update/:id'
+    redirectClose: samubra/train/trainings
+    flashSave: 培训项目创建成功
+update:
+    title: 修改培训项目信息
+    redirect: samubra/train/trainings
+    redirectClose: samubra/train/trainings
+    flashSave: 培训项目信息修改成功
+    flashDelete: 培训项目信息修改成功
+preview: {  }

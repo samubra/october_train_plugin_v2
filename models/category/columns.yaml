@@ -1,0 +1,42 @@
+columns:
+    id:
+        label: '#'
+        type: number
+        searchable: true
+        sortable: true
+    complete_type:
+        label: 结业类型
+        type: text
+        searchable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+        sortable: true
+    name:
+        label: 分类名称
+        type: text
+        searchable: true
+    organ:
+        label: 发证机关
+        type: text
+        searchable: true
+    parent_name:
+        label: 上级分类
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: parent
+    unit:
+        label: 期限单位
+        type: text
+    updated_at:
+        label: 更新时间
+        type: datetime
+        invisible: true
+        sortable: true
+    validity:
+        label: 有效期限
+        type: number
+        sortable: false

@@ -1,0 +1,35 @@
+fields:
+    name:
+        label: 培训类别名称
+        span: auto
+        placeholder: 例如：低压电工作业
+        required: 1
+        type: text
+    parent:
+        label: 上级类别
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        required: 0
+        type: relation
+    complete_type:
+        label: 结业类型
+        emptyOption: 请选择结业类型
+        span: auto
+        required: 1
+        type: dropdown
+    organ:
+        label: 发证单位
+        span: auto
+        type: text
+    validity:
+        label: 有效期限
+        span: auto
+        default: ''
+        required: 1
+        type: number
+    unit:
+        label: 期限单位
+        emptyOption: 请选择期限单位
+        span: auto
+        type: dropdown

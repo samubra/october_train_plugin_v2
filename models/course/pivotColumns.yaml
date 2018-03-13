@@ -1,0 +1,28 @@
+columns:
+    course_title:
+        label: 课程标题
+        type: text
+    course_type_text:
+        label: 课程类型
+        type: text
+        default: 未设置
+    'pivot[course_teacher_name]':
+        label: 授课教师
+        type: text
+        valueFrom: 'pivot[teacher].teacher_name'
+    'pivot[hours]':
+        label: 授课学时
+        type: text
+        sortable: true
+    'pivot[teaching_form]':
+        label: 授课方式
+        type: text
+        sortable: true
+    'pivot[start_time]':
+        label: 授课开始
+        type: datetime
+        sortable: true
+    'pivot[end_time]':
+        label: 授课结束
+        type: datetime
+        sortable: true

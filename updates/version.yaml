@@ -1,0 +1,50 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table samubra_train_categories'
+    - builder_table_create_samubra_train_categories.php
+1.0.3:
+    - 'Created table samubra_train_lookups'
+    - builder_table_create_samubra_train_lookups.php
+1.0.4:
+    - seed_category_table
+    - seed_category_table.php
+1.0.5:
+    - 'seed lookup table'
+    - seed_lookup_table.php
+1.0.6:
+    - 'Created table samubra_train_members'
+    - builder_table_create_samubra_train_members.php
+1.0.7:
+    - 'Created table samubra_train_teachers'
+    - builder_table_create_samubra_train_teachers.php
+1.0.8:
+    - 'Created table samubra_train_plans 培训计划'
+    - builder_table_create_samubra_train_plans.php
+1.0.9:
+    - 'Created table samubra_train_courses 课程'
+    - builder_table_create_samubra_train_courses.php
+1.0.10:
+    - 'Created table samubra_train_plan_course 课程与培训方案的关联'
+    - builder_table_create_samubra_train_plan_course.php
+1.0.11:
+    - 'Created table samubra_train_training 培训'
+    - builder_table_create_samubra_train_training.php
+1.0.12:
+    - 'Updated table samubra_train_plans 添加文档'
+    - builder_table_update_samubra_train_plans.php
+1.0.13:
+    - 'Updated table samubra_train_training'
+    - builder_table_update_samubra_train_training.php
+1.0.14:
+    - 'Updated table samubra_train_plan_course'
+    - builder_table_update_samubra_train_plan_course.php
+1.0.15:
+    - 'Created table samubra_train_records'
+    - builder_table_create_samubra_train_records.php
+1.0.16:
+    - 'Created table samubra_train_applies'
+    - builder_table_create_samubra_train_applies.php
+1.0.17:
+    - 'Updated table samubra_train_applies'
+    - builder_table_update_samubra_train_applies.php

@@ -1,0 +1,68 @@
+fields:
+    teacher_name:
+        label: 姓名
+        oc.commentPosition: below
+        span: auto
+        placeholder: 请填写教师姓名，必填
+        required: 1
+        type: text
+    teacher_identity:
+        label: 身份证号
+        span: auto
+        placeholder: 请填写教师的身份证号码，必填
+        required: 1
+        type: text
+    teacher_company:
+        label: 单位名称
+        span: auto
+        placeholder: 请填写教师所在工作单位名称
+        required: 1
+        type: text
+    teacher_job_title:
+        label: 职称
+        span: auto
+        placeholder: 请填写教师的职称，如：中级、高级
+        type: text
+    teacher_phone:
+        label: 联系电话
+        span: auto
+        placeholder: 请填写有效的身份证号码
+        required: 1
+        type: text
+    teacher_qualification_number:
+        label: 资格证号
+        span: auto
+        placeholder: 请填写对应的教师资格证号，如：渝安监培XXXX
+        type: text
+    teacherEdu:
+        label: 文化程度
+        nameFrom: display_name
+        descriptionFrom: description
+        span: auto
+        required: 1
+        emptyOption: 请选择教师的文化程度
+        type: relation
+    avatar:
+        label: 照片
+        mode: image
+        imageWidth: '100'
+        imageHeight: '100'
+        fileTypes: 'jpg,png,jpeg'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    document:
+        label: 文档扫描件
+        mode: image
+        imageWidth: '100'
+        imageHeight: '100'
+        fileTypes: 'jpg,png,jpeg'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload

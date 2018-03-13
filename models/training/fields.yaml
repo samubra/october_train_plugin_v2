@@ -1,0 +1,90 @@
+fields:
+    title:
+        label: 培训名称
+        span: full
+        required: 1
+        type: text
+    plan:
+        label: 培训方案
+        nameFrom: title
+        descriptionFrom: type.name
+        prompt: 请选择培训方案
+        list: $/samubra/train/models/plan/columns.yaml
+        span: auto
+        required: 1
+        type: recordfinder
+    status:
+        label: 培训状态
+        nameFrom: display_name
+        descriptionFrom: lookup_type
+        emptyOption: 请选择培训状态
+        span: auto
+        required: 1
+        type: relation
+    start_date:
+        label: 培训开始日期
+        mode: date
+        yearRange: '1'
+        span: auto
+        required: 1
+        type: datepicker
+    end_date:
+        label: 培训结束日期
+        mode: date
+        yearRange: '1'
+        span: auto
+        required: 1
+        type: datepicker
+    end_apply_date:
+        label: 受理截止日期
+        mode: date
+        yearRange: '1'
+        span: auto
+        required: 1
+        type: datepicker
+    exam_date:
+        label: 预计考试日期
+        mode: date
+        yearRange: '1'
+        span: auto
+        required: 1
+        type: datepicker
+    cost:
+        label: 培训收费
+        span: auto
+        required: 1
+        type: number
+    can_apply:
+        label: 允许申请培训
+        span: auto
+        default: 1
+        required: 0
+        type: switch
+    applies:
+        label: 培训申请
+        span: full
+        path: applies_field
+        type: partial
+    remark:
+        label: 备注信息
+        prompt: 添加备注
+        span: auto
+        type: repeater
+        form:
+            fields:
+                content:
+                    label: 备注内容
+                    span: full
+                    type: text
+    photos:
+        label: 培训照片
+        mode: image
+        prompt: 请选择培训照片
+        imageWidth: '100'
+        imageHeight: '100'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

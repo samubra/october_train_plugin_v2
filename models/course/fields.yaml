@@ -1,0 +1,11 @@
+fields:
+    course_title:
+        label: 课程标题
+        span: auto
+        required: 1
+        type: text
+    course_type:
+        label: 课程类型
+        span: auto
+        required: 1
+        type: dropdown

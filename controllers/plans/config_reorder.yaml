@@ -1,0 +1,4 @@
+title: Plans
+modelClass: Samubra\Train\Models\Plan
+toolbar:
+    buttons: reorder_toolbar

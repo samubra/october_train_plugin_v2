@@ -1,0 +1,16 @@
+name: 培训申请
+modelClass: Samubra\Train\Models\Apply
+form: $/samubra/train/models/apply/fields.yaml
+defaultRedirect: samubra/train/applies
+create:
+    title: 添加培训申请
+    redirect: 'samubra/train/applies/update/:id'
+    redirectClose: samubra/train/applies
+    flashSave: 培训申请创建成功
+update:
+    title: 修改培训申请
+    redirect: samubra/train/applies
+    redirectClose: samubra/train/applies
+    flashSave: 培训申请修改成功
+    flashDelete: 培训申请删除成功
+preview: {  }

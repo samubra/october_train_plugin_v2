@@ -1,0 +1,16 @@
+name: 培训学员
+modelClass: Samubra\Train\Models\Member
+form: $/samubra/train/models/member/fields.yaml
+defaultRedirect: samubra/train/members
+create:
+    title: 添加培训学员
+    redirect: 'samubra/train/members/update/:id'
+    redirectClose: samubra/train/members
+    flashSave: 培训学员添加成功
+update:
+    title: 修改学员信息
+    redirect: samubra/train/members
+    redirectClose: samubra/train/members
+    flashSave: 培训学员信息修改成功
+    flashDelete: 培训学员信息删除成功
+preview: {  }
