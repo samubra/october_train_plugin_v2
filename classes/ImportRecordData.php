@@ -10,22 +10,32 @@ namespace Samubra\Train\Classes;
 
 use Samubra\Train\Models\Member;
 use Samubra\Train\Models\Record;
+use DB;
 
 class ImportRecordData
 {
     public function fire($job, $data)
     {
-
-        $memberModel = Member::firstOrCreate(['member_name'=>$data['member_name'],'member_identity'=>$data['member_identity']]);
-        $memberModel->member_phone = $data['phone'];
-        $memberModel->member_address = $data['address'];
-        $memberModel->member_edu_id = $data['edu'];
-        $memberModel->member_company = $data['company'];
-        $memberModel->save();
+        if(DB::table('samubra_train_members')->where('member_name',$data['member_name'])->where('member_identity',$data['member_identity'])->count())
+        {
+            $member = DB::table('samubra_train_members')->select('id')->where('member_name',$data['member_name'])->where('member_identity',$data['member_identity'])->first();
+            $memberId = $member->id;
+        }else{
+            $memberId = DB::table('samubra_train_members')->insertGetId(
+                [
+                    'member_name'=>$data['member_name'],
+                    'member_identity'=>$data['member_identity'],
+                    'member_phone' => $data['phone'],
+                    'member_address' => $data['address'],
+                    'member_edu_id' => $data['edu'],
+                    'member_company' => $data['company'],
+                ]
+            );
+        }
 
         $recordData = [
             'import_id' => $data['id'],
-            'member_id' => $memberModel->id,
+            'member_id' => $memberId,
             'type_id' => $data['type'],
             'edu_id' => $data['edu'],
             'first_get_date' => $data['first_get_date'],
@@ -36,7 +46,8 @@ class ImportRecordData
             'company' => $data['company'],
             'remark' => $data['remark']
         ];
-        Record::create($recordData);
+        DB::table('samubra_train_records')->insert($recordData);
+
         $job->delete();
     }
 }
