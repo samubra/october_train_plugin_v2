@@ -35,6 +35,7 @@ class ImportRecordData
 
         $recordData = [
             'import_id' => $data['id'],
+            'id' => $data['id'],
             'member_id' => $memberId,
             'type_id' => $data['type'],
             'edu_id' => $data['edu'],
