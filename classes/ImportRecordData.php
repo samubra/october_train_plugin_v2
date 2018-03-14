@@ -23,22 +23,20 @@ class ImportRecordData
         $memberModel->member_company = $data['company'];
         $memberModel->save();
 
-        $recordModel = new Record;
-        $recordModel->id = $data['id'];
-        $recordModel->member_id = $memberModel->id;
-        $recordModel->type_id = $data['type'];
-        $recordModel->edu_id = $data['edu'];
-        $recordModel->first_get_date = $data['first_get_date'];
-        $recordModel->print_date = $data['print_date'];
-        $recordModel->is_valid = $data['is_valid'];
-        $recordModel->phone = $data['phone'];
-        $recordModel->address = $data['address'];
-        $recordModel->company = $data['company'];
-        $recordModel->remark = $data['remark'];
-
-        //dd($recordModel);
-        $recordModel->save();
-//echo '1';
+        $recordData = [
+            'import_id' => $data['id'],
+            'member_id' => $memberModel->id,
+            'type_id' => $data['type'],
+            'edu_id' => $data['edu'],
+            'first_get_date' => $data['first_get_date'],
+            'print_date' => $data['print_date'],
+            'is_valid' => $data['is_valid'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'company' => $data['company'],
+            'remark' => $data['remark']
+        ];
+        Record::create($recordData);
         $job->delete();
     }
 }
