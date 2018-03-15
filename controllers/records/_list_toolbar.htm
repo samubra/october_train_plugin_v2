@@ -1,5 +1,19 @@
 <div data-control="toolbar">
         <a href="<?= Backend::url('samubra/train/records/create') ?>" class="btn btn-primary oc-icon-plus"><?= e(trans('backend::lang.form.create')) ?></a>
+    <a role="button" href="<?= Backend::url('samubra/train/records/import') ?>" class="btn btn-default oc-icon-upload"
+       title="批量导入培训证书"
+       data-control="tooltip"
+       data-placement="bottom"
+       data-container="body">
+        批量导入培训证书
+    </a>
+    <a role="button" href="<?= Backend::url('samubra/train/records/export') ?>" class="btn btn-default oc-icon-download"
+       title="可根据不同的组合条件批量导出为xls文件"
+       data-control="tooltip"
+       data-placement="bottom"
+       data-container="body">
+        导出培训证书
+    </a>
             <button
         class="btn btn-default oc-icon-trash-o"
         disabled="disabled"

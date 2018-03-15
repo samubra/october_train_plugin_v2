@@ -12,10 +12,12 @@ fields:
         required: 1
         type: relation
     is_new:
-        label: 是否新训
+        label: 新/复训
         span: auto
         default: 1
         type: switch
+        on: 新
+        off: 复
     operate_hours:
         label: 操作学时
         span: auto

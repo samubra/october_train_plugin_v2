@@ -1,2 +1,7 @@
 fields:
-    
+    import_type:
+        label: 选择导入方式
+        span: full
+        required: 1
+        default: all
+        type: dropdown

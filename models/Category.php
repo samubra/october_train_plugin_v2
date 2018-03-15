@@ -51,8 +51,8 @@ class Category extends Model
         ];
     }
 
-    public function scopeDepth($query)
+    public function scopeDepth($query,$depth = 0)
     {
-        return $query->where('nest_depth',0);
+        return $query->where('nest_depth',$depth);
     }
 }

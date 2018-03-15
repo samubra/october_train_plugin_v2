@@ -3,3 +3,9 @@ import:
     modelClass: Samubra\Train\Models\RecordsImport
     list: $/samubra/train/models/record/columns.yaml
     form: $/samubra/train/models/record/import_fields.yaml
+export:
+    title: 导出培训证书
+    fileName: 导出培训证书.xls
+    modelClass: Samubra\Train\Models\RecordsExport
+    list: $/samubra/train/models/record/export_columns.yaml
+    form: $/samubra/train/models/record/export_fields.yaml

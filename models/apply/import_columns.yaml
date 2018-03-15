@@ -5,7 +5,7 @@ columns:
         searchable: true
         sortable: true
     training_id:
-        label: 培训项目ID
+        label: 培训类别ID
         type: number
         searchable: true
         sortable: true
@@ -13,16 +13,6 @@ columns:
         label: 培训证书ID
         type: number
         sortable: true
-    record_name:
-        label: 姓名
-        type: text
-        sortable: true
-        valueFrom: member_name
-    record_identity:
-        label: 身份证号
-        type: text
-        sortable: true
-        valueFrom: member_identity
     record_print_date:
         label: 发证日期
         type: datetime
@@ -37,43 +27,22 @@ columns:
         sortable: true
         select: is_valid
         relation: record
-    training:
-        label: 培训项目
-        type: text
-        searchable: true
-        sortable: true
-        select: title
-        relation: training
-    training_type:
-        label: 培训类别
-        type: text
-        searchable: true
-        sortable: true
-        valueFrom: training_type
     status_id:
         label: 受理状态ID
-        type: text
-        searchable: true
-        sortable: true
-    status_id:
-        label: 受理状态
-        type: text
-        searchable: true
-        sortable: true
-        select: display_name
-        relation: status
-    health_id:
-        label: 健康状况
-        type: text
+        type: number
         searchable: true
         sortable: true
     health_id:
         label: 健康状况ID
-        type: text
+        type: number
         searchable: true
         sortable: true
-        select: display_name
-        relation: health
+    member_name:
+        label: 学员姓名
+        type: text
+    member_identity:
+        label: 学员身份证号
+        type: text
     address:
         label: 联系地址
         type: text
@@ -107,22 +76,3 @@ columns:
         searchable: true
         invisible: true
         sortable: true
-    created_at:
-        label: 创建时间
-        type: datetime
-        invisible: true
-        sortable: true
-    updated_at:
-        label: 最后更新
-        type: datetime
-        sortable: true
-    deleted_at:
-        label: 删除时间
-        type: datetime
-        invisible: true
-        sortable: true
-    remark:
-        label: 备注信息
-        type: text
-        searchable: true
-        invisible: true

@@ -1,7 +1,7 @@
 import:
     title: 导入培训记录
     modelClass: Samubra\Train\Models\AppliesImport
-    list: $/samubra/train/models/apply/columns.yaml
+    list: $/samubra/train/models/apply/import_columns.yaml
     form: $/samubra/train/models/apply/import_fields.yaml
 
 export:

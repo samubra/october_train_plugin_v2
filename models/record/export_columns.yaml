@@ -4,37 +4,64 @@ columns:
         type: number
         searchable: true
         sortable: true
-    record_name:
+    member_id:
+        label: 培训学员ID
+        type: text
+    type_id:
+        label: 操作类别ID
+        type: text
+        searchable: true
+        sortable: true
+    edu_id:
+        label: 文化程度ID
+        type: text
+        searchable: true
+    member_name:
         label: 姓名
         type: text
-        sortable: true
-        valueFrom: member_name
-    record_identity:
+        select: member_name
+        relation: member
+    member_identity:
         label: 身份证号
         type: text
-        sortable: true
-        valueFrom: member_identity
-    training_id:
-        label: 培训类别
+        select: member_identity
+        relation: member
+    type_name:
+        label: 操作类别
         type: text
         searchable: true
         sortable: true
-        valueFrom: training_type
-    status_id:
-        label: 受理状态
-        type: text
-        searchable: true
-        sortable: true
-        select: display_name
-        relation: status
-    health_id:
-        label: 健康状况
+        select: name
+        relation: type
+    edu_name:
+        label: 文化程度
         type: text
         searchable: true
         invisible: false
         sortable: true
         select: display_name
-        relation: health
+        relation: edu
+    first_get_date:
+        label: 初领证日期
+        type: date
+        default: 未设置
+        searchable: true
+        invisible: true
+        sortable: true
+    print_date:
+        label: 发证日期
+        type: date
+        default: 未设置
+        searchable: true
+        sortable: true
+    is_valid:
+        label: 是否有效
+        type: switch
+        sortable: true
+    phone:
+        label: 联系电话
+        type: text
+        searchable: true
     address:
         label: 联系地址
         type: text
@@ -45,45 +72,24 @@ columns:
         type: text
         searchable: true
         invisible: true
-        sortable: true
-    pay:
-        label: 已缴费
-        type: number
-        default: '0'
-        searchable: true
-        sortable: true
-    phone:
-        label: 联系电话
-        type: text
-        searchable: true
-    operate_score:
-        label: 操作成绩
+    remark:
+        label: 备注
         type: text
         searchable: true
         invisible: true
-        sortable: true
-    theory_score:
-        label: 理论成绩
-        type: text
-        searchable: true
-        invisible: true
-        sortable: true
     created_at:
         label: 创建时间
         type: datetime
+        searchable: true
         invisible: true
         sortable: true
     updated_at:
         label: 最后更新
         type: datetime
+        searchable: true
         sortable: true
     deleted_at:
         label: 删除时间
         type: datetime
         invisible: true
         sortable: true
-    remark:
-        label: 备注信息
-        type: text
-        searchable: true
-        invisible: true

@@ -26,7 +26,12 @@ class ExportXlsModel extends ExportModel
         return [];
     }
 
-
+    public function export($columns, $options)
+    {
+        $sessionKey = array_get($options, 'sessionKey');
+        $data = $this->exportData($columns, $sessionKey);
+        return $this->processExportData($columns, $data, $options);
+    }
 
     /**
      * Converts a data collection to a xls file.
@@ -36,7 +41,7 @@ class ExportXlsModel extends ExportModel
         /*
          * Validate
          */
-        if (!$results) {
+        if (!(count($results)-1)) {
             throw new ApplicationException(Lang::get('backend::lang.import_export.empty_error'));
         }
 
@@ -44,13 +49,12 @@ class ExportXlsModel extends ExportModel
          * Parse options
          */
         $defaultOptions = [
-            'firstRowTitles' => true,
+            'firstRowTitles' => false,
             'fileName' => 'export',
         ];
 
         $options = array_merge($defaultOptions, $options);
         $columns = $this->exportExtendColumns($columns);
-        //var_dump($columns);
         $thisModel = $this;
 
 
@@ -60,7 +64,7 @@ class ExportXlsModel extends ExportModel
                 if($options['firstRowTitles']) {
                     $sheet->prependRow(1, $thisModel->getColumnHeaders($columns));
                 }
-                $sheet->rows($results);
+                $sheet->rows($results)->setFontSize(12)->freezeFirstRow();
             });
 
         })->store('xls', temp_path(),true);

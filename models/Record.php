@@ -89,4 +89,59 @@ class Record extends Model
         $type = Category::find($this->type_id);
         return $type->name;
     }
+
+    public function scopeFirstGetDate($query,$date)
+    {
+        if(is_array($date))
+        {
+            if(isset($date['after']))
+                $query->where('first_get_date','>=',$date['after']);
+            if(isset($date['before']))
+                $query->where('first_get_date','<=',$date['before']);
+        }else{
+            $query->where('first_get_date',$date);
+        }
+
+        return $query;
+    }
+
+    public function scopePrintDate($query,$date)
+    {
+        if(is_array($date))
+        {
+            if(isset($date['after']))
+                $query->where('print_date','>=',$date['after']);
+            if(isset($date['before']))
+                $query->where('print_date','<=',$date['before']);
+        }else{
+            $query->where('print_date',$date);
+        }
+
+        return $query;
+    }
+    public function scopeType($query,$type)
+    {
+        return $query->where('type_id',$type);
+    }
+    public function scopeEdu($query,$edu)
+    {
+        return $query->where('edu_id',$edu);
+    }
+    public function scopeIsValid($query,$is_valid)
+    {
+        return $query->where('is_valid',$is_valid);
+    }
+    public function scopeCompany($query,$company)
+    {
+        return $query->where('company','like',$company);
+    }
+
+    public function scopeExport($query,$conditions)
+    {
+        foreach ($conditions as $key=>$condition)
+        {
+            $query->$key($condition);
+        }
+        return $query;
+    }
 }

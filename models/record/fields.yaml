@@ -34,6 +34,8 @@ fields:
         label: 是否有效
         span: auto
         type: switch
+        on: 有效
+        off: 无效
     first_get_date:
         label: 初领证日期
         mode: date
