@@ -1,0 +1,17 @@
+# ===================================
+#  Dashboard Config
+# ===================================
+
+defaultWidgets:
+
+   welcome:
+        class: Samubra\Train\ReportWidgets\Welcome
+        sortOrder: 50
+        configuration:
+            ocWidgetWidth: 4
+   record:
+        class: Samubra\Train\ReportWidgets\RecordCount
+        sortOrder: 51
+        configuration:
+            ocWidgetWidth: 6
+

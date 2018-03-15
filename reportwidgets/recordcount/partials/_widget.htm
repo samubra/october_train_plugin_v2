@@ -1,0 +1,25 @@
+<div class="report-widget widget-welcome">
+    <h3><?= e(trans($this->property('title'))) ?></h3>
+
+    <?php if (!isset($error)): ?>
+        <div class="welcome-container">
+            <div class="welcome-message">
+                <div
+                        class="control-chart centered wrap-legend"
+                        data-control="chart-pie"
+                        data-size="300"
+                        data-center-text="总培训证书<br/><?= e($all) ?>份">
+                    <ul>
+                        <?php foreach($records as $count): ?>
+                        <li><?= e($count['name']) ?><span><?= e($count['number']) ?></span></li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="callout callout-warning">
+            <div class="content"><?= e($error) ?></div>
+        </div>
+    <?php endif ?>
+</div>
