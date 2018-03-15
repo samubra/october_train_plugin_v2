@@ -25,5 +25,11 @@ class Records extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Samubra.Train', 'main-menu-item2', 'record-item');
+        $this->addJs('/plugins/rainlab/user/assets/js/bulk-actions.js');
+    }
+
+    public function onChangeStatus()
+    {
+        //var_dump(request('action'));
     }
 }
