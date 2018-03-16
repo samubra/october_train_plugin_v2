@@ -39,7 +39,7 @@ navigation:
                     - manage_lookup
     main-menu-item2:
         label: 培训管理
-        url: samubra/train/panel
+        url: samubra/train/trainings
         icon: icon-user-secret
         permissions:
             - manage_teacher

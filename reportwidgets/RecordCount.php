@@ -47,13 +47,7 @@ class RecordCount extends ReportWidgetBase
         ];
     }
 
-    /**
-     * @inheritDoc
-     */
-    protected function loadAssets()
-    {
-        //$this->addCss('css/welcome.css', 'core');
-    }
+
 
     protected function loadData()
     {
