@@ -8,41 +8,42 @@ use Model;
 class Course extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-
-    protected $dates = ['created_at','updated_at'];
+    use \October\Rain\Database\Traits\SoftDelete;
+    
+    protected $dates = ['created_at','updated_at','deleted_at'];
     /**
      * @var array Validation rules
      */
     public $rules = [
-        'course_title'=>'required|between:2,200',
-        'course_type'=>'required|in:theory,operate',
+        'title'=>'required|between:2,200',
+        'type'=>'required|in:theory,operate',
     ];
 
     public $attributeNames = [
-        'course_title' => '课程标题',
-        'course_type' => '课程类型'
+        'title' => '课程标题',
+        'type' => '课程类型'
     ];
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'samubra_train_courses';
+    public $table = 'train_courses';
 
     public $belongsToMany = [
-        'plans' => [
-            Plan::class,
-            'table'    => 'samubra_train_plan_course',
-            'otherKey'      => 'plan_id',
+        'projects' => [
+            Project::class,
+            'table'    => 'train_course_project',
+            'otherKey'      => 'project_id',
             'key' => 'course_id',
             'timestamps' => true,
-            'pivotModel'=>PlanCoursePivot::class,
+            'pivotModel'=>ProjectCoursePivot::class,
             'pivot' => ['start_time', 'end_time','teacher_id','hours','teaching_form']
         ]
     ];
 
     protected $appends = ['course_type_text'];
 
-    public static function getCourseTypeOptions()
+    public static function getTypeOptions()
     {
         return [
             'theory'=>'理论课',
@@ -53,12 +54,12 @@ class Course extends Model
     public function getCourseTypeTextAttribute()
     {
 
-        $list = self::getCourseTypeOptions();
+        $list = self::getTypeOptions();
         //$list = [
         //    'theory'=>'理论课',
         //    'operate'=>'操作课'
         //];
-        return isset($list[$this->course_type])?$list[$this->course_type]:$this->course_type;
+        return isset($list[$this->type])?$list[$this->type]:$this->type;
 
     }
 

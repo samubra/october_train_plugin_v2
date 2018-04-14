@@ -1,5 +1,5 @@
 fields:
-    name:
+    title:
         label: 培训类别名称
         span: auto
         placeholder: 例如：低压电工作业
@@ -7,7 +7,7 @@ fields:
         type: text
     parent:
         label: 上级类别
-        nameFrom: name
+        nameFrom: title
         descriptionFrom: description
         span: auto
         required: 0

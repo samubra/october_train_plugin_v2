@@ -11,53 +11,51 @@ use Samubra\Train\Classes\Phone;
 class Member extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
     use \October\Rain\Database\Traits\SoftDelete;
-
-    protected $dates = ['deleted_at'];
+    
+    protected $dates = ['created_at','updated_at','deleted_at'];
 
     /**
      * @var array Validation rules
      */
     public $rules = [
-        'member_name'    => 'required|between:2,255',
-        'member_identity'=>'required|identity|unique:samubra_train_members',
-        'member_phone'=>'nullable|phone',
-        'member_address'  =>'nullable|between:3,200',
-        'member_edu_id'  =>'nullable|exists:samubra_train_lookups,id',
-        'member_company'  =>'nullable',
-        //'member_user_id'    => 'nullable',
-        'avatar' => 'nullable|max:300'
+        'name'    => 'required|between:2,255',
+        'identity'=>'required|identity|unique:train_members',
+        'phone'=>'nullable|phone',
+        'address'  =>'nullable|between:3,200',
+        'edu_id'  =>'nullable|exists:train_lookups,id',
+        'company'  =>'nullable',
+        //'user_id'    => 'nullable',
     ];
 
     public $attributeNames = [
-        'member_name'    => '培训学员姓名',
-        'member_identity'=>'培训学员身份证号',
-        'member_phone'=>'培训学员联系电话',
-        'member_address'  =>'培训学员联系地址',
-        'member_edu_id'  =>'培训学员文化程度',
-        'member_company'  =>'培训学员工作单位名称',
+        'name'    => '培训学员姓名',
+        'identity'=>'培训学员身份证号',
+        'phone'=>'培训学员联系电话',
+        'address'  =>'培训学员联系地址',
+        'edu_id'  =>'培训学员文化程度',
+        'company'  =>'培训学员工作单位名称',
         'avatar'   => '培训学员照片',
     ];
 
-    public $fillable = ['member_name','member_identity','member_phone','member_address','member_edu_id','member_user_id','member_company'];
+    public $fillable = ['name','identity','phone','address','edu_id','user_id','company'];
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'samubra_train_members';
+    public $table = 'train_members';
 
     //protected $appends = ['name_and_identity','type_text'];
 
     public $belongsTo = [
-        'member_edu' => [
+        'edu' => [
             Lookup::class,
-            'key'=>'member_edu_id',
+            'key'=>'edu_id',
             'scope'=>'edu'
         ],
-        'member_user' => [
+        'user' => [
             User::class,
-            'key'=>'member_user_id'
+            'key'=>'user_id'
         ]
     ];
 
@@ -65,12 +63,12 @@ class Member extends Model
         'avatar' => \System\Models\File::class
     ];
     public $hasMany = [
-        'records'=>[
-            Record::class,
+        'certificates'=>[
+            Certificate::class,
             'key'=>'member_id'
         ],
-        'records_count'=>[
-            Record::class,
+        'certificates_count'=>[
+            Certificate::class,
             'key'=>'member_id',
             'count'=>true
         ]

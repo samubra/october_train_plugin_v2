@@ -1,9 +1,9 @@
-records:
+certificates:
     label: 证件类表
     recordsPerPage: 10
     view:
-        list: $/samubra/train/models/record/columns.yaml
+        list: $/samubra/train/models/certificate/columns.yaml
         toolbarButtons: create|delete
     manage:
-        form: $/samubra/train/models/record/fields.yaml
-        list: $/samubra/train/models/record/columns.yaml
+        form: $/samubra/train/models/certificate/fields.yaml
+        list: $/samubra/train/models/certificate/columns.yaml

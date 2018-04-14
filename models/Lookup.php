@@ -8,21 +8,25 @@ use Model;
 class Lookup extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\SoftDelete;
+    use \October\Rain\Database\Traits\Sortable;
 
+    const SORT_ORDER = 'order';
+    protected $dates = ['created_at','updated_at','deleted_at'];
     
     /**
      * @var array Validation rules
      */
     public $rules = [
-        'sort' => 'nullable|numeric',
-        'display_name' => 'required|between:2,255',
-        'lookup_type' => 'required|between:2,255'
+        'order' => 'nullable|numeric',
+        'name' => 'required|between:2,255',
+        'type' => 'required|between:2,255'
     ];
 
     public $attributeNames = [
-        'sort' => '排序',
-        'display_name'=>'显示名称',
-        'lookup_type' => '类别'
+        'order' => '排序',
+        'name'=>'显示名称',
+        'type' => '类别'
     ];
 
 
@@ -30,10 +34,10 @@ class Lookup extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'samubra_train_lookups';
+    public $table = 'train_lookups';
 
     const typeList = [
-        'plan_status'   =>  '培训计划状态',
+        'project_status'   =>  '培训计划状态',
         'apply_status'  =>  '培训申请受理状态',
         'edu_type'      =>  '文化程度',
         'health_type' =>  '健康状况',
@@ -48,8 +52,8 @@ class Lookup extends Model
     public function scopeType($query,$type)
     {
         if(is_array($type))
-            return $query->whereIn('lookup_type', $type)->orderBy('sort');
-        return $query->where('lookup_type',$type);
+            return $query->whereIn('type', $type)->orderBy('order');
+        return $query->where('type',$type);
     }
 
     public function scopeEdu($query)
@@ -57,9 +61,9 @@ class Lookup extends Model
         return $query->type('edu_type');
     }
 
-    public function scopePlanStatus($query)
+    public function scopeProjectStatus($query)
     {
-        return $query->type('plan_status');
+        return $query->type('project_status');
     }
     public function scopeHealth($query)
     {
@@ -72,7 +76,7 @@ class Lookup extends Model
 
     public static function getOptionList($type)
     {
-        return self::type($type)->orderBy('sort')->lists('display_name','id');
+        return self::type($type)->orderBy('order')->lists('name','id');
     }
 
     public static function getHealthOptions()

@@ -6,7 +6,7 @@ fields:
         type: text
     type:
         label: 培训类别
-        nameFrom: name
+        nameFrom: title
         descriptionFrom: description
         span: auto
         required: 1
@@ -45,44 +45,32 @@ tabs:
             size: ''
             span: full
             stretch: 0
-            type: richeditor
+            type: textarea
             tab: 对象和目标
         result:
             label: 培训目标
             size: ''
             span: full
-            type: richeditor
+            type: textarea
             tab: 对象和目标
-        claim:
+        train_claim:
             label: 培训要求
             prompt: 添加要求
             span: full
             type: repeater
-            tab: 要求与材料
+            tab: 要求与教材
             form:
                 fields:
                     content:
                         label: 要求内容
                         span: full
                         type: text
-        document:
-            label: 材料要求
-            prompt: 添加材料
-            span: full
-            type: repeater
-            tab: 要求与材料
-            form:
-                fields:
-                    content:
-                        label: 材料内容
-                        span: full
-                        type: text
-        material:
+        train_material:
             label: 使用教材
             prompt: 添加教材
             span: full
             type: repeater
-            tab: 课程与教材
+            tab: 要求与教材
             form:
                 fields:
                     title:
@@ -95,12 +83,14 @@ tabs:
                         span: auto
                         default: ''
                         type: text
-        courses:
+        content:
+            label: 其他内容
+            size: 'small'
             span: full
-            path: course_field
-            type: partial
-            tab: 课程与教材
-        remark:
+            stretch: 0
+            type: richeditor
+            tab: 其他内容
+        train_remark:
             label: 备注信息
             prompt: 添加备注
             span: full
@@ -111,4 +101,4 @@ tabs:
                     content:
                         label: 备注内容
                         span: full
-                        type: richeditor
+                        type: text

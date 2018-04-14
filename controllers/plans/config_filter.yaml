@@ -5,7 +5,7 @@ scopes:
         type: group
         modelClass: Samubra\Train\Models\Category
         conditions: type_id in (:filtered)
-        nameFrom: name
+        nameFrom: title
     is_new:
         label: 是否新训
         type: switch

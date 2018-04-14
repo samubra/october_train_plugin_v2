@@ -1,0 +1,11 @@
+import:
+    title: 导入培训证书
+    modelClass: Samubra\Train\Models\CertificatesImport
+    list: $/samubra/train/models/certificate/columns.yaml
+    form: $/samubra/train/models/certificate/import_fields.yaml
+export:
+    title: 导出培训证书
+    fileName: 导出培训证书.xls
+    modelClass: Samubra\Train\Models\CertificatesExport
+    list: $/samubra/train/models/certificate/export_columns.yaml
+    form: $/samubra/train/models/certificate/export_fields.yaml

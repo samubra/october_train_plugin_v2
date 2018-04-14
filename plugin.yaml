@@ -39,14 +39,14 @@ navigation:
                     - manage_lookup
     main-menu-item2:
         label: 培训管理
-        url: samubra/train/trainings
+        url: samubra/train/projects
         icon: icon-user-secret
         permissions:
             - manage_teacher
         sideMenu:
             training-item:
                 label: 培训项目
-                url: samubra/train/trainings
+                url: samubra/train/projects
                 icon: icon-table
                 permissions:
                     - manage_training
@@ -56,12 +56,6 @@ navigation:
                 icon: icon-newspaper-o
                 permissions:
                     - manage_plan
-            apply-item:
-                label: 培训申请
-                url: samubra/train/applies
-                icon: icon-tasks
-                permissions:
-                    - manage_apply
             member-item:
                 label: 培训学员
                 url: samubra/train/members
@@ -70,7 +64,7 @@ navigation:
                     - manage_member
             record-item:
                 label: 证书管理
-                url: samubra/train/records
+                url: samubra/train/certificates
                 icon: icon-credit-card
                 permissions:
                     - manage_record

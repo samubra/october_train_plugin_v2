@@ -9,12 +9,22 @@ class Category extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\NestedTree;
+    use \October\Rain\Database\Traits\SoftDelete;
+    
+    protected $dates = ['created_at','updated_at','deleted_at'];
+
+    const PARENT_ID = 'parent_id';
+    const NEST_LEFT = '_lft';
+    const NEST_RIGHT = '_rgt';
+    const NEST_DEPTH = 'depth';
+
+    
     
     /**
      * @var array Validation rules
      */
     public $rules = [
-        'name' => 'required|between:2,200',
+        'title' => 'required|between:2,200',
         'complete_type' => 'required|in:graduation,training_certificate,operations_certificate',
         'validity' => 'nullable|numeric',
         'unit' => 'nullable|in:Y,m,d',
@@ -22,7 +32,7 @@ class Category extends Model
     ];
 
     public $attributeNames = [
-        'name' => '分类名称',
+        'title' => '分类名称',
         'complete_type' => '结业类型',
         'validity' => '有效期限',
         'unit' => '有效期限单位',
@@ -32,7 +42,7 @@ class Category extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'samubra_train_categories';
+    public $table = 'train_categories';
 
     public function getCompleteTypeOptions()
     {
@@ -53,6 +63,6 @@ class Category extends Model
 
     public function scopeDepth($query,$depth = 0)
     {
-        return $query->where('nest_depth',$depth);
+        return $query->where(self::NEST_DEPTH,$depth);
     }
 }

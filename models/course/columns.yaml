@@ -4,7 +4,7 @@ columns:
         type: number
         searchable: true
         sortable: true
-    course_title:
+    title:
         label: 课程名称
         type: text
         searchable: true

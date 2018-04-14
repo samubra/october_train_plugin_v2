@@ -1,10 +1,10 @@
 fields:
-    course_title:
+    title:
         label: 课程标题
         span: auto
         required: 1
         type: text
-    course_type:
+    type:
         label: 课程类型
         span: auto
         required: 1

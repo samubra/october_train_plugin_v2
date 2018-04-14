@@ -10,13 +10,11 @@ use Flash;
 /**
  * Model
  */
-class Apply extends Model
+class Apply extends \October\Rain\Database\Pivot
 {
     use \October\Rain\Database\Traits\Validation;
-    
-    use \October\Rain\Database\Traits\SoftDelete;
 
-    protected $dates = ['deleted_at','created_at','updated_at'];
+    protected $dates = ['created_at','updated_at'];
 
     /**
      * @var array Validation rules
@@ -34,7 +32,6 @@ class Apply extends Model
         'operate_score'=>'nullable|numeric',
         'remark'=>'nullable',
         //'avatar' => 'dimensions:min_width=100,min_height=200',
-        'avatar' => 'nullable|max:300'
     ];
 
     public $attributeNames = [
@@ -52,17 +49,9 @@ class Apply extends Model
         'avatar'=>'照片'
     ];
 
-    /**
-     * @var string The database table used by the model.
-     */
-    public $table = 'samubra_train_applies';
     protected $jsonable = ['remark'];
     protected $appends = ['member_name','member_identity','training_type'];
     public $belongsTo = [
-        'record'=>[
-            Record::class,
-            'key'=>'record_id'
-        ],
         'health'=>[
             Lookup::class,
             'key'=>'health_id',
@@ -72,11 +61,6 @@ class Apply extends Model
             Lookup::class,
             'key'=>'status_id',
             'scope'=>'applyStatus'
-        ],
-        'training'=>[
-            Training::class,
-            'key'=>'training_id',
-            //'scope'=>'canApply'
         ]
     ];
 
@@ -93,15 +77,15 @@ class Apply extends Model
 
     public function getMemberNameAttribute()
     {
-        return $this->record->member->member_name;
+        return $this->record->member->name;
     }
     public function getMemberIdentityAttribute()
     {
-        return $this->record->member->member_identity;
+        return $this->record->member->identity;
     }
     public function getTrainingTypeAttribute()
     {
-        return $this->training->plan->type->name;
+        return $this->training->plan->type->title;
     }
 
     /**
@@ -130,27 +114,6 @@ class Apply extends Model
 
 
 
-
-    /**
-     * 在验证之前添加去重复的验证规则
-     *
-     */
-    public function beforeValidate()
-    {
-        $recordIdRule = 'unique:samubra_train_applies,record_id,';
-
-        if(!is_null($this->id)){
-            $recordIdRule = $recordIdRule.$this->id;
-        }else{
-            $recordIdRule = $recordIdRule.'NULL';
-        }
-
-        $rules = $this->rules;
-        $rules['record_id'] = 'required|exists:samubra_train_records,id|'.$recordIdRule.',id,training_id,'.$this->training_id;
-       // throw new ApplicationException('该培训计划不能申请培训报名！'.$rules['record_id']);
-
-        $this->rules = $rules;
-    }
     /**
      * 保存实例前检查申请是否符合培训计划限制条件
      */

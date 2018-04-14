@@ -1,14 +1,14 @@
 fields:
-    display_name:
+    name:
         label: 显示标题
         span: auto
         required: 1
         type: text
-    sort:
+    order:
         label: 排序
         span: auto
         type: number
-    lookup_type:
+    type:
         label: 类别
         span: auto
         required: 1

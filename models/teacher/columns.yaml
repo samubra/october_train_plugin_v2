@@ -4,35 +4,35 @@ columns:
         type: number
         searchable: true
         sortable: true
-    teacher_name:
+    name:
         label: 姓名
         type: text
         searchable: true
         sortable: true
-    teacher_identity:
+    identity:
         label: 身份证号
         type: text
         searchable: true
-    teacher_qualification_number:
+    qualification_number:
         label: 资格证号
         type: text
         searchable: true
-    teacher_job_title:
+    job_title:
         label: 职称
         type: text
-    teacher_phone:
+    phone:
         label: 联系电话
         type: text
         searchable: true
-    teacher_company:
+    company:
         label: 工作单位
         type: text
         searchable: true
         sortable: true
-    teacher_edu_id:
+    edu_id:
         label: 文化程度
         type: text
-        select: display_name
+        select: name
         relation: teacherEdu
     created_at:
         label: 创建时间

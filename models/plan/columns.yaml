@@ -15,7 +15,7 @@ columns:
         type: text
         searchable: true
         sortable: true
-        select: name
+        select: title
         relation: type
     is_new:
         label: 新/复训

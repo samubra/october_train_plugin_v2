@@ -1,9 +1,0 @@
-applies:
-    label: 培训申请
-    recordsPerPage: 10
-    view:
-        list: $/samubra/train/models/apply/columns.yaml
-        toolbarButtons: create|delete
-    manage:
-        form: $/samubra/train/models/apply/fields.yaml
-        list: $/samubra/train/models/apply/columns.yaml

@@ -13,7 +13,7 @@ columns:
         type: datetime
         invisible: true
         sortable: true
-    name:
+    title:
         label: 分类名称
         type: text
         searchable: true
@@ -26,7 +26,7 @@ columns:
         type: text
         searchable: true
         sortable: true
-        select: name
+        select: title
         relation: parent
     unit:
         label: 期限单位

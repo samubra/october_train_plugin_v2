@@ -1,31 +1,31 @@
 fields:
-    member_name:
+    name:
         label: 姓名
         span: auto
         required: 1
         type: text
-    member_identity:
+    identity:
         label: 身份证号
         span: auto
         required: 1
         type: text
-    member_phone:
+    phone:
         label: 联系电话
         span: auto
         required: 1
         type: text
-    member_address:
+    address:
         label: 联系地址
         span: auto
         default: 重庆市
         type: text
-    member_edu:
+    edu:
         label: 文化程度
-        nameFrom: display_name
+        nameFrom: name
         descriptionFrom: description
         span: auto
         type: relation
-    member_company:
+    company:
         label: 工作单位
         span: auto
         default: 个体
@@ -42,8 +42,8 @@ fields:
             extension: auto
         span: auto
         type: fileupload
-    records:
+    certificates:
         label: 证件列表
         span: full
-        path: records_field
+        path: certificates_field
         type: partial

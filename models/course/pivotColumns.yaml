@@ -1,5 +1,5 @@
 columns:
-    course_title:
+    title:
         label: 课程标题
         type: text
     course_type_text:
@@ -9,7 +9,7 @@ columns:
     'pivot[course_teacher_name]':
         label: 授课教师
         type: text
-        valueFrom: 'pivot[teacher].teacher_name'
+        valueFrom: 'pivot[teacher].name'
     'pivot[hours]':
         label: 授课学时
         type: text

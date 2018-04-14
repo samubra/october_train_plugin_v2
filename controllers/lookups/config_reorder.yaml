@@ -1,5 +1,5 @@
 title: Lookups
 modelClass: Samubra\Train\Models\Lookup
-nameFrom: display_name
+nameFrom: name
 toolbar:
     buttons: reorder_toolbar

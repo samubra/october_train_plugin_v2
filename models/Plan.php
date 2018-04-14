@@ -9,14 +9,13 @@ use BackendAuth;
 class Plan extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
     use \October\Rain\Database\Traits\SoftDelete;
 
-    protected $dates = ['deleted_at','created_at','updated_at','deleted_at',];
+    protected $dates = ['deleted_at','created_at','updated_at'];
 
-    protected $jsonable = ['target','result','material','claim','remark','document'];
+    protected $jsonable = ['target','result','train_material','train_claim','train_remark'];
 
-    public $fillable = ['type_id','create_user_id','is_new','target','result','material','claim','operate_hours','theory_hours','address','contact_person','contact_phone','remark','title','document'];
+    public $fillable = ['type_id','create_user_id','is_new','target','result','train_material','train_claim','operate_hours','theory_hours','address','contact_person','contact_phone','train_remark','title','content'];
 
     protected $casts = [
         'is_new' => 'boolean',
@@ -25,7 +24,7 @@ class Plan extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'type_id'=>'required|exists:samubra_train_categories,id',
+        'type_id'=>'required|exists:train_categories,id',
         'is_new'=>'boolean',
         'target'=>'nullable',
         'result'=>'nullable',
@@ -57,7 +56,7 @@ class Plan extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'samubra_train_plans';
+    public $table = 'train_plans';
 
     public $belongsTo = [
         'type' =>[
@@ -69,17 +68,7 @@ class Plan extends Model
 
 
 
-    public $belongsToMany = [
-        'courses' => [
-            Course::class,
-            'table'    => 'samubra_train_plan_course',
-            'key'      => 'plan_id',
-            'otherKey' => 'course_id',
-            'timestamps' => true,
-            'pivotModel'=>PlanCoursePivot::class,
-            'pivot' => ['start_time', 'end_time','teacher_id','hours','teaching_form']
-        ]
-    ];
+    
 
     public function beforeCreate()
     {

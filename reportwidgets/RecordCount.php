@@ -5,7 +5,7 @@ use Backend\Classes\ReportWidgetBase;
 use Backend\Models\BrandSetting;
 use Exception;
 use Samubra\Train\Models\Category;
-use Samubra\Train\Models\Record;
+use Samubra\Train\Models\Certificate;
 
 /**
  * User welcome report widget.
@@ -13,7 +13,7 @@ use Samubra\Train\Models\Record;
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
  */
-class RecordCount extends ReportWidgetBase
+class CertificateCount extends ReportWidgetBase
 {
     /**
      * @var string A unique alias to identify this widget.
@@ -51,12 +51,12 @@ class RecordCount extends ReportWidgetBase
 
     protected function loadData()
     {
-        $allRecords = Record::all()->groupBy('type_id');
-        $typeList = Category::whereIn('id',$allRecords->keys())->lists('name','id');
+        $allCertificates = Certificate::all()->groupBy('type_id');
+        $typeList = Category::whereIn('id',$allCertificates->keys())->lists('name','id');
 
         $countList = [];
         $count = 0;
-        foreach ($allRecords as $key=>$record)
+        foreach ($allCertificates as $key=>$record)
         {
             $count+= $record->count();
             $countList[$key] = ['name'=>$typeList[$key],'number'=>$record->count()];
