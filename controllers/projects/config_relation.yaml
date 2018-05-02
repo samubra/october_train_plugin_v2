@@ -9,3 +9,14 @@ courses:
         showSearch: true
     pivot:
         form: $/samubra/train/models/course/pivotFields.yaml
+certificates:
+    label: 培训证书
+    view:
+        list: $/samubra/train/models/apply/columns.yaml
+        toolbarButtons: add|remove
+    manage:
+        list: $/samubra/train/models/certificate/columns.yaml
+        recordsPerPage: 10
+        showSearch: true
+    pivot:
+        form: $/samubra/train/models/apply/fields.yaml

@@ -51,7 +51,7 @@ class Project extends Model
      * @var string The database table used by the model.
      */
     public $table = 'train_projects';
-    protected $jsonable = ['train_remark'];
+    protected $jsonable = ['train_remark','certiicate_print_date_filter'];
 
     public $belongsTo = [
         'plan'=>[
@@ -75,7 +75,17 @@ class Project extends Model
             'timestamps' => true,
             'pivotModel'=>ProjectCoursePivot::class,
             'pivot' => ['start_time', 'end_time','teacher_id','hours','teaching_form']
-        ]
+        ],
+        'certificates' => [
+            Certificate::class,
+            'table'    => 'train_certificate_project',
+            'key'      => 'project_id',
+            'otherKey' => 'certificate_id',
+            'timestamps' => true,
+            'pivotModel'=>Apply::class,
+            'pivot' => ['health_id','status_id','apply_user_id','phone','address','company','pay','theory_score','operate_score
+            ','remark']
+        ],
     ];
     
 

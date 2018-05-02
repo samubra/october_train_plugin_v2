@@ -14,18 +14,14 @@ class Apply extends \October\Rain\Database\Pivot
 {
     use \October\Rain\Database\Traits\Validation;
 
-    protected $dates = ['created_at','updated_at'];
-
     /**
      * @var array Validation rules
      */
     public $rules = [
-        //'record_id'=>'required|exists:samubra_train_records,id',
-        'training_id'=>'nullable|exists:samubra_train_training,id',
-        'health_id'=>'nullable|exists:samubra_train_lookups,id',
-        'status_id'=>'nullable|exists:samubra_train_lookups,id',
+        'health_id'=>'nullable|exists:train_lookups,id',
+        'status_id'=>'nullable|exists:train_lookups,id',
         'phone'=>'required|phone',
-        'address'=>'required|between:4,200',
+        'address'=>'required|between:2,200',
         'company'=>'required|between:2,200',
         'pay'=>'nullable|numeric',
         'theory_score'=>'nullable|numeric',
@@ -34,9 +30,9 @@ class Apply extends \October\Rain\Database\Pivot
         //'avatar' => 'dimensions:min_width=100,min_height=200',
     ];
 
+    protected $fillable = ['health_id','status_id','apply_user_id','phone','address','company','pay','theory_score','operate_score','remark'];
+
     public $attributeNames = [
-        'record_id'=>'证件',
-        'training_id'=>'培训项目',
         'health_id'=>'健康状况',
         'status_id'=>'受理状态',
         'phone'=>'联系电话',
@@ -50,7 +46,7 @@ class Apply extends \October\Rain\Database\Pivot
     ];
 
     protected $jsonable = ['remark'];
-    protected $appends = ['member_name','member_identity','training_type'];
+    //protected $appends = ['member_name','member_identity','training_type'];
     public $belongsTo = [
         'health'=>[
             Lookup::class,
@@ -75,18 +71,6 @@ class Apply extends \October\Rain\Database\Pivot
 
 
 
-    public function getMemberNameAttribute()
-    {
-        return $this->record->member->name;
-    }
-    public function getMemberIdentityAttribute()
-    {
-        return $this->record->member->identity;
-    }
-    public function getTrainingTypeAttribute()
-    {
-        return $this->training->plan->type->title;
-    }
 
     /**
      *
@@ -135,10 +119,10 @@ class Apply extends \October\Rain\Database\Pivot
     }
     protected function getRelateModel()
     {
-        $this->trainingMode = Training::findOrFail($this->training_id);
+        $this->trainingMode = Project::findOrFail($this->project_id);
         $this->planModel = $this->trainingMode->plan;
-        $this->recordModel = Record::findOrFail($this->record_id);
-        $this->statusModel = Lookup::where('lookup_type','apply_status')->first();
+        $this->recordModel = Certificate::findOrFail($this->certificate_id);
+        $this->statusModel = Lookup::where('type','apply_status')->first();
     }
     /**
      * 培训计划报名申请已被关闭时，抛出错误信息
@@ -232,9 +216,4 @@ class Apply extends \October\Rain\Database\Pivot
         return Carbon::createFromFormat('Y-m-d H:i:s',$date);
         //return Carbon::instance($date);
     }
-
-
-
-
-
 }

@@ -37,7 +37,7 @@ fields:
         type: datepicker
     end_apply_date:
         label: 受理截止日期
-        mode: date
+        mode: datetime
         yearRange: '1'
         span: auto
         required: 1
@@ -60,6 +60,27 @@ fields:
         default: 1
         required: 0
         type: switch
+    certiicate_print_date_filter:
+        label: 证书发证日期过滤
+        prompt: 添加条件
+        maxItems: '3'
+        span: auto
+        type: repeater
+        comment: 新训请勿填写
+        form:
+            fields:
+                start:
+                    label: 开始
+                    mode: date
+                    yearRange: '3'
+                    span: auto
+                    type: datepicker
+                end:
+                    label: 截止
+                    mode: date
+                    yearRange: '3'
+                    span: auto
+                    type: datepicker
     train_remark:
         label: 备注信息
         prompt: 添加备注
@@ -87,6 +108,14 @@ fields:
         label: 课程列表
         span: full
         path: course_field
+        type: partial
+        context:
+            - update
+            - preview
+    certificates:
+        label: 申请列表
+        span: full
+        path: certificates_field
         type: partial
         context:
             - update

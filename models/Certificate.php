@@ -66,7 +66,7 @@ class Certificate extends Model
         'projects' => [
             Project::class,
             'table'    => 'train_certificate_project',
-            'otherKey'      => 'project_id',
+            'otherKey'  => 'project_id',
             'key' => 'certificate_id',
             'timestamps' => true,
             'pivotModel'=>Apply::class,

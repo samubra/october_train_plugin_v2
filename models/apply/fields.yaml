@@ -1,66 +1,49 @@
 fields:
-    record:
-        label: 证件
-        nameFrom: records_member_name
-        descriptionFrom: record_type
-        prompt: '点击 %s 选择一个有效的证件'
-        list: $/samubra/train/models/record/columns.yaml
-        span: auto
-        required: 1
-        type: recordfinder
-    training:
-        label: 培训项目
-        nameFrom: title
-        descriptionFrom: type.name
-        prompt: '点击 %s 选择一个培训项目'
-        list: $/samubra/train/models/training/columns.yaml
-        span: auto
-        type: recordfinder
-    status:
+    'pivot[status]':
         label: 受理状态
-        nameFrom: display_name
+        nameFrom: name
         descriptionFrom: description
         span: auto
         required: 1
         type: relation
-    health:
+    'pivot[health]':
         label: 健康状况
-        nameFrom: display_name
+        nameFrom: name
         descriptionFrom: description
         span: auto
         type: relation
-    phone:
+    'pivot[phone]':
         label: 联系电话
         span: auto
         required: 1
         type: text
-    address:
+    'pivot[address]':
         label: 联系地址
         span: auto
         required: 1
         type: text
-    company:
+    'pivot[company]':
         label: 单位名称
         span: auto
         placeholder: '请天蝎单位名称全称，无工作单位用户请填“个体"'
         default: ''
         type: text
-    pay:
+    'pivot[pay]':
         label: 已收费用
         span: auto
         default: '0'
         type: number
-    theory_score:
+    'pivot[theory_score]':
         label: 理论成绩
         span: auto
         default: '0'
         type: number
-    operate_score:
+    'pivot[operate_score]':
         label: 实操成绩
         span: auto
         default: '0'
         type: number
-    remark:
+    'pivot[remark]':
         label: 备注信息
         prompt: 添加备注
         span: auto
@@ -71,7 +54,7 @@ fields:
                     label: 备注内容
                     span: full
                     type: text
-    avatar:
+    'pivot[avatar]':
         label: 头像
         span: auto
         mode: image

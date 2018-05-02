@@ -105,9 +105,10 @@ class CreateAllTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->date('exam_date');
-            $table->date('end_apply_date');
+            $table->dateTime('end_apply_date');
             $table->smallInteger('cost')->default(0);
             $table->json($this->prefix.'remark')->nullable();
+            $table->json('certiicate_print_date_filter')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

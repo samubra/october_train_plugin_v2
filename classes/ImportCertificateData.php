@@ -16,18 +16,18 @@ class ImportCertificateData
 {
     public function fire($job, $data)
     {
-        if(DB::table('samubra_train_members')->where('name',$data['name'])->where('identity',$data['identity'])->count())
+        if(DB::table('train_members')->where('name',$data['name'])->where('identity',$data['identity'])->count())
         {
-            $member = DB::table('samubra_train_members')->select('id')->where('name',$data['name'])->where('identity',$data['identity'])->first();
+            $member = DB::table('train_members')->select('id')->where('name',$data['name'])->where('identity',$data['identity'])->first();
             $memberId = $member->id;
         }else{
-            $memberId = DB::table('samubra_train_members')->insertGetId(
+            $memberId = DB::table('train_members')->insertGetId(
                 [
                     'name'=>$data['name'],
                     'identity'=>$data['identity'],
                     'phone' => $data['phone'],
                     'address' => $data['address'],
-                    'edu_id' => $data['edu'],
+                    'edu_id' => 11,
                     'company' => $data['company'],
                 ]
             );
@@ -38,7 +38,7 @@ class ImportCertificateData
             'member_id' => $data['id'],
             'id' => $memberId,
             'type_id' => $data['type'],
-            'edu_id' => $data['edu'],
+            'edu_id' => 11,
             'first_get_date' => $data['first_get_date'],
             'print_date' => $data['print_date'],
             'is_valid' => $data['is_valid'],
@@ -47,7 +47,7 @@ class ImportCertificateData
             'company' => $data['company'],
             'remark' => $data['remark']
         ];
-        DB::table('samubra_train_certificates')->insert($recordData);
+        DB::table('train_certificates')->insert($recordData);
 
         $job->delete();
     }
