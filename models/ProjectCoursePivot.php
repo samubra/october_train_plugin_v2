@@ -46,8 +46,4 @@ class ProjectCoursePivot extends \October\Rain\Database\Pivot
     }
 
 
-    public function beforeSave()
-    {
-        $this->teahcer_id = request('pivot[teacher]');
-    }
 }

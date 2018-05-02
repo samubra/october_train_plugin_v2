@@ -12,7 +12,7 @@ fields:
         defaultFrom: type
         required: 1
         type: dropdown
-    pivot[teacher_id]:
+    pivot[teacher]:
         label: 授课教师
         span: auto
         required: 1

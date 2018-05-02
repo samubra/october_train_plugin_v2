@@ -136,7 +136,7 @@ class CreateAllTable extends Migration
             $table->foreign('project_id')->references('id')->on($this->prefix.'projects')->onDelete('cascade');
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
-            $table->integer('teacher_id')->unsigned()->index();
+            $table->integer('teacher_id')->nullable()->unsigned();
             $table->foreign('teacher_id')->references('id')->on($this->prefix.'teachers');
             $table->decimal('hours', 10, 1)->default(4.0);
             $table->string('teaching_form')->nullable();
