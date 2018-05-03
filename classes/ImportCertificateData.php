@@ -49,10 +49,7 @@ class ImportCertificateData
                 'remark' => $value['remark']
             ];
             DB::table('train_certificates')->insert($recordData);
-
-
         }
-
         $job->delete();
     }
 }

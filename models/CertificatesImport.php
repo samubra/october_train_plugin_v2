@@ -45,10 +45,8 @@ class CertificatesImport extends ImportModel
     public function importData($results, $sessionKey = null)
     {
         //dd($results);
-
-
         try {
-            Queue::push(ImportCertificateData::class,$data);
+            Queue::push(ImportCertificateData::class,$results);
             $this->logCreated();
         }
         catch (\Exception $ex) {
