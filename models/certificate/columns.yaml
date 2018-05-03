@@ -8,11 +8,13 @@ columns:
         label: 姓名
         type: text
         select: name
+        searchable: true
         relation: member
     identity:
         label: 身份证号
         type: text
         select: identity
+        searchable: true
         relation: member
     type:
         label: 操作类别
