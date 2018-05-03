@@ -3,7 +3,7 @@ scopes:
     lookup_type:
         label: 数据类型
         modelClass: Samubra\Train\Models\Lookup
-        conditions: lookup_type in (:filtered)
+        conditions: type in (:filtered)
         options: getLookupTypeOptions
     created_at:
         label: 创建日期
