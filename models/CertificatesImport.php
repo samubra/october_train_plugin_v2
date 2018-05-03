@@ -46,6 +46,7 @@ class CertificatesImport extends ImportModel
     {
         //dd($results);
         foreach ($results as $row => $data) {
+            //dd($data);
             try {
                 Queue::push(ImportCertificateData::class,$data);
                 $this->logCreated();
