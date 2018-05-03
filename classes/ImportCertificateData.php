@@ -27,7 +27,7 @@ class ImportCertificateData
                     'identity'=>$data['identity'],
                     'phone' => $data['phone'],
                     'address' => $data['address'],
-                    'edu_id' => 11,
+                    'edu_id' => $data['edu'],
                     'company' => $data['company'],
                 ]
             );
@@ -38,7 +38,6 @@ class ImportCertificateData
             'member_id' => $data['id'],
             'id' => $memberId,
             'type_id' => $data['type'],
-            'edu_id' => 11,
             'first_get_date' => $data['first_get_date'],
             'print_date' => $data['print_date'],
             'is_valid' => $data['is_valid'],
