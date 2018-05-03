@@ -27,7 +27,7 @@ class ImportCertificateData
                     'identity'=>$data['identity'],
                     'phone' => $data['phone'],
                     'address' => $data['address'],
-                    'edu_id' => $data['edu'],
+                    'edu_id' => $data['edu_id'],
                     'company' => $data['company'],
                 ]
             );
