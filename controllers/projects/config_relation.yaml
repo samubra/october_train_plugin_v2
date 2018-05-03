@@ -10,7 +10,7 @@ courses:
     pivot:
         form: $/samubra/train/models/course/pivotFields.yaml
 certificates:
-    label: 培训证书
+    label: 培训申请
     view:
         list: $/samubra/train/models/apply/columns.yaml
         toolbarButtons: add|remove

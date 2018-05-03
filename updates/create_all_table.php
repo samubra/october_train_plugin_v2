@@ -81,14 +81,14 @@ class CreateAllTable extends Migration
             $table->boolean('is_new')->default(0);
             $table->text('target')->nullable();
             $table->text('result')->nullable();
-            $table->json($this->prefix.'material')->nullable();
-            $table->json($this->prefix.'claim')->nullable();
+            $table->text($this->prefix.'material')->nullable();
+            $table->text($this->prefix.'claim')->nullable();
             $table->smallInteger('operate_hours')->nullable();
             $table->smallInteger('theory_hours')->nullable();
             $table->string('address', 100)->nullable();
             $table->string('contact_person', 20)->nullable();
             $table->string('contact_phone', 12)->nullable();
-            $table->json($this->prefix.'remark')->nullable();
+            $table->text($this->prefix.'remark')->nullable();
             $table->text('content')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -107,8 +107,8 @@ class CreateAllTable extends Migration
             $table->date('exam_date');
             $table->dateTime('end_apply_date');
             $table->smallInteger('cost')->default(0);
-            $table->json($this->prefix.'remark')->nullable();
-            $table->json('certiicate_print_date_filter')->nullable();
+            $table->text($this->prefix.'remark')->nullable();
+            $table->text('certiicate_print_date_filter')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
