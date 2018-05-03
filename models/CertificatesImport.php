@@ -45,16 +45,14 @@ class CertificatesImport extends ImportModel
     public function importData($results, $sessionKey = null)
     {
         //dd($results);
-        foreach ($results as $row => $data) {
-            //dd($data);
-            try {
-                Queue::push(ImportCertificateData::class,$data);
-                $this->logCreated();
-            }
-            catch (\Exception $ex) {
-                $this->logError($row, $ex->getMessage());
-            }
 
+
+        try {
+            Queue::push(ImportCertificateData::class,$data);
+            $this->logCreated();
+        }
+        catch (\Exception $ex) {
+            $this->logError(1, $ex->getMessage());
         }
     }
 

@@ -1,9 +1,4 @@
 columns:
-    id:
-        label: ID
-        type: number
-        searchable: true
-        sortable: true
     name:
         label: 姓名
         type: text
@@ -14,14 +9,14 @@ columns:
         type: text
         select: identity
         relation: member
-    type:
+    type_id:
         label: 操作类别
         type: text
         searchable: true
         sortable: true
         select: title
         relation: type
-    edu:
+    edu_id:
         label: 文化程度
         type: text
         searchable: true
@@ -64,19 +59,3 @@ columns:
         type: text
         searchable: true
         invisible: true
-    created_at:
-        label: 创建时间
-        type: timetense
-        searchable: true
-        invisible: true
-        sortable: true
-    updated_at:
-        label: 最后更新
-        type: timetense
-        searchable: true
-        sortable: true
-    deleted_at:
-        label: 删除时间
-        type: timetense
-        invisible: true
-        sortable: true
