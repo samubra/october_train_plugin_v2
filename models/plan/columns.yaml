@@ -83,15 +83,15 @@ columns:
         invisible: true
     created_at:
         label: 创建时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true
     updated_at:
         label: 最后更新
-        type: datetime
+        type: timetense
         sortable: true
     deleted_at:
         label: 删除时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true

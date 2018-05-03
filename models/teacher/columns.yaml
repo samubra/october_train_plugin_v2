@@ -36,13 +36,13 @@ columns:
         relation: teacherEdu
     created_at:
         label: 创建时间
-        type: datetime
+        type: timetense
         invisible: true
     updated_at:
         label: 更新时间
-        type: datetime
+        type: timetense
         invisible: true
     deleted_at:
         label: 删除时间
-        type: datetime
+        type: timetense
         invisible: true

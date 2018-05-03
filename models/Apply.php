@@ -46,7 +46,7 @@ class Apply extends \October\Rain\Database\Pivot
     ];
 
     protected $jsonable = ['remark'];
-    //protected $appends = ['member_name','member_identity','training_type'];
+    protected $appends = ['member_name','member_identity','apply_status','apply_health'];
     public $belongsTo = [
         'health'=>[
             Lookup::class,
@@ -70,7 +70,14 @@ class Apply extends \October\Rain\Database\Pivot
     protected $statusModel;
 
 
-
+    public function getApplyStatusAttribute()
+    {
+        return $this->status->name;
+    }
+    public function getApplyHealthAttribute()
+    {
+        return $this->health->name;
+    }
 
     /**
      *
@@ -113,7 +120,7 @@ class Apply extends \October\Rain\Database\Pivot
         $this->getRelateModel();
         if(!$this->status_id)
             $this->status_id = $this->statusModel->id;
-        if(!($this->canNotApply()&&$this->checkType()))
+        if(!($this->canNotApply()&&$this->checkType() && $this->checkEndApplyDate()))
             return false;//新添加时，检查培训计划是否允许报名
         if(!$this->planModel->is_new && $this->checkRecord($this->planModel->is_new))
         {
@@ -191,55 +198,7 @@ class Apply extends \October\Rain\Database\Pivot
             return false;
         }
     }
-    /**
-     * 检测当前培训计划是复训时，操作证是否满足要求
-     * @return boolean true则符合复审要求
-     */
-    protected function checkPlanIsReview()
-    {
 
-
-
-
-
-
-
-        $type = $this->certificateModel->type;
-        switch ($type->unit)
-        {
-            case 'Y':
-                $recordReviewDate = $certificatePrintDate->addYears($type->validity);
-                $recordReprintDate = $recordReviewDate->addYears($type->validity);
-                break;
-            case 'm':
-                $recordReviewDate = $certificatePrintDate->addMonths($type->validity);
-                $recordReprintDate = $recordReviewDate->addMonths($type->validity);
-                break;
-            case 'd':
-                $recordReviewDate = $certificatePrintDate->addDays($type->validity);
-                $recordReprintDate = $recordReviewDate->addDays($type->validity);
-                break;
-
-        }
-
-        if (!$this->checkReviewData($recordReviewDate,$planEndApplyDate , true) && !$this->checkReviewData($recordReprintDate,$planEndApplyDate)) {
-            throw new ApplicationException('所选操作证不应该在当前时间复审！');
-            return false;
-        }
-        return true;
-    }
-    /**
-     * 检查复审日期是否在允许的培训日期内，复审日期必须在培训日期前2个月
-     * @param  Carbon $date          复审或换证日期对象
-     * @param  Carbon $planStartDate 培训开始日期对象
-     * @return boolean             true则当前操作证在复审日期范围内
-     */
-    protected function checkReviewData(Carbon $date, Carbon $planEndApplytDate ,$endOf = false)
-    {
-        return $endOf ?
-            $planEndApplytDate->greaterThanOrEqualTo($date->subMonths(2)) && $planEndApplytDate->lessThanOrEqualTo($date->addMonths(2))
-            :$planEndApplytDate->greaterThanOrEqualTo($date->subMonths(2)) && $planEndApplytDate->lessThanOrEqualTo($date->addMonths(2)->endOfMonth());
-    }
     /**
      * 返回日期对象
      * @param  init $date 日期

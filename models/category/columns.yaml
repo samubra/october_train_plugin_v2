@@ -10,7 +10,7 @@ columns:
         searchable: true
     created_at:
         label: 创建时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true
     title:
@@ -33,7 +33,7 @@ columns:
         type: text
     updated_at:
         label: 更新时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true
     validity:

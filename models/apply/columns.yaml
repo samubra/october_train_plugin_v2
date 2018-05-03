@@ -17,16 +17,14 @@ columns:
         sortable: true
         select: title
         relation: type
-    'pivot[status_id]':
+    'pivot[apply_status]':
         label: 受理状态
-        type: text
         sortable: true
-        valueFrom: 'pivot[status].name'
-    'pivot[health_id]':
+        type: text
+    'pivot[apply_health]':
         label: 健康状况
         type: text
         sortable: true
-        valueFrom: 'pivot[health].name'
     'pivot[address]':
         label: 联系地址
         type: text
@@ -62,15 +60,15 @@ columns:
         sortable: true
     'pivot[created_at]':
         label: 创建时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true
     'pivot[updated_at]':
         label: 最后更新
-        type: datetime
+        type: timetense
         sortable: true
     'pivot[deleted_at]':
         label: 删除时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true

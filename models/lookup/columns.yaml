@@ -14,7 +14,7 @@ columns:
         invisible: true
     created_at:
         label: 创建时间
-        type: datetime
+        type: timetense
         invisible: true
         sortable: true
     type:
@@ -24,6 +24,6 @@ columns:
         sortable: true
     updated_at:
         label: 创建时间
-        type: datetime
+        type: timetense
         invisible: false
         sortable: true
