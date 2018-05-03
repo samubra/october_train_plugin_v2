@@ -86,6 +86,13 @@ class Project extends Model
             'pivot' => ['health_id','status_id','apply_user_id','phone','address','company','pay','theory_score','operate_score
             ','remark']
         ],
+        'certificates_count' => [
+            Certificate::class,
+            'count' => true,
+            'table'    => 'train_certificate_project',
+            'key'      => 'project_id',
+            'otherKey' => 'certificate_id',
+            ]
     ];
     
 

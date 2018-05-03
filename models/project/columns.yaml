@@ -20,6 +20,12 @@ columns:
         type: switch
         searchable: true
         sortable: true
+    certificates_count:
+        label: 申请人数
+        relation: certificates_count
+        valueFrom: count
+        searchable: true
+        sortable: true
     cost:
         label: 收费
         type: number

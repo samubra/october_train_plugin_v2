@@ -47,10 +47,10 @@ class Certificate extends Model
     ];
 
     /**
-     * @var string The database table used by the model.
+     * @var string The database table used by the model.'certificates_member_name',
      */
     public $table = 'train_certificates';
-    protected $appends = ['certificates_member_name','certificate_type'];
+    //protected $appends = ['certificate_type'];
     public $belongsTo = [
         'member'=>[
             Member::class,

@@ -13,110 +13,122 @@ fields:
         span: auto
         required: 1
         type: recordfinder
-    status:
-        label: 培训状态
-        nameFrom: name
-        descriptionFrom: type
-        emptyOption: 请选择培训状态
-        span: auto
-        required: 1
-        type: relation
-    start_date:
-        label: 培训开始日期
-        mode: date
-        yearRange: '1'
-        span: auto
-        required: 1
-        type: datepicker
-    end_date:
-        label: 培训结束日期
-        mode: date
-        yearRange: '1'
-        span: auto
-        required: 1
-        type: datepicker
-    end_apply_date:
-        label: 受理截止日期
-        mode: datetime
-        yearRange: '1'
-        span: auto
-        required: 1
-        type: datepicker
-    exam_date:
-        label: 预计考试日期
-        mode: date
-        yearRange: '1'
-        span: auto
-        required: 1
-        type: datepicker
-    cost:
-        label: 培训收费
-        span: auto
-        required: 1
-        type: number
     can_apply:
         label: 允许申请培训
         span: auto
         default: 1
         required: 0
         type: switch
-    certiicate_print_date_filter:
-        label: 证书发证日期过滤
-        prompt: 添加条件
-        maxItems: '3'
-        span: auto
-        type: repeater
-        comment: 新训请勿填写
-        form:
-            fields:
-                start:
-                    label: 开始
-                    mode: date
-                    yearRange: '3'
-                    span: auto
-                    type: datepicker
-                end:
-                    label: 截止
-                    mode: date
-                    yearRange: '3'
-                    span: auto
-                    type: datepicker
-    train_remark:
-        label: 备注信息
-        prompt: 添加备注
-        span: auto
-        type: repeater
-        form:
-            fields:
-                content:
-                    label: 备注内容
-                    span: fullname
-                    type: text
-    photos:
-        label: 培训照片
-        mode: image
-        prompt: 请选择培训照片
-        imageWidth: '100'
-        imageHeight: '100'
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: auto
-        type: fileupload
-    courses:
-        label: 课程列表
-        span: full
-        path: course_field
-        type: partial
-        context:
-            - update
-            - preview
-    certificates:
-        label: 申请列表
-        span: full
-        path: certificates_field
-        type: partial
-        context:
-            - update
-            - preview
+tabs:
+    fields:
+        certificates:
+            span: full
+            path: certificates_field
+            context:
+                - update
+                - preview
+            type: partial
+            tab: 培训申请
+        start_date:
+            label: 培训开始日期
+            mode: date
+            yearRange: '1'
+            span: auto
+            required: 1
+            type: datepicker
+            tab: 培训信息
+        end_date:
+            label: 培训结束日期
+            mode: date
+            yearRange: '1'
+            span: auto
+            required: 1
+            type: datepicker
+            tab: 培训信息
+        end_apply_date:
+            label: 受理截止日期
+            mode: datetime
+            yearRange: '1'
+            span: auto
+            required: 1
+            type: datepicker
+            tab: 培训信息
+        exam_date:
+            label: 预计考试日期
+            mode: date
+            yearRange: '1'
+            span: auto
+            required: 1
+            type: datepicker
+            tab: 培训信息
+        status:
+            label: 培训状态
+            nameFrom: name
+            descriptionFrom: type
+            emptyOption: 请选择培训状态
+            span: auto
+            required: 1
+            type: relation
+            tab: 培训信息
+        cost:
+            label: 培训收费
+            span: auto
+            required: 1
+            type: number
+            tab: 培训信息
+        certiicate_print_date_filter:
+            label: 证书发证日期过滤
+            prompt: 添加条件
+            maxItems: '2'
+            span: auto
+            type: repeater
+            comment: 新训请勿填写
+            tab: 培训信息
+            form:
+                fields:
+                    start:
+                        label: 开始
+                        oc.commentPosition: below
+                        mode: date
+                        span: auto
+                        type: datepicker
+                    end:
+                        label: 截止
+                        mode: date
+                        yearRange: '3'
+                        span: auto
+                        type: datepicker
+        train_remark:
+            label: 备注信息
+            prompt: 添加备注
+            span: auto
+            type: repeater
+            tab: 培训信息
+            form:
+                fields:
+                    train_remark:
+                        label: 备注信息
+                        prompt: 添加备注
+                        span: auto
+                        type: text
+        photos:
+            label: 培训照片
+            mode: image
+            prompt: 请选择培训照片
+            imageWidth: '100'
+            imageHeight: '100'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 培训信息
+        courses:
+            span: full
+            path: course_field
+            context:
+                - update
+                - preview
+            type: partial
+            tab: 课程信息

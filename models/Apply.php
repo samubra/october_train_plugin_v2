@@ -64,9 +64,9 @@ class Apply extends \October\Rain\Database\Pivot
         'avatar' => \System\Models\File::class
     ];
 
-    protected $trainingMode;
+    protected $projectModel;
     protected $planModel;
-    protected $recordModel;
+    protected $certificateModel;
     protected $statusModel;
 
 
@@ -106,22 +106,39 @@ class Apply extends \October\Rain\Database\Pivot
         if(BackendAuth::check())
             $this->apply_user_id = BackendAuth::getUser()->id;
 
+    }
+
+    public function beforeCreate()
+    {
         $this->getRelateModel();
         if(!$this->status_id)
             $this->status_id = $this->statusModel->id;
-        if(is_null($this->id))
-            $this->canNotApply();//新添加时，检查培训计划是否允许报名
-        $this->checkType();
+        if(!($this->canNotApply()&&$this->checkType()))
+            return false;//新添加时，检查培训计划是否允许报名
         if(!$this->planModel->is_new && $this->checkRecord($this->planModel->is_new))
         {
-            $this->checkPlanIsReview();
+            $certificatePrintDate = $this->getDateCarbon($this->certificateModel->print_date);
+
+            $filters = $this->projectModel->certiicate_print_date_filter;
+
+            if(count($filters)){
+                foreach ($filters as $filter){
+                    $startData = $this->getDateCarbon($filter['start'],'Y-m-d');
+                    $endData = $this->getDateCarbon($filter['end'],'Y-m-d');
+
+                    if($certificatePrintDate->lessThan($startData) || $certificatePrintDate->greaterThan($endData)){
+                        return false;
+                        break;
+                    }
+                }
+            }
         }
     }
     protected function getRelateModel()
     {
-        $this->trainingMode = Project::findOrFail($this->project_id);
-        $this->planModel = $this->trainingMode->plan;
-        $this->recordModel = Certificate::findOrFail($this->certificate_id);
+        $this->projectModel = Project::findOrFail($this->project_id);
+        $this->planModel = $this->projectModel->plan;
+        $this->certificateModel = Certificate::findOrFail($this->certificate_id);
         $this->statusModel = Lookup::where('type','apply_status')->first();
     }
     /**
@@ -130,28 +147,45 @@ class Apply extends \October\Rain\Database\Pivot
      */
     protected function canNotApply()
     {
-        if(!$this->trainingMode->can_apply)
+        if(!$this->projectModel->can_apply)
         {
             throw new ApplicationException('该培训计划不能申请培训报名！');
             return false;
         }
     }
 
+
+    /**
+     * 检查当前日期是否小于等于受理截止日期
+     * @return bool
+     */
+    protected function checkEndApplyDate()
+    {
+        $planEndApplyDate = $this->getDateCarbon($this->projectModel->end_apply_date);
+
+        return Carbon::now()->lessThanOrEqualTo($planEndApplyDate);
+    }
+    /**
+     * 检查培训证书是否新训，必须满足三个条件：发证日期为NULL、出领证日期为NULL、是否有效标记为false
+     * @param bool $is_new
+     * @return bool
+     */
     protected function checkRecord($is_new = true)
     {
-        if((!is_null($this->recordModel->first_get_date) || !is_null($this->recordModel->print_date) || $this->recordModel->is_valid) && $is_new)
+        if((!is_null($this->certificateModel->first_get_date) && !is_null($this->certificateModel->print_date) &&
+                !$this->certificateModel->is_valid) && $is_new)
         {
             throw new ApplicationException('该培训项目为新训，不能选择有效的操作证！');
             return false;
         }else{
-
             return true;
         }
     }
 
     protected function checkType()
     {
-        if($this->planModel->type_id != $this->recordModel->type_id && $this->planModel->type_id != $this->recordModel->type->parent_id)
+        if($this->planModel->type_id != $this->certificateModel->type_id && $this->planModel->type_id !=
+            $this->certificateModel->type->parent_id)
         {
             throw new ApplicationException('该培训方案培训类别与所选操作证的操作项目不符！');
             return false;
@@ -163,24 +197,26 @@ class Apply extends \October\Rain\Database\Pivot
      */
     protected function checkPlanIsReview()
     {
-        $planEndApplyDate = $this->getDateCarbon($this->trainingMode->end_apply_date);
-
-        $recordPrintDate = $this->getDateCarbon($this->recordModel->print_date);
 
 
-        $type = $this->recordModel->type;
+
+
+
+
+
+        $type = $this->certificateModel->type;
         switch ($type->unit)
         {
             case 'Y':
-                $recordReviewDate = $recordPrintDate->addYears($type->validity);
+                $recordReviewDate = $certificatePrintDate->addYears($type->validity);
                 $recordReprintDate = $recordReviewDate->addYears($type->validity);
                 break;
             case 'm':
-                $recordReviewDate = $recordPrintDate->addMonths($type->validity);
+                $recordReviewDate = $certificatePrintDate->addMonths($type->validity);
                 $recordReprintDate = $recordReviewDate->addMonths($type->validity);
                 break;
             case 'd':
-                $recordReviewDate = $recordPrintDate->addDays($type->validity);
+                $recordReviewDate = $certificatePrintDate->addDays($type->validity);
                 $recordReprintDate = $recordReviewDate->addDays($type->validity);
                 break;
 
@@ -209,11 +245,11 @@ class Apply extends \October\Rain\Database\Pivot
      * @param  init $date 日期
      * @return subject       Carbon日期对象
      */
-    protected function getDateCarbon($date)
+    protected function getDateCarbon($date,$format = 'Y-m-d H:i:s')
     {
         //list($year,$month,$day) = explode('-',$date);
 
-        return Carbon::createFromFormat('Y-m-d H:i:s',$date);
+        return Carbon::createFromFormat($format,$date);
         //return Carbon::instance($date);
     }
 }
