@@ -16,6 +16,7 @@ class ImportCertificateData
 {
     public function fire($job, $data)
     {
+        $job->delete();
        // dd($data);
         if(DB::table('train_members')->where('name',$data['name'])->where('identity',$data['identity'])->count())
         {
