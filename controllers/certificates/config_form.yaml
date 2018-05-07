@@ -10,6 +10,6 @@ create:
 update:
     title: 修改培训证书信息
     redirect: samubra/train/certificates
-    redirectClose: samubra/train/certificate
+    redirectClose: samubra/train/certificates
     flashSave: 培训证书信息修改成功
     flashDelete: 培训证书删除成功
