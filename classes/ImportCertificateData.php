@@ -8,55 +8,78 @@
 
 namespace Samubra\Train\Classes;
 
-use Samubra\Train\Models\Certificate;
 use DB;
 use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Facades\Hash;
+use Auth;
+use Samubra\Train\Models\Certificate;
+use Validator;
 
 class ImportCertificateData
 {
     public function fire($job, $data)
     {
         foreach ($data as $row => $value) {
-            //dd($data);
-            $name = $value['name'];//substr($value['name'],0,1);
-            $surname = $value['name'];//substr($value['name'],1,strlen($value['name'])-1);
-            if(DB::table('users')->where('name',$name)->where('surname',$surname)->where('identity',$value['identity'])->count())
-            {
-                $user = DB::table('users')->where('name',$name)->where('surname',$surname)->where('identity',$value['identity'])->first();
-                $user_id = $user->id;
-            }else{
-                $user_id = DB::table('users')->insertGetId(
-                    [
-                        'name'=>$name,
-                        'surname'=>$surname,
-                        'username'=>$value['identity'],
-                        'email'=>$value['identity'].'@site.com',
-                        'password' => Hash::make(substr($value['identity'],-6)),
-                        'identity'=>$value['identity'],
+            if(isset($value['certificate_id']) && isset($value['project_id'])) {
+                Db::table('train_certificate_project')
+                    ->where('certificate_id',$value['certificate_id'])
+                    ->where('project_id',$value['project_id'])
+                    ->update([
                         'phone' => $value['phone'],
                         'address' => $value['address'],
-                        'edu_id' => $value['edu_id'],
                         'company' => $value['company'],
-                    ]
-                );
+                        'remark' => $value['remark'],
+                        'status_id' => $value['status_id'],
+                        'theory_score' => $value['theory_score'],
+                        'operate_score' => $value['operate_score'],
+                        'pay' => $value['pay'],
+                    ]);
+                Db::table('train_certificates')
+                    ->where('id',$value['certificate_id'])
+                    ->update([
+                        'phone' => $value['phone'],
+                        'address' => $value['address'],
+                        'company' => $value['company'],
+                        'print_date' => $value['print_date'],
+                        'is_valid' => $value['is_valid'],
+                    ]);
+            }else{
+                $user = $this->getLoginUser($value);
+                $recordData = [
+                    'uuid' => Uuid::uuid4()->toString(),
+                    'user_id' => $user->id,
+                    'type_id' => $value['type_id'],
+                    'first_get_date' => $value['first_get_date'],
+                    'print_date' => $value['print_date'],
+                    'is_valid' => $value['is_valid'],
+                    'phone' => $value['phone'],
+                    'address' => $value['address'],
+                    'company' => $value['company'],
+                    'remark' => $value['remark']
+                ];
+                Certificate::create($recordData);
             }
-
-            $recordData = [
-                //'import_id' => $data['id'],
-                'uuid' => Uuid::uuid4()->toString(),
-                'user_id' => $user_id,
-                'type_id' => $value['type_id'],
-                'first_get_date' => $value['first_get_date'],
-                'print_date' => $value['print_date'],
-                'is_valid' => $value['is_valid'],
-                'phone' => $value['phone'],
-                'address' => $value['address'],
-                'company' => $value['company'],
-                'remark' => $value['remark']
-            ];
-            DB::table('train_certificates')->insert($recordData);
         }
+
         $job->delete();
+    }
+
+    protected function getLoginUser($data)
+    {
+        if($user = Auth::findUserByLogin($data['identity']))
+            return $user;
+        else
+            return Auth::register([
+                'email'=>$data['identity'].'@site.com',
+                'username'=>$data['identity'],
+                'password'=>substr($data['identity'],-6),
+                'password_confirmation'=>substr($data['identity'],-6),
+                'phone'=>$data['phone'],
+                'name'=>$data['name'],
+                'surname'=>$data['name'],
+                'identity'=>$data['identity'],
+                'address' => $data['address'],
+                'edu_id' => $data['edu_id'],
+                'company' =>$data['company'],
+            ],true,true);
     }
 }

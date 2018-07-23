@@ -1,4 +1,7 @@
 columns:
+    certificate_id:
+        label: 证书ID
+        type: text
     name:
         label: 姓名
         type: text
@@ -59,3 +62,24 @@ columns:
         type: text
         searchable: true
         invisible: true
+    pay:
+        label: 已缴费
+        type: number
+        default: '0'
+        searchable: true
+        sortable: true
+    operate_score:
+        label: 操作成绩
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    theory_score:
+        label: 理论成绩
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    project_id:
+        label: 培训项目ID
+        type: text

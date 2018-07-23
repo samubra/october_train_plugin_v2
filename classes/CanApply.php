@@ -43,11 +43,6 @@ class CanApply
     public function check()
     {
         $this->checkCertificateModel();
-        //var_dump($this->checkType());
-        //var_dump($this->projectCanApply);
-        //var_dump($this->checkCertificateAndProjectIsNew());
-        //var_dump($this->checkCertificateAndProjectIsReview());
-        //var_dump($this->checkProjectEndApplyDate());
         return $this->checkType() && $this->projectModel->can_apply && ( $this->checkCertificateAndProjectIsNew() || $this->checkCertificateAndProjectIsReview() ) && $this->checkProjectEndApplyDate();
     }
 
