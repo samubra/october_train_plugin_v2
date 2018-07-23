@@ -18,7 +18,7 @@ columns:
         select: title
         relation: type
     is_new:
-        label: 新/复训
+        label: 新训
         type: switch
         searchable: true
         sortable: true

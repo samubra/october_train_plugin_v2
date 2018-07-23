@@ -1,7 +1,8 @@
 <?php namespace Samubra\Train\Models;
 
 use Model;
-
+use Ramsey\Uuid\Uuid;
+use RainLab\User\Models\User;
 /**
  * Model
  */
@@ -11,19 +12,23 @@ class Certificate extends Model
     
     use \October\Rain\Database\Traits\SoftDelete;
 
-    protected $dates = ['deleted_at','created_at','updated_at','first_get_date','print_date'];
+    protected $dates = ['deleted_at','created_at','updated_at'];
 
     protected $casts = [
         'is_valid' => 'boolean',
+        'first_get_date' => 'date:Y-m-d',
+        'print_date' => 'date:Y-m-d',
     ];
+
+    
     protected $jsonable = ['remark'];
-    public $fillable = ['import_id','member_id','type_id','edu_id','first_get_date','print_date','is_valid','phone','address','company','remark'];
+    public $fillable = ['import_id','user_id','type_id','edu_id','first_get_date','print_date','is_valid','phone','address','company','remark'];
 
     /**
      * @var array Validation rules
      */
     public $rules = [
-        'member_id'=>'required|exists:train_members,id',
+        'user_id'=>'required|exists:users,id',
         'type_id'=>'required|exists:train_categories,id',
         'first_get_date'=>'nullable|date|before_or_equal:print_date',
         'print_date'=>'nullable|date|before:tomorrow',
@@ -34,7 +39,7 @@ class Certificate extends Model
         'remark'=>'nullable'
     ];
     public $attributeNames = [
-        'member_id'=>'培训学员',
+        'user_id'=>'培训学员',
         'type_id'=>'培训类别',
         'edu_id'=>'文化程度',
         'first_get_date'=>'初领证日期',
@@ -52,9 +57,9 @@ class Certificate extends Model
     public $table = 'train_certificates';
     //protected $appends = ['certificate_type'];
     public $belongsTo = [
-        'member'=>[
-            Member::class,
-            'key'=>'member_id'
+        'user'=>[
+            User::class,
+            'key'=>'user_id'
         ],
         'type'=>[
             Category::class,
@@ -74,9 +79,14 @@ class Certificate extends Model
         ]
     ];
 
-    public function getCertificatesMemberNameAttribute()
+    public function beforeCreate()
     {
-        return $this->member->name.'('.$this->member->identity.')';
+        $this->uuid = Uuid::uuid4()->toString();
+    }
+
+    public function getCertificatesUserNameAttribute()
+    {
+        return $this->user->surname.'('.$this->user->identity.')';
     }
     public function getCertificateTypeAttribute()
     {

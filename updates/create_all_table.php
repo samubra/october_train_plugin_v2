@@ -8,6 +8,8 @@ class CreateAllTable extends Migration
     protected $prefix = 'train_';
     public function up()
     {
+
+        
         Schema::create($this->prefix.'categories', function($table){
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -32,7 +34,14 @@ class CreateAllTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        
+        Schema::table('users', function ($table) {
+            $table->string('identity', 20)->nullable();
+            $table->string('phone', 12)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->integer('edu_id')->nullable()->unsigned();
+            //$table->foreign('edu_id')->references('id')->on('train_lookups');
+            $table->string('company', 100)->nullable();
+        });
         Schema::create($this->prefix.'teachers', function($table){
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -47,6 +56,7 @@ class CreateAllTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        /**
         Schema::create($this->prefix.'members', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -62,6 +72,7 @@ class CreateAllTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        **/
         Schema::create($this->prefix.'courses', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -95,7 +106,8 @@ class CreateAllTable extends Migration
         });
         Schema::create($this->prefix.'projects', function ($table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->uuid('id')->unique();
+            $table->primary('id');
             $table->string('title',200);
             $table->integer('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on($this->prefix.'plans');
@@ -110,13 +122,15 @@ class CreateAllTable extends Migration
             $table->text($this->prefix.'remark')->nullable();
             $table->text('certiicate_print_date_filter')->nullable();
             $table->timestamps();
+            
             $table->softDeletes();
         });
         Schema::create($this->prefix.'certificates', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('member_id')->unsigned();
-            $table->foreign('member_id')->references('id')->on($this->prefix.'members');
+            $table->uuid('uuid');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on($this->prefix.'categories');
             $table->date('first_get_date')->nullable();
@@ -133,7 +147,7 @@ class CreateAllTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('course_id')->unsigned()->index();
             $table->foreign('course_id')->references('id')->on($this->prefix.'courses')->onDelete('cascade');
-            $table->integer('project_id')->unsigned()->index();
+            $table->uuid('project_id')->index();
             $table->foreign('project_id')->references('id')->on($this->prefix.'projects')->onDelete('cascade');
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
@@ -147,10 +161,10 @@ class CreateAllTable extends Migration
         });
         Schema::create($this->prefix.'certificate_project', function ($table) {
             $table->engine = 'InnoDB';
-            $table->integer('project_id')->unsigned()->index();
-            $table->foreign('project_id')->references('id')->on($this->prefix.'projects')->onDelete('cascade');
             $table->integer('certificate_id')->unsigned()->index();
             $table->foreign('certificate_id')->references('id')->on($this->prefix.'certificates')->onDelete('cascade');
+            $table->uuid('project_id')->index();
+            $table->foreign('project_id')->references('id')->on($this->prefix.'projects')->onDelete('cascade');
             $table->integer('health_id')->unsigned()->nullable();
             $table->foreign('health_id')->references('id')->on($this->prefix.'lookups');
             $table->integer('status_id')->unsigned()->nullable();
@@ -177,7 +191,16 @@ class CreateAllTable extends Migration
         Schema::dropIfExists($this->prefix.'projects');
         Schema::dropIfExists($this->prefix.'plans');
         Schema::dropIfExists($this->prefix.'courses');
-        Schema::dropIfExists($this->prefix.'members');
+        //Schema::dropIfExists($this->prefix.'members');
+        Schema::table('users', function ($table) {
+            $table->dropColumn([
+                'identity',
+                'phone',
+                'address',
+                'edu_id',
+                'company',
+            ]);
+        });
         Schema::dropIfExists($this->prefix.'teachers');
         Schema::dropIfExists($this->prefix.'lookups');
         Schema::dropIfExists($this->prefix.'categories');

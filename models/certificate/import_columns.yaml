@@ -3,12 +3,12 @@ columns:
         label: 姓名
         type: text
         select: name
-        relation: member
+        relation: user
     identity:
         label: 身份证号
         type: text
         select: identity
-        relation: member
+        relation: user
     type_id:
         label: 操作类别
         type: text

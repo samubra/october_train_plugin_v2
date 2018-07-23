@@ -1,6 +1,7 @@
 <?php namespace Samubra\Train\Classes;
 
 use Illuminate\Contracts\Validation\Rule;
+use Idcard;
 
 class Identity implements Rule
 {
@@ -13,7 +14,9 @@ class Identity implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/', $value);
+        $idcard = new Idcard($value);
+        //return preg_match('/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/', $value);
+        return $idcard->isChinaIDCard();
     }
     /**
      * Get the validation error message.

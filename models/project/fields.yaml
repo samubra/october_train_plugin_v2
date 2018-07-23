@@ -19,6 +19,8 @@ fields:
         default: 1
         required: 0
         type: switch
+        on: 是
+        off: 否
 tabs:
     fields:
         certificates:
@@ -92,12 +94,14 @@ tabs:
                         mode: date
                         span: auto
                         type: datepicker
+                        format: Y年m月d日
                     end:
                         label: 截止
                         mode: date
                         yearRange: '3'
                         span: auto
                         type: datepicker
+                        format: Y年m月d日
         train_remark:
             label: 备注信息
             prompt: 添加备注
@@ -109,7 +113,7 @@ tabs:
                     train_remark:
                         label: 备注信息
                         prompt: 添加备注
-                        span: auto
+                        span: full
                         type: text
         photos:
             label: 培训照片

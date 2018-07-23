@@ -44,30 +44,26 @@ navigation:
         permissions:
             - manage_teacher
         sideMenu:
-            training-item:
-                label: 培训项目
-                url: samubra/train/projects
-                icon: icon-table
-                permissions:
-                    - manage_training
-            plan-item:
-                label: 培训方案
-                url: samubra/train/plans
-                icon: icon-newspaper-o
-                permissions:
-                    - manage_plan
-            member-item:
-                label: 培训学员
-                url: samubra/train/members
-                icon: icon-users
-                permissions:
-                    - manage_member
             record-item:
                 label: 证书管理
                 url: samubra/train/certificates
                 icon: icon-credit-card
                 permissions:
                     - manage_record
+            plan-item:
+                label: 培训方案
+                url: samubra/train/plans
+                icon: icon-newspaper-o
+                permissions:
+                    - manage_plan
+            training-item:
+                label: 培训项目
+                url: samubra/train/projects
+                icon: icon-table
+                permissions:
+                    - manage_training
+
+
 permissions:
     manage_category:
         tab: 管理分类

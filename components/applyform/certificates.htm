@@ -1,0 +1,36 @@
+
+<div class="card-panel hoverable ">
+    <span class="card-title">第二步:</span>
+    <p>选择需要培训的操作证，点击下列表中的 <i class="material-icons">check</i> 按钮进行下一步操作。</p>
+    <table class="responsive-table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>作业类别</th>
+            <th>发证日期</th>
+            <th>是否有效</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key,record in certificates %}
+        <tr>
+            <td>{{ key+1 }}</td>
+            <td>{{ record.type.title }}</td>
+            <td>{{ record.print_date }}</td>
+            <td>{{ record.is_valid ? '有效':'已失效' }}</td>
+            <td>
+                <a data-request="{{ __SELF__ }}::onLoadCertificate"
+                   data-request-data="id:{{ record.id }}"
+                   data-request-confirm="你确定选择这个操作证吗？"
+                   data-request-update="'{{ __SELF__ }}::form': '#result'"
+                   href="#" class="waves-effect waves-light btn"><i class="material-icons">check</i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    $('.helper-text').remove();
+</script>

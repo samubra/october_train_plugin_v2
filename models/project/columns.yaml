@@ -3,6 +3,7 @@ columns:
         label: ID
         type: number
         searchable: true
+        invisible: true
         sortable: true
     title:
         label: 培训标题

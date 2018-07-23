@@ -17,6 +17,8 @@ class Plan extends Model
 
     public $fillable = ['type_id','create_user_id','is_new','target','result','train_material','train_claim','operate_hours','theory_hours','address','contact_person','contact_phone','train_remark','title','content'];
 
+    public $guarded = ['parent_type'];
+
     protected $casts = [
         'is_new' => 'boolean',
     ];
@@ -39,7 +41,7 @@ class Plan extends Model
     ];
 
     public $attributeNames = [
-        'type_id'=>'培训类别',
+        'type_id'=>'操作项目',
         'is_new'=>'是否新训',
         'target'=>'培训对象',
         'result'=>'培训目的',
@@ -69,11 +71,29 @@ class Plan extends Model
 
 
     
-
+    public function beforeSave()
+    {
+        return $this->ignore['parent_type'];
+    }
     public function beforeCreate()
     {
         if(BackendAuth::check())
            $this->create_user_id = BackendAuth::getUser()->id;
+    }
+
+    public function getParentTypeOptions()
+    {
+        return Category::parentList()->lists('title','id');
+    }
+
+    public function getTypeIdOptions()
+    {
+        if($this->type || $this->parent_type){
+            $parent_id = $this->parent_type?$this->parent_type:$this->type->parent_id;
+            return Category::parentList($parent_id)->lists('title', 'id');
+        }else{
+            return [];
+        }
     }
 
 

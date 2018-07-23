@@ -1,19 +1,25 @@
 fields:
-    member:
-        label: 学员
-        nameFrom: name
-        descriptionFrom: identity
-        prompt: 请选择培训学员
-        list: $/samubra/train/models/member/columns.yaml
+    uuid:
+        label: 唯一识别码
+        type: text
         span: auto
-        required: 1
-        type: recordfinder
+        disabled: true
     is_valid:
         label: 是否有效
         span: auto
         type: switch
         'on': 有效
         'off': 无效
+    user:
+        label: 学员
+        nameFrom: surname
+        descriptionFrom: identity
+        prompt: 请选择培训学员
+        list: $/rainlab/user/models/user/columns.yaml
+        span: auto
+        required: 1
+        type: recordfinder
+
     type:
         label: 操作类别
         nameFrom: title

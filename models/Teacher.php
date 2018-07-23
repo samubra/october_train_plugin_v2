@@ -19,10 +19,10 @@ class Teacher extends Model
     public $rules = [
         'name' => 'required|between:2,12',
         'identity' => 'required|identity',
-        'qualification_number' => 'nullable|between:4,12',
-        'job_title' => 'nullable|between:4,12',
+        'qualification_number' => 'nullable',
+        'job_title' => 'nullable',
         'phone' => 'required|numeric|phone',
-        'company' => 'required|between:4,12',
+        'company' => 'required',
         'edu_id' => 'required|exists:train_lookups,id',
         //'avatar'=>'image|mimes:jpeg,png|size:300',
        // 'document'=>'image|mimes:jpeg,png|size:1000',

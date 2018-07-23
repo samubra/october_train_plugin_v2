@@ -8,9 +8,10 @@
 
 namespace Samubra\Train\Classes;
 
-use Samubra\Train\Models\Member;
 use Samubra\Train\Models\Certificate;
 use DB;
+use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Hash;
 
 class ImportCertificateData
 {
@@ -18,14 +19,20 @@ class ImportCertificateData
     {
         foreach ($data as $row => $value) {
             //dd($data);
-            if(DB::table('train_members')->where('name',$value['name'])->where('identity',$value['identity'])->count())
+            $name = $value['name'];//substr($value['name'],0,1);
+            $surname = $value['name'];//substr($value['name'],1,strlen($value['name'])-1);
+            if(DB::table('users')->where('name',$name)->where('surname',$surname)->where('identity',$value['identity'])->count())
             {
-                $member = DB::table('train_members')->select('id')->where('name',$value['name'])->where('identity',$value['identity'])->first();
-                $memberId = $member->id;
+                $user = DB::table('users')->where('name',$name)->where('surname',$surname)->where('identity',$value['identity'])->first();
+                $user_id = $user->id;
             }else{
-                $memberId = DB::table('train_members')->insertGetId(
+                $user_id = DB::table('users')->insertGetId(
                     [
-                        'name'=>$value['name'],
+                        'name'=>$name,
+                        'surname'=>$surname,
+                        'username'=>$value['identity'],
+                        'email'=>$value['identity'].'@site.com',
+                        'password' => Hash::make(substr($value['identity'],-6)),
                         'identity'=>$value['identity'],
                         'phone' => $value['phone'],
                         'address' => $value['address'],
@@ -37,8 +44,8 @@ class ImportCertificateData
 
             $recordData = [
                 //'import_id' => $data['id'],
-                //'id' => $data['id'],
-                'member_id' => $memberId,
+                'uuid' => Uuid::uuid4()->toString(),
+                'user_id' => $user_id,
                 'type_id' => $value['type_id'],
                 'first_get_date' => $value['first_get_date'],
                 'print_date' => $value['print_date'],

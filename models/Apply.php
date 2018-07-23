@@ -6,6 +6,7 @@ use BackendAuth;
 use Carbon\Carbon;
 use ApplicationException;
 use Flash;
+use Samubra\Train\Classes\CanApply;
 
 /**
  * Model
@@ -46,7 +47,7 @@ class Apply extends \October\Rain\Database\Pivot
     ];
 
     protected $jsonable = ['remark'];
-    protected $appends = ['member_name','member_identity','apply_status','apply_health'];
+    protected $appends = ['apply_status','apply_health'];
     public $belongsTo = [
         'health'=>[
             Lookup::class,
@@ -72,11 +73,11 @@ class Apply extends \October\Rain\Database\Pivot
 
     public function getApplyStatusAttribute()
     {
-        return $this->status->name;
+        return $this->status ? $this->status->name : "未设置";
     }
     public function getApplyHealthAttribute()
     {
-        return $this->health->name;
+        return $this->health ? $this->health->name : "未设置";
     }
 
     /**
@@ -120,95 +121,14 @@ class Apply extends \October\Rain\Database\Pivot
         $this->getRelateModel();
         if(!$this->status_id)
             $this->status_id = $this->statusModel->id;
-        if(!($this->canNotApply()&&$this->checkType() && $this->checkEndApplyDate()))
-            return false;//新添加时，检查培训计划是否允许报名
-        if(!$this->planModel->is_new && $this->checkRecord($this->planModel->is_new))
-        {
-            $certificatePrintDate = $this->getDateCarbon($this->certificateModel->print_date);
-
-            $filters = $this->projectModel->certiicate_print_date_filter;
-
-            if(count($filters)){
-                foreach ($filters as $filter){
-                    $startData = $this->getDateCarbon($filter['start'],'Y-m-d');
-                    $endData = $this->getDateCarbon($filter['end'],'Y-m-d');
-
-                    if($certificatePrintDate->lessThan($startData) || $certificatePrintDate->greaterThan($endData)){
-                        return false;
-                        break;
-                    }
-                }
-            }
-        }
+        $checkApply = new CanApply($this->projectModel,$this->certificateModel);
+        return $checkApply->check();
     }
     protected function getRelateModel()
     {
-        $this->projectModel = Project::findOrFail($this->project_id);
-        $this->planModel = $this->projectModel->plan;
-        $this->certificateModel = Certificate::findOrFail($this->certificate_id);
+        $this->projectModel = Project::with('plan','plan.type')->findOrFail($this->project_id);
+        $this->certificateModel = Certificate::with('type')->findOrFail($this->certificate_id);
         $this->statusModel = Lookup::where('type','apply_status')->first();
     }
-    /**
-     * 培训计划报名申请已被关闭时，抛出错误信息
-     * @return boolean
-     */
-    protected function canNotApply()
-    {
-        if(!$this->projectModel->can_apply)
-        {
-            throw new ApplicationException('该培训计划不能申请培训报名！');
-            return false;
-        }
-    }
 
-
-    /**
-     * 检查当前日期是否小于等于受理截止日期
-     * @return bool
-     */
-    protected function checkEndApplyDate()
-    {
-        $planEndApplyDate = $this->getDateCarbon($this->projectModel->end_apply_date);
-
-        return Carbon::now()->lessThanOrEqualTo($planEndApplyDate);
-    }
-    /**
-     * 检查培训证书是否新训，必须满足三个条件：发证日期为NULL、出领证日期为NULL、是否有效标记为false
-     * @param bool $is_new
-     * @return bool
-     */
-    protected function checkRecord($is_new = true)
-    {
-        if((!is_null($this->certificateModel->first_get_date) && !is_null($this->certificateModel->print_date) &&
-                !$this->certificateModel->is_valid) && $is_new)
-        {
-            throw new ApplicationException('该培训项目为新训，不能选择有效的操作证！');
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    protected function checkType()
-    {
-        if($this->planModel->type_id != $this->certificateModel->type_id && $this->planModel->type_id !=
-            $this->certificateModel->type->parent_id)
-        {
-            throw new ApplicationException('该培训方案培训类别与所选操作证的操作项目不符！');
-            return false;
-        }
-    }
-
-    /**
-     * 返回日期对象
-     * @param  init $date 日期
-     * @return subject       Carbon日期对象
-     */
-    protected function getDateCarbon($date,$format = 'Y-m-d H:i:s')
-    {
-        //list($year,$month,$day) = explode('-',$date);
-
-        return Carbon::createFromFormat($format,$date);
-        //return Carbon::instance($date);
-    }
 }

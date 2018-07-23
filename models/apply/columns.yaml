@@ -4,13 +4,13 @@ columns:
         type: text
         sortable: true
         select: name
-        relation: member
+        relation: user
     member_identity:
         label: 身份证号码
         type: text
         sortable: true
         select: identity
-        relation: member
+        relation: user
     type_id:
         label: 证书培训类别
         type: text

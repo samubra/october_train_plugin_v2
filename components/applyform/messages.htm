@@ -1,0 +1,8 @@
+<script type="text/javascript">
+    $('.helper-text').remove();
+    var errors = {{ fieldMsgs|json_encode()|raw }}
+    console.log(errors);
+    $.each(errors,function (name,msg) {
+        $('<span class="helper-text red-text" data-error="wrong" data-success="right">' + msg + '</div>').insertAfter($('label[for=' + name+ ']'));
+    })
+</script>

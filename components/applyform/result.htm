@@ -1,0 +1,26 @@
+<div class="card-panel hoverable">
+    <ul class="collection with-header">
+        <li class="collection-header"><h4>你的报名信息</h4><hr/><h6>请仔细确认报名信息，如有误请联系工作人员进行修改；无误则根据报名流程进行下一步报名。</h6></li>
+        <li class="collection-item">姓名:
+            <span class="teal lighten-2 white-text left-align">{{ certificateModel.user.name }}</span></li>
+        <li class="collection-item">身份证号码: <span class="teal lighten-2 white-text left-align">{{ certificateModel.user.identity }}</span></li>
+        <li class="collection-item">文化程度: <span class="teal lighten-2 white-text left-align">{{ certificateModel.user.edu.name }}</span></li>
+        <li class="collection-item">联系电话: <span class="teal lighten-2 white-text left-align">{{ certificateModel.phone }}</span></li>
+        <li class="collection-item">联系地址: <span class="teal lighten-2 white-text left-align">{{ certificateModel.address }}</span></li>
+        <li class="collection-item">工作单位: <span class="teal lighten-2 white-text left-align">{{ certificateModel.company }}</span></li>
+    </ul>
+    {% if projectModel.plan.is_new == false %}
+    <ul class="collection with-header">
+        <li class="collection-header"><h5>操作证信息</h5></li>
+        <li class="collection-item">初领证日期: <span class="teal lighten-2 white-text left-align">{{ certificateModel.first_get_date }}</span></li>
+        <li class="collection-item">发证日期: <span class="teal lighten-2 white-text left-align">{{ certificateModel.print_date }}</span></li>
+        <li class="collection-item">操作项目: <span class="teal lighten-2 white-text left-align">{{
+            certificateModel.type.title }}</span></li>
+        <li class="collection-item">是否有效: <span class="teal lighten-2 white-text left-align">{{ certificateModel.is_valid ? "有效":"已失效" }}</span></li>
+    </ul>
+    {% endif %}
+    <a href="{{ 'details'|page({id:projectModel.id}) }}" class="waves-effect waves-light btn-large"><i
+            class="material-icons left">
+        arrow_back</i>
+        报名完成，返回培训项目</a>
+</div>

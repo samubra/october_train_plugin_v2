@@ -1,0 +1,11 @@
+<div id="apply">
+    <h2 class="lt-title center-align">填写报名申请</h2>
+    <p class="flow-text">请根据提示如实填写下面的报名申请，<span class="teal lighten-2 ">带 * 标记的项目为必填项目</span>。</p>
+    <div id="result"></div>
+    {% if(__SELF__.projectModel.plan.is_new) %}
+    {% partial __SELF__~"::form" projectModel=__SELF__.projectModel %}
+    {% else %}
+    {% partial __SELF__~"::review" projectModel=__SELF__.projectModel %}
+    {% endif %}
+
+</div>

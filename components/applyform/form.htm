@@ -1,0 +1,68 @@
+<div class="card-panel hoverable ">
+    <form id="applyForm"
+      data-request-validate
+      data-request-flash
+      data-request="{{ __SELF__ }}::onSaveApply"
+      data-request-update="'{{ __SELF__ }}::result': '#apply'"
+>
+    <input name="project_id" type="hidden" value="{{ project_id }}">
+    <input name="type_id" type="hidden" value="{{ projectModel.plan.type_id }}">
+    {% if certificateModel %}
+        <input name="certificate_id" type="hidden" value="{{ certificateModel.id }}">
+    {% endif %}
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="identity" type="text" class="validate" name="identity" value="{{ certificateModel ? certificateModel.user.identity : ''}}"  {{ certificateModel ? "readonly" : ''}}>
+            <span data-validate-for="identity" class="red-text helper-text"></span>
+            <label for="identity">身份证号码<span class="red-text">*</span></label>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" class="validate" id="name" name="name" value="{{ certificateModel ? certificateModel.user.name : ''}}" {{ certificateModel ? "readonly" : ''}}>
+            <span data-validate-for="name" class="red-text helper-text"></span>
+            <label for="name" >姓名 <span class="red-text">*</span></label>
+
+        </div>
+        <div class="input-field col s12">
+            <select class="form-control" id="edu_id" name="edu_id">
+                {% if certificateModel %}
+                {% for id,name in eduOptions %}
+                <option value="{{ id }}" {{ certificateModel.user.edu_id==id ? "selected" : "" }}>{{ name }}</option>
+                {% endfor %}
+                {% else %}
+                <option value="" disabled selected>选择你的文化程度...</option>
+                    {% for id,name in eduOptions %}
+                        <option value="{{ id }}">{{ name }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+            <span data-validate-for="edu_id" class="red-text helper-text"></span>
+        </div>
+        <div class="input-field col s12">
+            <label for="phone" class="col-lg-2 control-label">联系电话 <span class="red-text">*</span></label>
+            <input type="text" class="form-control validate" id="phone" name="phone" value="{{ certificateModel ? certificateModel.phone : ''}}" >
+            <span data-validate-for="phone" class="red-text helper-text"></span>
+        </div>
+        <div class="input-field col s12">
+            <label for="address" class="col-lg-2 control-label">联系地址 <span class="red-text">*</span></label>
+            <input type="text" class="form-control validate" id="address" name="address"  value="{{ certificateModel ? certificateModel.address : ''}}">
+            <span data-validate-for="address" class="red-text helper-text"></span>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" class="form-control validate" id="company" name="company"  value="{{ certificateModel ? certificateModel.company : ''}}">
+            <label for="company" class="col-lg-2 control-label">输入单位名称，无单位则填个体 <span class="red-text">*</span></label>
+            <span data-validate-for="company" class="red-text helper-text"></span>
+        </div>
+        <div class="input-field col s12">
+            <button class="btn-large waves-effect waves-light" type="submit" name="action" data-attach-loading>提交申请
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+        Materialize.updateTextFields();
+    });
+</script>

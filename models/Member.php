@@ -19,8 +19,8 @@ class Member extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'name'    => 'required|between:2,255',
-        'identity'=>'required|identity|unique:train_members',
+        'name'    => 'between:2,255',
+        'identity'=>'identity|unique:train_members',
         'phone'=>'nullable|phone',
         'address'  =>'nullable|between:3,200',
         'edu_id'  =>'nullable|exists:train_lookups,id',
@@ -78,5 +78,19 @@ class Member extends Model
     {
         //if(Auth::check())
          //   $this->member_user_id = Auth::getUser()->id;
+    }
+
+    public static function getFromUser($user)
+    {
+        if($user->member)
+            return $user->member;
+
+        $member = new static;
+        $member->user = $user;
+        $member->save();
+
+        $user->member = $member;
+
+        return $member;
     }
 }

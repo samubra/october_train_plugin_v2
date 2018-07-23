@@ -1,23 +1,34 @@
 fields:
     title:
         label: 培训方案标题
-        span: full
         required: 1
         type: text
-    type:
-        label: 培训类别
-        nameFrom: title
-        descriptionFrom: description
         span: auto
-        required: 1
-        type: relation
     is_new:
-        label: 新/复训
+        label: 新训
         span: auto
         default: 1
         type: switch
-        on: 新
-        off: 复
+        on: 是
+        off: 否
+    parent_type:
+        label: 培训类别
+        span: auto
+        type: dropdown
+        placeholder: -- 选择培训类别 --
+        defaultFrom: type.parent_id
+        trigger:
+            action: enable
+            field: type_id
+            condition: value[]
+    type_id:
+        label: 操作项目
+        span: auto
+        required: 1
+        type: dropdown
+        dependsOn: parent_type
+        emptyOption: -- 选择操作项目 --
+    
     operate_hours:
         label: 操作学时
         span: auto

@@ -1,0 +1,25 @@
+<div class="card-panel hoverable" >
+    <span class="card-title">第一步:</span>
+    <p>输入身份证号码，以查找需要复审的操作证。</p>
+    <form
+            data-request="{{ __SELF__ }}::onLoadCertificates"
+            data-request-update="'{{ __SELF__ }}::certificates': '#result'"
+            data-request-validate
+            data-request-flash
+    >
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="identity" name="identity" type="text" class="validate"><span data-validate-for="identity" class="red-text"></span>
+                <label for="identity">身份证号码</label>
+            </div>
+        </div>
+        <input name="project_id" type="hidden" value="{{ projectModel.id }}">
+        <input name="is_new" type="hidden" value="{{ projectModel.plan.is_new }}">
+        <input name="type_id" type="hidden" value="{{ projectModel.plan.type_id }}">
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" name="action" class="btn btn-primary" data-attach-loading>继续下一步</button>
+            </div>
+        </div>
+    </form>
+</div>

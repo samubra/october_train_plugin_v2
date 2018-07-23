@@ -65,4 +65,14 @@ class Category extends Model
     {
         return $query->where(self::NEST_DEPTH,$depth);
     }
+
+    public function scopeParentList($query,$parent_id = null)
+    {
+        if(is_null($parent_id))
+            return $query->whereNull(self::PARENT_ID);
+        else
+            return $query->where(self::PARENT_ID,$parent_id);
+    }
+
+    
 }

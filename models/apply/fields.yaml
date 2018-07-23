@@ -25,7 +25,7 @@ fields:
     'pivot[company]':
         label: 单位名称
         span: auto
-        placeholder: '请天蝎单位名称全称，无工作单位用户请填“个体"'
+        placeholder: '请填写单位名称全称，无工作单位用户请填“个体"'
         default: ''
         type: text
     'pivot[pay]':

@@ -1,21 +1,22 @@
 columns:
     id:
         label: ID
-        type: number
+        type: text
         searchable: true
+        invisible: true
         sortable: true
-    name:
+    surname:
         label: 姓名
         type: text
-        select: name
+        select: surname
         searchable: true
-        relation: member
+        relation: user
     identity:
         label: 身份证号
         type: text
         select: identity
         searchable: true
-        relation: member
+        relation: user
     type:
         label: 操作类别
         type: text

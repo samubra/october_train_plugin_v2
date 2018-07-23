@@ -2,6 +2,7 @@
 
 use Model;
 
+use Emadadly\LaravelUuid\Uuids;
 /**
  * Model
  */
@@ -11,11 +12,24 @@ class Project extends Model
     
     use \October\Rain\Database\Traits\SoftDelete;
 
-    protected $dates = ['deleted_at','start_date','end_date','exam_date','end_apply_date','created_at','updated_at'];
+    use Uuids;
+
+    protected $dates = ['deleted_at','created_at','updated_at'];
 
     protected $casts = [
         'can_apply' => 'boolean',
+        'start_date' => 'date:Y-m-d',
+        'end_date' => 'date:Y-m-d',
+        'exam_date' => 'date:Y-m-d',
+        'end_apply_date' => 'datetime:Y-m-d H:i',
     ];
+
+        /** 
+     * Indicates if the IDs are auto-incrementing. 
+     *
+     * @var bool 
+    */  
+    public $incrementing = false;
     /**
      * @var array Validation rules
      */
