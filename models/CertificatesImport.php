@@ -35,7 +35,7 @@ class CertificatesImport extends ImportModel
     "print_date" => "2017-01-03"
     "is_valid" => "1"
     "remark" => "["479691"]"
-    ]
+    ] 
      * 'member_name'=>'','member_identity'=>'','member_phone'=>'','member_address'=>'','member_edu_id'=>'','member_user_id'=>'','member_company'=>''
      * 'member_id'=>'','type_id'=>'','edu_id'=>'','first_get_date'=>'','print_date'=>'','is_valid'=>'','phone'=>'','address'=>'','company'=>'','remark'
      * @var array The rules to be applied to the data.

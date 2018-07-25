@@ -185,13 +185,6 @@ class CreateAllTable extends Migration
     
     public function down()
     {
-        Schema::dropIfExists($this->prefix.'certificate_project');
-        Schema::dropIfExists($this->prefix.'course_project');
-        Schema::dropIfExists($this->prefix.'certificates');
-        Schema::dropIfExists($this->prefix.'projects');
-        Schema::dropIfExists($this->prefix.'plans');
-        Schema::dropIfExists($this->prefix.'courses');
-        //Schema::dropIfExists($this->prefix.'members');
         Schema::table('users', function ($table) {
             $table->dropColumn([
                 'identity',
@@ -201,6 +194,14 @@ class CreateAllTable extends Migration
                 'company',
             ]);
         });
+        Schema::dropIfExists($this->prefix.'certificate_project');
+        Schema::dropIfExists($this->prefix.'course_project');
+        Schema::dropIfExists($this->prefix.'certificates');
+        Schema::dropIfExists($this->prefix.'projects');
+        Schema::dropIfExists($this->prefix.'plans');
+        Schema::dropIfExists($this->prefix.'courses');
+        //Schema::dropIfExists($this->prefix.'members');
+        
         Schema::dropIfExists($this->prefix.'teachers');
         Schema::dropIfExists($this->prefix.'lookups');
         Schema::dropIfExists($this->prefix.'categories');

@@ -36,7 +36,7 @@ class Plan extends Model
         'theory_hours'=>'numeric',
         'address'=>'nullable|between:3,255',
         'contact_person'=>'nullable',
-        'contact_phone'=>'nullable|phone',
+        //'contact_phone'=>'nullable|phone',
         'title'=>'required|between:4,255',
     ];
 

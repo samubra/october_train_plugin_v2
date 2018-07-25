@@ -66,6 +66,7 @@ class Project extends Model
      */
     public $table = 'train_projects';
     protected $jsonable = ['train_remark','certiicate_print_date_filter'];
+    public $fillable = ['title','plan_id','status_id','can_apply','start_date','end_date','exam_date','end_apply_date','cost','train_remark','certiicate_print_date_filter'];
 
     public $belongsTo = [
         'plan'=>[
@@ -88,7 +89,7 @@ class Project extends Model
             'otherKey' => 'course_id',
             'timestamps' => true,
             'pivotModel'=>ProjectCoursePivot::class,
-            'pivot' => ['start_time', 'end_time','teacher_id','hours','teaching_form']
+            'pivot' => ['start_time','end_time','teacher_id','hours','teaching_form']
         ],
         'certificates' => [
             Certificate::class,
