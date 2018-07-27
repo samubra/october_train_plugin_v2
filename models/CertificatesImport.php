@@ -46,8 +46,10 @@ class CertificatesImport extends ImportModel
     {
         //dd($results);
         try {
-            Queue::push(ImportCertificateData::class,$results);
-            $this->logCreated();
+            foreach ($results as $value) {
+                Queue::push(ImportCertificateData::class, $value);
+                $this->logCreated();
+            }
         }
         catch (\Exception $ex) {
             $this->logError(1, $ex->getMessage());

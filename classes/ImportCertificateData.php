@@ -16,9 +16,10 @@ use Validator;
 
 class ImportCertificateData
 {
-    public function fire($job, $data)
+    public function fire($job, $value)
     {
-        foreach ($data as $row => $value) {
+        trace_sql();
+        //foreach ($data as $row => $value) {
             if(isset($value['certificate_id']) && isset($value['project_id'])) {
                 Db::table('train_certificate_project')
                     ->where('certificate_id',$value['certificate_id'])
@@ -40,7 +41,7 @@ class ImportCertificateData
                         'address' => $value['address'],
                         'company' => $value['company'],
                         'print_date' => $value['print_date'],
-                        'is_valid' => $value['is_valid'],
+                        'is_valid' => [$value['is_valid']],
                     ]);
             }else{
                 $user = $this->getLoginUser($value);
@@ -54,11 +55,14 @@ class ImportCertificateData
                     'phone' => $value['phone'],
                     'address' => $value['address'],
                     'company' => $value['company'],
-                    'remark' => $value['remark']
+                    //'remark' => [$value['remark']]
                 ];
-                Certificate::create($recordData);
+                
+                DB::table('train_certificates')->insert($recordData);
+                //trace_log($recordData);
+                Auth::logout();
             }
-        }
+        //}
 
         $job->delete();
     }

@@ -120,6 +120,24 @@ class SeedAllTable extends Seeder
                 ],
             ]
         ],
+        [
+            'title' => '烟花爆竹安全作业',
+            //'type' => 'train_type',
+            'complete_type' => 'operations_certificate',
+            'unit'=>'Y',
+            'validity'=>3,
+            'organ'=>'重庆市安全生产监督管理局',
+            'child' => [
+                [
+                    'title' => '烟花爆竹储存作业',
+                    //'type' => 'operation_type',
+                    'complete_type' => 'operations_certificate',
+                    'unit'=>'Y',
+                    'validity'=>3,
+                    'organ'=>'重庆市安全生产监督管理局',
+                ]
+            ]
+        ],
     ];
     protected $lookupList = [
         [

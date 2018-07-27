@@ -47,8 +47,8 @@ class Plugin extends PluginBase
             ]);
 
             $model->rules['identity'] = 'identity|unique:users';
-            $model->rules['phone']= 'phone';
-            $model->rules['address']  ='between:3,200';
+           // $model->rules['phone']= 'phone';
+            //$model->rules['address']  ='between:3,200';
             $model->rules['edu_id']  ='required|exists:train_lookups,id';
             
             $model->attributeNames['identity'] = '培训学员身份证号';
