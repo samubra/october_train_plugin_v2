@@ -2,6 +2,8 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;    
+use Samubra\Train\Models\Project;
+use Flash;
 
 class Projects extends Controller
 {
@@ -24,5 +26,58 @@ class Projects extends Controller
     {
         parent::__construct();
         BackendMenu::setContext('Samubra.Train', 'main-menu-item2', 'training-item');
+    }
+
+
+    public function onChangeStatus()
+    {
+        if (
+            ($action = post('action')) &&
+            ($certificateIds = post('checked')) &&
+            is_array($certificateIds) &&
+            count($certificateIds)
+        ) {
+            if($action == 'is_not_valid')
+                $valid = false;
+            elseif($action == 'is_valid')
+                $valid = true;
+            Certificate::whereIn('id',$certificateIds)->update(['is_valid'=>$valid]);
+            Flash::success('所选择的证书已设置为');
+        }else{
+            Flash::error('请选择需要操作的证书进行操作！');
+        }
+        return $this->listRefresh();
+    }
+
+    public function onCopy()
+    {
+        if(($checked = post('checked')) && is_array($checked) && count($checked)==1)
+        {
+            $project = Project::find($checked[0]);
+
+            $newProjectArray = $project->toArray();
+            unset($newProjectArray['id'],$newProjectArray['created_at'],$newProjectArray['updated_at']);
+
+            $new = Project::create($newProjectArray);
+            if($project->has('courses'))
+            {
+                $list = [];
+               foreach($project->courses as $course){
+                   $list[$course->id] = [
+                    'start_time' => '2018-07-27 12:00:00',
+                    'end_time' => '2018-07-27 18:00:00',
+                    'teacher_id' => '1',
+                    'hours' => '4.0',
+                    'teaching_form' => '所担负的撒'
+                   ];
+               }
+                $new->courses()->attach($list);
+            }
+            
+            Flash::success('所复制的项目已创建成功！');
+        }else{
+            Flash::error('请选择一个（仅一项）需要复制的培训项目！');
+        }
+        return $this->listRefresh();
     }
 }

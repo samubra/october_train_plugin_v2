@@ -35,7 +35,7 @@
                 data-primary-button
                 type="button"
                 class="btn btn-default"
-                data-request="onChangeStatus"
+                data-request="onCopy"
                 data-trigger-action="enable"
                 data-trigger=".control-list input[type=checkbox]"
                 data-trigger-condition="checked"
@@ -54,36 +54,14 @@
         </button>
         <ul class="dropdown-menu" data-dropdown-title="批量设置">
             <li>
-                <a href="javascript:;" data-action="waiting_acceptance" data-confirm="你是否确定要批量设置所选培训申请的状态为：等待受理">
-                    等待受理
+                <a href="javascript:;" data-action="is_not_valid" data-confirm="你是否确定要批量设置所选证书的状态为：无效">
+                    设置为无效
                 </a>
             </li>
             <li role="separator" class="divider"></li>
             <li>
-                <a href="javascript:;" data-action="receiving" data-confirm="你是否确定要批量设置所选培训申请的状态为：正在受理">
-                    正在受理
-                </a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
-                <a href="javascript:;" data-action="allowed" data-confirm="你是否确定要批量设置所选培训申请的状态为：申请审核已通过，等待考试">
-                    申请审核已通过，等待考试
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;" data-action="not_allow" data-confirm="你是否确定要批量设置所选培训申请的状态为：申请未审核通过">
-                    申请未审核通过
-                </a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
-                <a href="javascript:;" data-action="waiting_get_record" data-confirm="你是否确定要批量设置所选培训申请的状态为：考试通过，等待领证">
-                    考试通过，等待领证
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;" data-action="get_record" data-confirm="你是否确定要批量设置所选培训申请的状态为：已领证">
-                    已领证
+                <a href="javascript:;" data-action="is_valid" data-confirm="你是否确定要批量设置所选证书的状态为：有效">
+                    设置为有效
                 </a>
             </li>
         </ul>

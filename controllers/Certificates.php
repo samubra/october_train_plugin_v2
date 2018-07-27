@@ -2,6 +2,8 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Samubra\Train\Models\Certificate;
+use Flash;
 
 class Certificates extends Controller
 {
@@ -30,6 +32,21 @@ class Certificates extends Controller
 
     public function onChangeStatus()
     {
-        //var_dump(request('action'));
+        if (
+            ($action = post('action')) &&
+            ($certificateIds = post('checked')) &&
+            is_array($certificateIds) &&
+            count($certificateIds)
+        ) {
+            if($action == 'is_not_valid')
+                $valid = false;
+            elseif($action == 'is_valid')
+                $valid = true;
+            Certificate::whereIn('id',$certificateIds)->update(['is_valid'=>$valid]);
+            Flash::success('所选择的证书已设置为');
+        }else{
+            Flash::success('请选择需要操作的证书进行操作！');
+        }
+        return $this->listRefresh();
     }
 }
