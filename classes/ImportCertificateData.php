@@ -45,7 +45,8 @@ class ImportCertificateData
                     ]);
             }else{
                 $user = $this->getLoginUser($value);
-                $recordData = [
+                if (Db::table('train_certificates')->where('user_id', $user->id)->where('type_id', $value['type_id'])->where('is_valid', $value['is_valid'])->count()) {
+                    $recordData = [
                     'uuid' => Uuid::uuid4()->toString(),
                     'user_id' => $user->id,
                     'type_id' => $value['type_id'],
@@ -58,9 +59,10 @@ class ImportCertificateData
                     //'remark' => [$value['remark']]
                 ];
                 
-                DB::table('train_certificates')->insert($recordData);
-                //trace_log($recordData);
-                Auth::logout();
+                    DB::table('train_certificates')->insert($recordData);
+                    //trace_log($recordData);
+                    Auth::logout();
+                }
             }
         //}
 
