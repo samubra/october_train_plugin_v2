@@ -18,7 +18,7 @@ class ImportCertificateData
 {
     public function fire($job, $value)
     {
-        trace_sql();
+        //trace_sql();
         //foreach ($data as $row => $value) {
             if(isset($value['certificate_id']) && isset($value['project_id'])) {
                 Db::table('train_certificate_project')
@@ -69,14 +69,16 @@ class ImportCertificateData
 
     protected function getLoginUser($data)
     {
-        if($user = Auth::findUserByLogin($data['identity']))
+        if (Auth::check()) {
+            return Auth::getUser();
+        } elseif ($user = Auth::findUserByLogin($data['identity'])) {
             return $user;
-        else
+        }else{
             return Auth::register([
                 'email'=>$data['identity'].'@site.com',
                 'username'=>$data['identity'],
-                'password'=>substr($data['identity'],-6),
-                'password_confirmation'=>substr($data['identity'],-6),
+                'password'=>substr($data['identity'], -6),
+                'password_confirmation'=>substr($data['identity'], -6),
                 'phone'=>$data['phone'],
                 'name'=>$data['name'],
                 'surname'=>$data['name'],
@@ -84,6 +86,7 @@ class ImportCertificateData
                 'address' => $data['address'],
                 'edu_id' => $data['edu_id'],
                 'company' =>$data['company'],
-            ],true,true);
+            ], true, true);
+        }
     }
 }
