@@ -185,15 +185,19 @@ class CreateAllTable extends Migration
     
     public function down()
     {
-        Schema::table('users', function ($table) {
-            $table->dropColumn([
-                'identity',
-                'phone',
-                'address',
-                'edu_id',
-                'company',
-            ]);
-        });
+        
+        if (Schema::hasColumn('users', 'identity')) {
+            Schema::table('users', function ($table) {
+                $table->dropColumn([
+                    'identity',
+                    'phone',
+                    'address',
+                    'edu_id',
+                    'company',
+                ]);
+            });
+        }
+        
         Schema::dropIfExists($this->prefix.'certificate_project');
         Schema::dropIfExists($this->prefix.'course_project');
         Schema::dropIfExists($this->prefix.'certificates');
