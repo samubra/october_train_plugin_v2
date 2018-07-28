@@ -3,9 +3,9 @@ scopes:
     member:
         label: 培训学员
         type: group
-        modelClass: Samubra\Train\Models\Member
-        conditions: member_id in (:filtered)
-        nameFrom: name
+        modelClass: RainLab\User\Models\User
+        conditions: user_id in (:filtered)
+        nameFrom: identity
     type:
         label: 培训类别
         type: group
