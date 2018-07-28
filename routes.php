@@ -8,8 +8,8 @@ use Samubra\Train\Models\Lookup;
 use Carbon\Carbon;
 
 Route::get('seeding', function () {
-    echo "seeding plan and project ！";
-    /**
+    //echo "seeding plan and project ！";
+    
     $faker = Faker\Factory::create('zh_CN');
     $typeIds = Category::lists('id');
     //dd($faker->phoneNumber);
@@ -60,5 +60,5 @@ Route::get('seeding', function () {
        ]);
        echo $project->title.'<br/>';
     }
-    */
+    
 });
