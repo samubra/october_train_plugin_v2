@@ -2,7 +2,7 @@
 
 use Model;
 
-use Emadadly\LaravelUuid\Uuids;
+//use Emadadly\LaravelUuid\Uuids;
 /**
  * Model
  */
@@ -12,7 +12,7 @@ class Project extends Model
     
     use \October\Rain\Database\Traits\SoftDelete;
 
-    use Uuids;
+    //use Uuids;
 
     protected $dates = ['deleted_at','created_at','updated_at'];
 
@@ -29,7 +29,7 @@ class Project extends Model
      *
      * @var bool 
     */  
-    public $incrementing = false;
+    //public $incrementing = false;
     /**
      * @var array Validation rules
      */
