@@ -7,13 +7,13 @@ use Samubra\Train\Models\Category;
 use Samubra\Train\Models\Lookup;
 use Carbon\Carbon;
 
-Route::get('seeding', function () {
+Route::get('seeding/{number}', function ($number) {
     //echo "seeding plan and project ！";
     
     $faker = Faker\Factory::create('zh_CN');
     $typeIds = Category::lists('id');
     //dd($faker->phoneNumber);
-    for($i = 0;$i<10;$i++){
+    for($i = 0;$i<$number;$i++){
         $plan = Plan::create([
             'type_id' => $faker->randomElement($typeIds),
             'create_user_id' => '1',
@@ -35,7 +35,7 @@ Route::get('seeding', function () {
     $planIds = Plan::lists('id');
     $statusIds = Lookup::where('type','project_status')->lists('id');
 
-    for($i = 0;$i<100;$i++){
+    for($i = 0;$i<$number;$i++){
         $dateFaker = $faker->date('Y-m-d','now');
         $date = Carbon::createFromFormat('Y-m-d',$dateFaker);
         
