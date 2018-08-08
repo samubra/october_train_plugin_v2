@@ -106,7 +106,6 @@ class CreateAllTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->uuid('uuid');
-            $table->primary('id');
             $table->string('title',200);
             $table->integer('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on($this->prefix.'plans');
