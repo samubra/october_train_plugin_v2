@@ -8,8 +8,6 @@ class CreateAllTable extends Migration
     protected $prefix = 'train_';
     public function up()
     {
-
-        
         Schema::create($this->prefix.'categories', function($table){
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -106,7 +104,8 @@ class CreateAllTable extends Migration
         });
         Schema::create($this->prefix.'projects', function ($table) {
             $table->engine = 'InnoDB';
-            $table->uuid('id')->unique();
+            $table->increments('id');
+            $table->uuid('uuid');
             $table->primary('id');
             $table->string('title',200);
             $table->integer('plan_id')->unsigned();
@@ -147,7 +146,7 @@ class CreateAllTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('course_id')->unsigned()->index();
             $table->foreign('course_id')->references('id')->on($this->prefix.'courses')->onDelete('cascade');
-            $table->uuid('project_id')->index();
+            $table->uuid('project_id')->unsigned()->index();
             $table->foreign('project_id')->references('id')->on($this->prefix.'projects')->onDelete('cascade');
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
@@ -163,7 +162,7 @@ class CreateAllTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('certificate_id')->unsigned()->index();
             $table->foreign('certificate_id')->references('id')->on($this->prefix.'certificates')->onDelete('cascade');
-            $table->uuid('project_id')->index();
+            $table->integer('project_id')->unsigned()->index();
             $table->foreign('project_id')->references('id')->on($this->prefix.'projects')->onDelete('cascade');
             $table->integer('health_id')->unsigned()->nullable();
             $table->foreign('health_id')->references('id')->on($this->prefix.'lookups');
