@@ -129,7 +129,7 @@ class Plugin extends PluginBase
     public function registerReportWidgets()
     {
         return [
-            'Samubra\Train\ReportWidgets\RecordCount' => [
+            'Samubra\Train\ReportWidgets\CertificatesCount' => [
                 'label'   => '培训证书统计',
                 'context' => 'dashboard'
             ]

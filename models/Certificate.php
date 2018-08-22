@@ -1,7 +1,6 @@
 <?php namespace Samubra\Train\Models;
 
 use Model;
-use Ramsey\Uuid\Uuid;
 use RainLab\User\Models\User;
 /**
  * Model
@@ -81,7 +80,7 @@ class Certificate extends Model
 
     public function beforeCreate()
     {
-        $this->uuid = Uuid::uuid4()->toString();
+        //$this->uuid = Uuid::uuid4()->toString();
     }
 
     public function getCertificatesUserNameAttribute()

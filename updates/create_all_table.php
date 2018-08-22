@@ -107,7 +107,6 @@ class CreateAllTable extends Migration
         Schema::create($this->prefix.'projects', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->uuid('uuid');
             $table->string('title',200);
             $table->integer('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on($this->prefix.'plans');
@@ -128,7 +127,6 @@ class CreateAllTable extends Migration
         Schema::create($this->prefix.'certificates', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->uuid('uuid');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('type_id')->unsigned();

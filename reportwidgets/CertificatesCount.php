@@ -13,7 +13,7 @@ use Samubra\Train\Models\Certificate;
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
  */
-class CertificateCount extends ReportWidgetBase
+class CertificatesCount extends ReportWidgetBase
 {
     /**
      * @var string A unique alias to identify this widget.
@@ -52,7 +52,8 @@ class CertificateCount extends ReportWidgetBase
     protected function loadData()
     {
         $allCertificates = Certificate::all()->groupBy('type_id');
-        $typeList = Category::whereIn('id',$allCertificates->keys())->lists('name','id');
+        trace_log($allCertificates);
+        $typeList = Category::whereIn('id',$allCertificates->keys())->lists('title','id');
 
         $countList = [];
         $count = 0;

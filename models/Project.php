@@ -2,7 +2,6 @@
 
 use Model;
 
-//use Emadadly\LaravelUuid\Uuids;
 /**
  * Model
  */
@@ -10,7 +9,10 @@ class Project extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
+    use \Samubra\Train\Classes\Traits\HashIdHelper;
+    
     use \October\Rain\Database\Traits\SoftDelete;
+    
 
     //use Uuids;
 
@@ -24,12 +26,6 @@ class Project extends Model
         'end_apply_date' => 'datetime:Y-m-d H:i',
     ];
 
-        /** 
-     * Indicates if the IDs are auto-incrementing. 
-     *
-     * @var bool 
-    */  
-    //public $incrementing = false;
     /**
      * @var array Validation rules
      */
