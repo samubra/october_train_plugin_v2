@@ -9,7 +9,6 @@
 namespace Samubra\Train\Classes;
 
 use DB;
-use Ramsey\Uuid\Uuid;
 use Auth;
 use Samubra\Train\Models\Certificate;
 use Validator;
@@ -47,7 +46,7 @@ class ImportCertificateData
                 $user = $this->getLoginUser($value);
                 if (Db::table('train_certificates')->where('user_id', $user->id)->where('type_id', $value['type_id'])->where('is_valid', $value['is_valid'])->count()) {
                     $recordData = [
-                    'uuid' => Uuid::uuid4()->toString(),
+                   // 'uuid' => Uuid::uuid4()->toString(),
                     'user_id' => $user->id,
                     'type_id' => $value['type_id'],
                     'first_get_date' => $value['first_get_date'],

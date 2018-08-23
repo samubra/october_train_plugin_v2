@@ -1,0 +1,41 @@
+<div class="report-widget widget-welcome">
+    <h3><?= e(trans($this->property('title'))) ?>
+        （<?= e($this->property('type')=='review'?'复审':'换证') ?>共
+        <?= e($certificates_count[$this->property('type')]['count']) ?>份）</h3>
+
+    <?php if (!isset($error)): ?>
+    <div class="control-status-list">
+        <?php if ($certificates_count[$this->property('type')]['count']): ?>
+            <div class="callout callout-info">
+                <div class="content">
+                   <?= e($certificates_count[$this->property('type')]['start']) ?> 至 <?= e($certificates_count[$this->property('type')]['end']) ?>需要<?= e($this->property('type')=='review'?'复审':'换证') ?>的证书如下列表：
+                </div>
+            </div>
+
+            <ul>
+                <?php foreach($certificates_count[$this->property('type')]['list'] as $value): ?>
+                    <li>
+                        <span class="status-icon success"><i class="icon-check"></i></span>
+                        <span class="status-text success">
+                            <?= e($value['title']) ?>
+                        </span>
+                        <a href="#" class="status-label primary"><?= e($value['number']) ?></a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        <?php else: ?>
+            <div class="callout callout-warning">
+                <div class="content">
+                   <?= e($certificates_count[$this->property('type')]['start']) ?> 至 <?= e($certificates_count[$this->property('type')]['end']) ?>没有需要培训的证书。
+                </div>
+            </div>
+        <?php endif ?>
+    </div>
+    <?php else: ?>
+        <div class="callout callout-warning">
+            <div class="content">
+                <?= e($error) ?>
+            </div>
+        </div>
+    <?php endif ?>
+</div>

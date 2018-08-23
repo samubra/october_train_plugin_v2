@@ -51,8 +51,9 @@ class CertificatesCount extends ReportWidgetBase
 
     protected function loadData()
     {
+        //trace_sql();
         $allCertificates = Certificate::all()->groupBy('type_id');
-        trace_log($allCertificates);
+        
         $typeList = Category::whereIn('id',$allCertificates->keys())->lists('title','id');
 
         $countList = [];

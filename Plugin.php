@@ -132,6 +132,10 @@ class Plugin extends PluginBase
             'Samubra\Train\ReportWidgets\CertificatesCount' => [
                 'label'   => '培训证书统计',
                 'context' => 'dashboard'
+            ],
+            'Samubra\Train\ReportWidgets\CertificatesReport' => [
+                'label'   => '培训证书报告',
+                'context' => 'dashboard'
             ]
         ];
     }
