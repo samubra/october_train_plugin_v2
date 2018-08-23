@@ -60,7 +60,7 @@ class CertificatesReport extends ReportWidgetBase
     protected function loadData()
     {
         $filterDate = $this->getFiliterDate();
-        trace_sql();
+        //trace_sql();
         $reviewCertificates = Certificate::where('print_date','>=',$filterDate['review']['start'])->where('print_date','<=',$filterDate['review']['end'])->where('is_valid',true)->get();
         $reprintCertificates = Certificate::where('print_date','>=',$filterDate['reprint']['start'])->where('print_date','<=',$filterDate['reprint']['end'])->where('is_valid',true)->get();
 
