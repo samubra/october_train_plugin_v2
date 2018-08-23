@@ -61,13 +61,10 @@ class CertificatesReport extends ReportWidgetBase
     {
         $filterDate = $this->getFiliterDate();
         //trace_sql();
-        $reviewCertificates = Certificate::where('print_date','>=',$filterDate['review']['start'])->where('print_date','<=',$filterDate['review']['end'])->where('is_valid',true)->get();
-        $reprintCertificates = Certificate::where('print_date','>=',$filterDate['reprint']['start'])->where('print_date','<=',$filterDate['reprint']['end'])->where('is_valid',true)->get();
+        $type = $this->property('type');
+        $certificates = Certificate::where('print_date','>=',$filterDate[$type]['start'])->where('print_date','<=',$filterDate[$type]['end'])->where('is_valid',true)->get();
 
-        $count['review'] = $filterDate['review'] + $this->getCountList($reviewCertificates);
-        $count['reprint'] = $filterDate['reprint'] + $this->getCountList($reprintCertificates);
-        
-        $this->vars['certificates_count'] = $count;
+        $this->vars['certificates_count'] = $filterDate[$type] + $this->getCountList($certificates);
         $this->vars['appName'] = BrandSetting::get('app_name');
     }
 
