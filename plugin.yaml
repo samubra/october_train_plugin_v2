@@ -1,0 +1,34 @@
+plugin:
+    name: 'samubra.train::lang.plugin.name'
+    description: 'samubra.train::lang.plugin.description'
+    author: samubra
+    icon: oc-icon-cogs
+    homepage: ''
+permissions:
+    train.manage.organ:
+        tab: 发证机关管理
+        label: 管理发证机关
+    tran.mange.category:
+        tab: 培训类别管理
+        label: 管理培训类别
+navigation:
+    train-meta:
+        label: 数据管理
+        url: samubra/train/organs
+        icon: icon-suitcase
+        permissions:
+            - tran.mange.category
+            - train.manage.organ
+        sideMenu:
+            train-meta-category:
+                label: 培训类别管理
+                url: samubra/train/categories
+                icon: icon-sitemap
+                permissions:
+                    - tran.mange.category
+            train-meta-organ:
+                label: 发证机关管理
+                url: samubra/train/organs
+                icon: icon-sitemap
+                permissions:
+                    - train.manage.organ

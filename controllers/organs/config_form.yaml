@@ -1,0 +1,17 @@
+name: 发证机关
+modelClass: Samubra\Train\Models\Organ
+form: $/samubra/train/models/organ/fields.yaml
+defaultRedirect: samubra/train/organs
+create:
+    title: 添加发证机关
+    redirect: 'samubra/train/organs/update/:id'
+    redirectClose: samubra/train/organs
+    flashSave: 发证机关添加成功
+update:
+    title: 修改发证机关
+    redirect: samubra/train/organs
+    redirectClose: samubra/train/organs
+    flashSave: 发证机关保存成功
+    flashDelete: 发证机关删除成功
+preview:
+    title: 发证机关详情

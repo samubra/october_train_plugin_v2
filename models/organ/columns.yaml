@@ -1,0 +1,41 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: 机构名称
+        type: text
+        searchable: true
+        sortable: false
+    complete_type:
+        label: 结业类型
+        type: text
+        searchable: true
+    validity:
+        label: 复审周期
+        type: number
+        searchable: true
+    unit:
+        label: 周期单位
+        type: text
+        searchable: true
+        sortable: true
+    need_review:
+        label: 需要复审
+        type: switch
+        searchable: true
+        sortable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true

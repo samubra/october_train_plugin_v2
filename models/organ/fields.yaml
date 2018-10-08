@@ -1,0 +1,34 @@
+fields:
+    name:
+        label: 机关名称
+        span: auto
+        required: 1
+        type: text
+    complete_type:
+        label: 结业类型
+        span: auto
+        required: 1
+        type: dropdown
+    need_review:
+        label: 需要复审
+        span: full
+        default: 1
+        type: switch
+    validity:
+        label: 复审周期
+        span: auto
+        default: '1'
+        trigger:
+            action: show
+            field: need_review
+            condition: checked
+        type: number
+    unit:
+        label: 周期单位
+        span: auto
+        default: 'Y'
+        trigger:
+            action: show
+            field: need_review
+            condition: checked
+        type: dropdown
