@@ -13,19 +13,23 @@ columns:
         label: 结业类型
         type: text
         searchable: true
+        valueFrom: complete_text
     validity:
         label: 复审周期
         type: number
         searchable: true
+        valueFrom: unit_text
     unit:
         label: 周期单位
         type: text
         searchable: true
+        invisible: true
         sortable: true
     need_review:
         label: 需要复审
         type: switch
         searchable: true
+        invisible: false
         sortable: true
     created_at:
         label: 创建时间
@@ -37,5 +41,5 @@ columns:
         label: 最后更新
         type: datetime
         searchable: true
-        invisible: true
+        invisible: false
         sortable: true

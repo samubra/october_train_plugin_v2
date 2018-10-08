@@ -20,6 +20,8 @@ class Category extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'organ_id' => 'exists:samubra_train_organs,id',
+        'name' => 'required|min:2'
     ];
 
     /**

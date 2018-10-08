@@ -13,6 +13,11 @@ class Organ extends Model
      * @var array Validation rules
      */
     public $rules = [
+        'name' => 'required|min:2',
+        'complete_type' => 'required',
+        'need_review' => 'boolean',
+        'validity' => 'required_if:need_review,1',
+        'unit' => 'required_if:need_review,1',
     ];
 
     /**
@@ -47,9 +52,25 @@ class Organ extends Model
         'need_review' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
 
-    public function categories()
+    public $hasMany = [
+        'categories' => Category::class
+    ];
+
+    public function getCompleteTextAttribute()
     {
-        return $this->hasMany(Category::class);
+        $type = $this->complete_type;
+        return self::$completeTypeMap[$type];
+    }
+
+    public function getUnitTextAttribute()
+    {
+        if($this->need_review){
+            $unit = $this->unit;
+            return $this->validity . self::$unitMap[$unit];
+        }else{
+            return '不需要年审';
+        }
+
     }
 
     public function getCompleteTypeOptions()

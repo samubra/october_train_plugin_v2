@@ -2,22 +2,31 @@ columns:
     id:
         label: ID
         type: number
+        searchable: true
+        sortable: true
     organ:
         label: 发证机关
-        relation: organ
+        type: text
+        searchable: true
+        sortable: true
         select: name
+        relation: organ
     name:
         label: 类别名称
         type: text
+        searchable: true
     description:
         label: 描述
         type: text
-    parent_id:
-        label: 上级
-        type: number
+        searchable: true
     created_at:
         label: 创建日期
         type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
     updated_at:
         label: 最后更新
         type: datetime
+        searchable: true
+        sortable: true
