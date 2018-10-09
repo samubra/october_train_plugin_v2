@@ -34,6 +34,30 @@ class Certificate extends Model
     const TYPE_OTHER = 'other';
     const TYPE_MILITARY_OFFICER_CARD = 'military_officer_card';
 
+    const EDU_TYPE_ELEMENTAR_SCHOOL = 'elementary_School';
+    const EDU_TYPE_JUNIOR_HIGH_SCHOOL = 'junior_high_School';
+    const EDU_TYPE_SENIOR_HIGH_SCHOOL = 'senior_high_School';
+    const EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL = 'technical_secondary_School';
+    const EDU_TYPE_JUNIOR_SCHOOL = 'junior_School';
+    const EDU_TYPE_UNDERGRADUATE = 'undergraduate';
+    const EDU_TYPE_POSTGRADUATE = 'postgraduate';
+    const EDU_TYPE_BACHELOR = 'bachelor';
+    const EDU_TYPE_MASTER = 'master';
+    const EDU_TYPE_DOCTOR = 'doctor';
+
+    public static $eduTypeMap = [
+        self::EDU_TYPE_DOCTOR    => '博士',
+        self::EDU_TYPE_MASTER    => '硕士',
+        self::EDU_TYPE_BACHELOR    => '学士',
+        self::EDU_TYPE_POSTGRADUATE => '研究生',
+        self::EDU_TYPE_UNDERGRADUATE    => '本科',
+        self::EDU_TYPE_JUNIOR_SCHOOL    => '大学专科',
+        self::EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL    => '中等专业学校',
+        self::EDU_TYPE_SENIOR_HIGH_SCHOOL    => '高中',
+        self::EDU_TYPE_JUNIOR_HIGH_SCHOOL    => '初中',
+        self::EDU_TYPE_ELEMENTAR_SCHOOL    => '小学',
+    ];
+
     public static $idTypeMap = [
         self::TYPE_ID_CARD    => '身份证',
         self::TYPE_PASSPORT    => '护照',

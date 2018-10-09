@@ -13,7 +13,7 @@ class Certificates extends Controller
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
-    public $formConfig = 'config_import_export.yaml';
+    public $importExportConfig = 'config_import_export.yaml';
 
     public $requiredPermissions = [
         'train.manage.certificate' 

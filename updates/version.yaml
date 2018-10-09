@@ -9,3 +9,6 @@
 1.0.4:
     - 'Created table samubra_train_certificates'
     - builder_table_create_samubra_train_certificates.php
+1.0.5:
+    - 'add member field to users'
+    - add_member_field_to_user_table.php

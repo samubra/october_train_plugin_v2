@@ -27,11 +27,14 @@ class CertificatesImport extends ImportModel
     public $rules = [];
     public function importData($results, $sessionKey = null)
     {
-        //dd($results);
+
         try {
             foreach ($results as $value) {
-                Queue::push(ImportCertificateData::class, $value);
+                trace_log($results);
+                
+                //Queue::push(ImportCertificateData::class, $value);
                 $this->logCreated();
+                exit();
             }
         }
         catch (\Exception $ex) {

@@ -1,0 +1,82 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    id_type:
+        label: 证件类型
+        type: text
+        searchable: true
+        sortable: true
+        valueFrom: id_type_text
+    identity:
+        label: 证件号码
+        type: text
+        searchable: true
+        sortable: true
+    user_id:
+        label: 用户
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: user
+    category_id:
+        label: 操作项目
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: category
+    organ_id:
+        label: 发证机构
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: organ
+    first_get_date:
+        label: 初领证日期
+        type: date
+        searchable: true
+        invisible: true
+        sortable: true
+    print_date:
+        label: 发证日期
+        type: date
+        searchable: true
+        sortable: true
+    is_valid:
+        label: 是否有效
+        type: switch
+        searchable: true
+        sortable: true
+    is_reviewed:
+        label: 是否已复审
+        type: switch
+        searchable: true
+        sortable: true
+    profile:
+        label: 资料信息
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    deleted_at:
+        label: 删除时间
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        searchable: true
+        sortable: true
