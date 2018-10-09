@@ -45,6 +45,9 @@ class Organ extends Model
         self::UNIT_D => '日',
     ];
 
+    protected $appends = [
+        'unit_text','complete_text'
+    ];
     protected $fillable = [
         'name','complete_type','validity','unit','need_review'
     ];

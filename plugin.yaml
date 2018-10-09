@@ -11,10 +11,13 @@ permissions:
     tran.mange.category:
         tab: 培训类别管理
         label: 管理培训类别
+    train.manage.certificate:
+        tab: 证书管理
+        label: 管理培训证书
 navigation:
     train-meta:
         label: 数据管理
-        url: samubra/train/organs
+        url: samubra/train/categories
         icon: icon-suitcase
         permissions:
             - tran.mange.category
@@ -23,12 +26,25 @@ navigation:
             train-meta-category:
                 label: 培训类别管理
                 url: samubra/train/categories
-                icon: icon-sitemap
+                icon: icon-stack-overflow
                 permissions:
                     - tran.mange.category
             train-meta-organ:
-                label: 发证机关管理
+                label: 发证机构管理
                 url: samubra/train/organs
                 icon: icon-sitemap
                 permissions:
                     - train.manage.organ
+    train.train:
+        label: 培训管理
+        url: samubra/train/certificates
+        icon: icon-briefcase
+        permissions:
+            - train.manage.certificate
+        sideMenu:
+            train.train.certificate:
+                label: 培训证书
+                url: samubra/train/certificates
+                icon: icon-certificate
+                permissions:
+                    - train.manage.certificate

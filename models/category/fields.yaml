@@ -15,6 +15,7 @@ fields:
         label: 上级分类
         nameFrom: name
         descriptionFrom: description
+        emptyOption: 请选择上级分类
         span: auto
         type: relation
     description:

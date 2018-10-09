@@ -6,3 +6,6 @@
 1.0.3:
     - 'Created table samubra_train_categories'
     - builder_table_create_samubra_train_categories.php
+1.0.4:
+    - 'Created table samubra_train_certificates'
+    - builder_table_create_samubra_train_certificates.php
