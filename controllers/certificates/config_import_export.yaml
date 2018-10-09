@@ -1,0 +1,13 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: 导入培训正如
+    modelClass: Acme\Campaign\Models\SubscriberImport
+    list: $/acme/campaign/models/subscriber/columns.yaml
+
+export:
+    title: 导出培训证书
+    modelClass: Acme\Campaign\Models\SubscriberExport
+    list: $/acme/campaign/models/subscriber/columns.yaml

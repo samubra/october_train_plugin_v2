@@ -5,10 +5,15 @@ use BackendMenu;
 
 class Certificates extends Controller
 {
-    public $implement = [        'Backend\Behaviors\ListController',        'Backend\Behaviors\FormController'    ];
+    public $implement = [        
+        'Backend\Behaviors\ListController',        
+        'Backend\Behaviors\FormController',
+        'Backend.Behaviors.ImportExportController',
+        ];
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
+    public $formConfig = 'config_import_export.yaml';
 
     public $requiredPermissions = [
         'train.manage.certificate' 
