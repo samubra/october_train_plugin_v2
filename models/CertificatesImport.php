@@ -29,12 +29,17 @@ class CertificatesImport extends ImportModel
     {
 
         try {
+            $i = 0;
             foreach ($results as $value) {
-                trace_log($results);
-                
-                //Queue::push(ImportCertificateData::class, $value);
+                //trace_log($results);
+                if($i < 10){
+                    Queue::push(ImportCertificateData::class, $value);
                 $this->logCreated();
-                exit();
+                }else{
+                    break;
+                }
+                $i = $i+1;
+                
             }
         }
         catch (\Exception $ex) {

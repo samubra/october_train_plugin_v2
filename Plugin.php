@@ -3,6 +3,7 @@
 use System\Classes\PluginBase;
 use Illuminate\Support\Facades\Validator;
 use App;
+use Event;
 use Illuminate\Foundation\AliasLoader;
 use RainLab\User\Models\User as UserModel;
 use RainLab\User\Controllers\Users as UsersController;
@@ -25,6 +26,10 @@ class Plugin extends PluginBase
             return preg_match('/^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$/',$value);
         });
 
+    }
+    public function boot()
+    {
+
         UserModel::extend(function($model){
             $model->hasMany['certificates'] = [\Samubra\Train\Models\Certificate::class,'key'=>'user_id'];
             $model->hasMany['certificates_count'] = [\Samubra\Train\Models\Certificate::class,'key'=>'user_id','count'=>true];
@@ -37,7 +42,7 @@ class Plugin extends PluginBase
                 'tax_number'
             ]);
 
-            $model->rules['identity'] = 'identity|unique:users';
+            //$model->rules['identity'] = 'identity|unique:users';
             //$model->rules['phone']= 'phone';
             //$model->rules['address']  ='between:2,200';
             
@@ -52,30 +57,35 @@ class Plugin extends PluginBase
         UsersController::extendListColumns(function($list,$model){
             if(!$model instanceof UserModel)
                 return ;
-
+            
             $list->addColumns([
                 'identity' =>[
                     'label' => '身份证号码',
                     'type' => 'text',
                     'searchable' => true,
+                    'invisible' => true
                 ],
                 'phone' =>[
                     'label' => '联系电话',
                     'type' => 'text',
                     'searchable' => true,
+                    'invisible' => true
                 ],
                 'company' =>[
                     'label' => '工作单位',
                     'type' => 'text',
                     'searchable' => true,
+                    'invisible' => true
                 ],
                 'tax_number' =>[
                     'label' => '纳税识别号',
                     'type' => 'text',
                     'searchable' => true,
+                    'invisible' => true
                 ],
             ]);
         });
+        
         UsersController::extendFormFields(function($form,$model,$context){
             
             if(!$model instanceof UserModel)

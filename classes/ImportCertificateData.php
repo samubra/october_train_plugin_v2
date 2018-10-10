@@ -19,7 +19,38 @@ class ImportCertificateData
     {
         //trace_sql();
         //foreach ($data as $row => $value) {
-            if(isset($value['certificate_id']) && isset($value['project_id'])) {
+            $user = $this->getLoginUser($value);
+                $certificateData = [
+                    'identity' => $value['identity'],
+                    'user_id' => $user->id,
+                    'category_id' => '1',
+                    'is_valid' => $value['is_valid']
+                ];
+                $certificateModel = Certificate::firstOrNew($certificateData);
+
+                $certificateModel->first_get_date = $value['first_get_date'];
+                $certificateModel->print_date = $value['print_date'];
+                $certificateModel->organ_id = '1';
+                $certificateModel->is_reviewed = isset($value['is_reviewed'])?$value['is_reviewed']:false;
+
+                $certificateModel->id_type = isset($value['id_type'])?$value['id_type']:Certificate::TYPE_ID_CARD;
+
+                $certificateModel->profile = [
+                    'phone' => $value['user_phone'],
+                    'address' => $value['user_address'],
+                    'company' => $value['user_company'],
+                    'tax_number' => isset($value['user_tax_number'])? $value['user_tax_number']:'123',
+                    'edu_type' => $value['user_edu_type'],
+                ];
+                
+
+                $certificateModel->save();
+                trace_log($certificateModel->id);
+                unset($certificateModel);
+                Auth::logout();
+
+                /**
+            if(isset($value['id']) && isset($value['project_id'])) {
                 Db::table('train_certificate_project')
                     ->where('certificate_id',$value['certificate_id'])
                     ->where('project_id',$value['project_id'])
@@ -43,27 +74,10 @@ class ImportCertificateData
                         'is_valid' => [$value['is_valid']],
                     ]);
             }else{
-                $user = $this->getLoginUser($value);
-                if (Db::table('train_certificates')->where('user_id', $user->id)->where('type_id', $value['type_id'])->where('is_valid', $value['is_valid'])->count()) {
-                    $recordData = [
-                   // 'uuid' => Uuid::uuid4()->toString(),
-                    'user_id' => $user->id,
-                    'type_id' => $value['type_id'],
-                    'first_get_date' => $value['first_get_date'],
-                    'print_date' => $value['print_date'],
-                    'is_valid' => $value['is_valid'],
-                    'phone' => $value['phone'],
-                    'address' => $value['address'],
-                    'company' => $value['company'],
-                    //'remark' => [$value['remark']]
-                ];
                 
-                    DB::table('train_certificates')->insert($recordData);
-                    //trace_log($recordData);
-                    Auth::logout();
-                }
             }
         //}
+        **/
 
         $job->delete();
     }
@@ -80,13 +94,14 @@ class ImportCertificateData
                 'username'=>$data['identity'],
                 'password'=>substr($data['identity'], -6),
                 'password_confirmation'=>substr($data['identity'], -6),
-                'phone'=>$data['phone'],
+                'phone'=>$data['user_phone'],
                 'name'=>$data['name'],
                 'surname'=>$data['name'],
                 'identity'=>$data['identity'],
-                'address' => $data['address'],
-                'edu_id' => $data['edu_id'],
-                'company' =>$data['company'],
+                'address' => $data['user_address'],
+                'edu_type' => $data['user_edu_type'],
+                'company' =>$data['user_company'],
+                'tax_number' =>isset($data['user_tax_number'])?$data['user_tax_number']:'12324',
             ], true, true);
         }
     }

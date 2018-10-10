@@ -5,7 +5,7 @@
 import:
     title: 导入培训证书
     modelClass: Samubra\Train\Models\CertificatesImport
-    list: $/samubra/train/models/certificate/export_columns.yaml
+    list: $/samubra/train/models/certificate/import_columns.yaml
 
 #export:
 #    title: 导出培训证书
