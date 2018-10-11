@@ -18,3 +18,9 @@
 1.0.7:
     - 'Created table samubra_train_teachers'
     - builder_table_create_samubra_train_teachers.php
+1.0.8:
+    - 'Created table samubra_train_courses'
+    - builder_table_create_samubra_train_courses.php
+1.0.9:
+    - 'Updated table samubra_train_courses'
+    - builder_table_update_samubra_train_courses.php
