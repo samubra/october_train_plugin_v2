@@ -15,3 +15,6 @@
 1.0.6:
     - 'add member field to users'
     - add_member_field_to_user_table.php
+1.0.7:
+    - 'Created table samubra_train_teachers'
+    - builder_table_create_samubra_train_teachers.php

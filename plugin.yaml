@@ -14,6 +14,9 @@ permissions:
     train.manage.certificate:
         tab: 证书管理
         label: 管理培训证书
+    train.manage.teacher:
+        tab: 教师管理
+        label: 管理授课教师
 navigation:
     train-meta:
         label: 数据管理
@@ -35,6 +38,12 @@ navigation:
                 icon: icon-sitemap
                 permissions:
                     - train.manage.organ
+            train-meta-teacher:
+                label: 教师管理
+                url: samubra/train/teachers
+                icon: icon-user-md
+                permissions:
+                    - train.manage.teacher
     train.train:
         label: 培训管理
         url: samubra/train/certificates

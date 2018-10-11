@@ -1,0 +1,17 @@
+name: 教师
+modelClass: Samubra\Train\Models\Teacher
+form: $/samubra/train/models/teacher/fields.yaml
+defaultRedirect: samubra/train/teachers
+create:
+    title: 添加授课教师
+    redirect: 'samubra/train/teachers/update/:id'
+    redirectClose: samubra/train/teachers
+    flashSave: 授课教师添加成功
+update:
+    title: 修改教师信息
+    redirect: samubra/train/teachers
+    redirectClose: samubra/train/teachers
+    flashSave: 教师信息修改成功
+    flashDelete: 教师信息删除成功
+preview:
+    title: 授课教师信息

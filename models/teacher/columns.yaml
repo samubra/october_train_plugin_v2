@@ -1,0 +1,44 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: 教师姓名
+        type: text
+        searchable: true
+    identity:
+        label: 身份证号码
+        type: text
+        searchable: true
+    qualification_number:
+        label: 教师资格证号
+        type: text
+        searchable: true
+    job_title:
+        label: 职称
+        type: text
+        searchable: true
+        valueFrom: job_title_text
+    phone:
+        label: 联系电话
+        type: text
+        searchable: true
+    edu_type:
+        label: 学历
+        type: text
+        searchable: true
+        sortable: true
+        valueFrom: edu_type_text
+    company:
+        label: 工作单位
+        type: text
+        searchable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+    updated_at:
+        label: 最后更新
+        type: datetime

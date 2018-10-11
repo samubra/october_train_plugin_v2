@@ -1,0 +1,46 @@
+fields:
+    name:
+        label: 教师姓名
+        span: left
+        placeholder: ''
+        default: ''
+        cssClass: ''
+        required: 1
+        type: text
+    photo:
+        label: 照片
+        mode: image
+        imageWidth: '172'
+        imageHeight: '241'
+        fileTypes: 'jpg,png'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    identity:
+        label: 身份证号码
+        span: left
+        required: 1
+        type: text
+    qualification_number:
+        label: 资格证书编号
+        span: left
+        type: text
+    job_title:
+        label: 职称
+        span: left
+        type: dropdown
+    edu_type:
+        label: 学历
+        span: left
+        type: dropdown
+    phone:
+        label: 联系电话
+        span: auto
+        type: text
+    company:
+        label: 工作单位
+        span: auto
+        type: text
