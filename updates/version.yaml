@@ -7,8 +7,11 @@
     - 'Created table samubra_train_categories'
     - builder_table_create_samubra_train_categories.php
 1.0.4:
+    - 'seed organ and category'
+    - seed_all_table.php
+1.0.5:
     - 'Created table samubra_train_certificates'
     - builder_table_create_samubra_train_certificates.php
-1.0.5:
+1.0.6:
     - 'add member field to users'
     - add_member_field_to_user_table.php

@@ -22,7 +22,8 @@ class AddMemberFieldToUserTable extends Migration
     
     public function down()
     {
-        Schema::table('users', function ($table) {
+        if (Schema::hasColumn('users', 'identity')) {
+            Schema::table('users', function ($table) {
             $table->dropColumn([
                 'identity',
                 'phone',
@@ -32,5 +33,7 @@ class AddMemberFieldToUserTable extends Migration
                 'tax_number'
             ]);
         });
+        }
+        
     }
 }

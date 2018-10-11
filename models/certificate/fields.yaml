@@ -3,17 +3,11 @@ fields:
         label: 证件类型
         span: auto
         required: 1
-        context:
-            - create
-            - preview
         type: dropdown
     identity:
         label: 证件号码
         span: auto
         required: 1
-        context:
-            - create
-            - preview
         type: text
     user:
         label: 用户

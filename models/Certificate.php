@@ -34,11 +34,11 @@ class Certificate extends Model
     const TYPE_OTHER = 'other';
     const TYPE_MILITARY_OFFICER_CARD = 'military_officer_card';
 
-    const EDU_TYPE_ELEMENTAR_SCHOOL = 'elementary_School';
-    const EDU_TYPE_JUNIOR_HIGH_SCHOOL = 'junior_high_School';
-    const EDU_TYPE_SENIOR_HIGH_SCHOOL = 'senior_high_School';
-    const EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL = 'technical_secondary_School';
-    const EDU_TYPE_JUNIOR_SCHOOL = 'junior_School';
+    const EDU_TYPE_ELEMENTAR_SCHOOL = 'elementary_school';
+    const EDU_TYPE_JUNIOR_HIGH_SCHOOL = 'junior_high_school';
+    const EDU_TYPE_SENIOR_HIGH_SCHOOL = 'senior_high_school';
+    const EDU_TYPE_TECHNICAL_SECONDARY_SCHOOL = 'technical_secondary_school';
+    const EDU_TYPE_JUNIOR_SCHOOL = 'junior_school';
     const EDU_TYPE_UNDERGRADUATE = 'undergraduate';
     const EDU_TYPE_POSTGRADUATE = 'postgraduate';
     const EDU_TYPE_BACHELOR = 'bachelor';

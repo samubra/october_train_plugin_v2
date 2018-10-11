@@ -40,15 +40,15 @@ class CertificatesExport extends ExportXlsModel
      * @var array The rules to be applied to the data.
      */
     public $rules = [];
-    protected $appends = ['type','first_get_date_start','first_get_date_end','print_date_start','print_date_end','company','is_valid'];
+    protected $appends = ['export_type','category','first_get_date_start','first_get_date_end','print_date_start','print_date_end','company','is_valid'];
     protected $fillable = [
-        'type','first_get_date_start','first_get_date_end','print_date_start','print_date_end','company','is_valid'
+        'export_type','category','first_get_date_start','first_get_date_end','print_date_start','print_date_end','company','is_valid'
     ];
     public function exportData($columns, $sessionKey = null)
     {
         $condition = [];
-        if($this->type)
-            $condition['type'] = $this->type;
+        if($this->category)
+            $condition['category'] = $this->category;
         if($this->is_valid)
             $condition['isValid'] = $this->is_valid;
         if($this->first_get_date_start)
@@ -83,12 +83,8 @@ class CertificatesExport extends ExportXlsModel
         }
         return $list;
     }
-    public function getTypeOptions()
+    public function getCategoryOptions()
     {
-        return Category::depth(1)->lists('title','id');
-    }
-    public function getEduOptions()
-    {
-        return Lookup::getEduOptions();
+        return Category::depth(1)->lists('name','id');
     }
 }

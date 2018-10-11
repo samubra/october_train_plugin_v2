@@ -23,7 +23,7 @@ class ImportCertificateData
                 $certificateData = [
                     'identity' => $value['identity'],
                     'user_id' => $user->id,
-                    'category_id' => '1',
+                    'category_id' => $value['category_id'],
                     'is_valid' => $value['is_valid']
                 ];
                 $certificateModel = Certificate::firstOrNew($certificateData);
@@ -49,37 +49,7 @@ class ImportCertificateData
                 unset($certificateModel);
                 Auth::logout();
 
-                /**
-            if(isset($value['id']) && isset($value['project_id'])) {
-                Db::table('train_certificate_project')
-                    ->where('certificate_id',$value['certificate_id'])
-                    ->where('project_id',$value['project_id'])
-                    ->update([
-                        'phone' => $value['phone'],
-                        'address' => $value['address'],
-                        'company' => $value['company'],
-                        'remark' => $value['remark'],
-                        'status_id' => $value['status_id'],
-                        'theory_score' => $value['theory_score'],
-                        'operate_score' => $value['operate_score'],
-                        'pay' => $value['pay'],
-                    ]);
-                Db::table('train_certificates')
-                    ->where('id',$value['certificate_id'])
-                    ->update([
-                        'phone' => $value['phone'],
-                        'address' => $value['address'],
-                        'company' => $value['company'],
-                        'print_date' => $value['print_date'],
-                        'is_valid' => [$value['is_valid']],
-                    ]);
-            }else{
-                
-            }
-        //}
-        **/
-
-        $job->delete();
+                $job->delete();
     }
 
     protected function getLoginUser($data)

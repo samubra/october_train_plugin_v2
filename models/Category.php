@@ -44,4 +44,9 @@ class Category extends Model
         'description'
     ];
 
+    public function scopeDepth($query,$depth)
+    {
+        return $query->where('depth',$depth);
+    }
+
 }
