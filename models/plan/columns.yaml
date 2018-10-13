@@ -1,0 +1,79 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    title:
+        label: 培训方案标题
+        type: text
+        searchable: true
+    category:
+        label: 培训类别
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: category
+    is_new:
+        label: 新训？
+        type: switch
+        searchable: true
+        sortable: true
+    operate_hours:
+        label: 操作学时
+        type: text
+        searchable: true
+    theory_hours:
+        label: 理论学时
+        type: text
+        searchable: true
+    address:
+        label: 培训地址
+        type: text
+        searchable: true
+    contact_name:
+        label: 联系人
+        type: text
+        searchable: true
+    contact_phone:
+        label: 联系电话
+        type: text
+        searchable: true
+    target:
+        label: 培训对象
+        type: text
+        searchable: true
+        invisible: true
+    result:
+        label: 培训目标
+        type: text
+        searchable: true
+        invisible: true
+    material:
+        label: 教材
+        type: text
+        searchable: true
+        invisible: true
+    claim:
+        label: 培训要求
+        type: text
+        searchable: true
+        invisible: true
+    document:
+        label: 材料要求
+        type: text
+        searchable: true
+        invisible: true
+    other:
+        label: 其他信息
+        type: text
+        searchable: true
+        invisible: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        invisible: true
+    updated_at:
+        label: 最后更新
+        type: datetime

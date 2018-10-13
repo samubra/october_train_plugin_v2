@@ -1,0 +1,22 @@
+fields:
+    title:
+        label: '课程 标题'
+        span: auto
+        required: 1
+        type: text
+    course_type:
+        label: 课程类型
+        span: auto
+        default: theory
+        type: dropdown
+    defaultTeacher:
+        label: 默认授课教师
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation
+    default_hours:
+        label: 默认授课学时
+        span: auto
+        default: '4.0'
+        type: number

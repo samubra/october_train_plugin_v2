@@ -1,0 +1,40 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    title:
+        label: 课程标题
+        type: text
+        searchable: true
+    course_type:
+        label: 课程类型
+        type: text
+        searchable: true
+        sortable: false
+        valueFrom: course_type_text
+
+    default_teacher_id:
+        label: 默认授课教师
+        type: number
+        searchable: true
+        sortable: true
+        select: name
+        relation: defaultTeacher
+    default_hours:
+        label: 默认学时
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: 创建时间
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后修改
+        type: datetime
+        searchable: true
+        sortable: true

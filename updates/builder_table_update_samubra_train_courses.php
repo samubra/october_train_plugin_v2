@@ -11,6 +11,9 @@ class BuilderTableUpdateSamubraTrainCourses extends Migration
         {
             $table->string('title')->change();
             $table->string('course_type')->change();
+            
+            $table->integer('default_teacher_id')->unsigned()->before('created_at');
+            $table->decimal('default_hours', 5, 1)->default(4.0)->before('created_at');
         });
     }
     
@@ -20,6 +23,8 @@ class BuilderTableUpdateSamubraTrainCourses extends Migration
         {
             $table->string('title', 191)->change();
             $table->string('course_type', 191)->change();
+            
+            $table->dropColumn(['default_teacher_id','default_hours']);
         });
     }
 }

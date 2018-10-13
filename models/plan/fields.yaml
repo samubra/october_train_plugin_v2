@@ -1,0 +1,120 @@
+fields:
+    title:
+        label: 培训方案标题
+        span: full
+        required: 1
+        type: text
+    parent_type:
+        label: 培训类别
+        span: auto
+        placeholder: '-- 选择培训类别 --'
+        defaultFrom: type.parent_id
+        trigger:
+            action: enable
+            field: category_id
+            condition: 'value[]'
+        type: dropdown
+    is_new:
+        label: 新训
+        span: auto
+        default: 1
+        type: switch
+        'on': 是
+        'off': 否
+    category_id:
+        label: 操作项目
+        span: auto
+        required: 1
+        type: dropdown
+        dependsOn: parent_type
+        emptyOption: '-- 选择操作项目 --'
+    operate_hours:
+        label: 操作学时
+        span: auto
+        type: number
+    theory_hours:
+        label: 理论学时
+        span: auto
+        type: number
+    address:
+        label: 培训地点
+        span: auto
+        type: text
+    contact_name:
+        label: 联系人
+        span: auto
+        type: text
+    contact_phone:
+        label: 联系电话
+        span: auto
+        type: text
+tabs:
+    fields:
+        target:
+            label: 培训对象
+            size: ''
+            span: full
+            type: textarea
+            tab: 培训对象
+        result:
+            label: 培训目标
+            size: ''
+            span: ful
+            type: textarea
+            tab: 培训目标
+        claim:
+            label: 培训要求
+            prompt: 添加要求
+            span: full
+            type: repeater
+            tab: 培训要求
+            form:
+                fields:
+                    content:
+                        label: 要求内容
+                        span: full
+                        type: text
+        material:
+            label: 使用教材
+            prompt: 添加教材
+            span: full
+            type: repeater
+            tab: 培训教材
+            form:
+                fields:
+                    title:
+                        label: 教材名称
+                        span: auto
+                        required: 1
+                        type: text
+                    press:
+                        label: 出版社
+                        span: auto
+                        default: ''
+                        type: text
+        document:
+            label: 材料要求
+            prompt: 添加材料
+            span: full
+            type: repeater
+            tab: 材料要求
+            form:
+                fields:
+                    title:
+                        label: 材料名称
+                        span: auto
+                        required: 1
+                        type: text
+                    required:
+                        label: 必须要求
+                        options:
+                            - 可选
+                            - 必须
+                        span: auto
+                        type: dropdown
+        other:
+            label: 其他信息
+            span: full
+            size: ''
+            type: richeditor
+            tab: 信息

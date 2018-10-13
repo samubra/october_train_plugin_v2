@@ -8,14 +8,13 @@ columns:
         label: 证件类型
         type: text
         searchable: true
-        sortable: true
+        sortable: false
         valueFrom: id_type_text
     identity:
         label: 证件号码
         type: text
         searchable: true
         sortable: true
-
     user_id:
         label: 用户
         type: text

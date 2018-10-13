@@ -12,7 +12,7 @@ fields:
     user:
         label: 用户
         nameFrom: name
-        descriptionFrom: email
+        descriptionFrom: identity
         select: surname
         span: auto
         type: relation
