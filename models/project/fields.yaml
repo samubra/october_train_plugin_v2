@@ -1,0 +1,87 @@
+fields:
+    title:
+        label: 培训项目标题
+        span: auto
+        required: 1
+        type: text
+    plan:
+        label: 培训计划
+        nameFrom: title
+        descriptionFrom: category.name
+        list: $/samubra/train/models/plan/columns.yaml
+        span: auto
+        type: recordfinder
+    status:
+        label: 培训状态
+        span: auto
+        required: 1
+        type: dropdown
+    on_apply:
+        label: 允许申请
+        span: auto
+        type: switch
+    start_date:
+        label: 培训开始日期
+        mode: date
+        span: auto
+        required: 1
+        type: datepicker
+    end_date:
+        label: 培训结束日期
+        mode: date
+        span: auto
+        required: 1
+        type: datepicker
+    exam_date:
+        label: 预计考试日期
+        mode: date
+        span: auto
+        required: 1
+        type: datepicker
+    end_apply_date:
+        label: 受理截止日期
+        mode: date
+        span: auto
+        required: 1
+        type: datepicker
+    price:
+        label: 培训费用
+        span: auto
+        type: number
+    remark:
+        label: 备注信息
+        size: ''
+        span: auto
+        type: textarea
+    certificate_filter:
+        label: 证书发证日期过滤
+        prompt: 添加条件
+        maxItems: '2'
+        span: full
+        type: repeater
+        form:
+            fields:
+                certificate_filter:
+                    label: 证书发证日期过滤
+                    prompt: 添加条件
+                    maxItems: '2'
+                    span: auto
+                    type: datepicker
+                end:
+                    label: 发证日期结束
+                    mode: datetime
+                    span: auto
+                    type: datepicker
+                ie_reviewed:
+                    label: 已复审
+                    span: auto
+                    type: checkbox
+                is_valid:
+                    label: 有效
+                    span: auto
+                    type: checkbox
+    courses:
+        span: full
+        cssClass: ''
+        path: courses_field
+        type: partial

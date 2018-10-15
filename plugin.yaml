@@ -23,8 +23,11 @@ permissions:
     train.manage.plan:
         tab: 方案管理
         label: 管理培训方案
+    train.manage.project:
+        tab: 培训项目管理
+        label: 管理培训项目
 navigation:
-    train-meta:
+    meta:
         label: 数据管理
         url: samubra/train/categories
         icon: icon-suitcase
@@ -32,44 +35,50 @@ navigation:
             - tran.mange.category
             - train.manage.organ
         sideMenu:
-            train-meta-category:
+            meta-category:
                 label: 培训类别管理
                 url: samubra/train/categories
                 icon: icon-stack-overflow
                 permissions:
                     - tran.mange.category
-            train-meta-organ:
+            meta-organ:
                 label: 发证机构管理
                 url: samubra/train/organs
                 icon: icon-sitemap
                 permissions:
                     - train.manage.organ
-            train-meta-teacher:
+            meta-teacher:
                 label: 教师管理
                 url: samubra/train/teachers
                 icon: icon-user-md
                 permissions:
                     - train.manage.teacher
-            train-meta-course:
+            meta-course:
                 label: 课程管理
                 url: samubra/train/courses
                 icon: icon-sitemap
                 permissions:
                     - train.manage.course
-    train.train:
+    train:
         label: 培训管理
         url: samubra/train/certificates
         icon: icon-briefcase
         permissions:
             - train.manage.certificate
         sideMenu:
-            train-train-plan:
+            train-project:
+                label: 培训项目
+                url: samubra/train/projects
+                icon: icon-puzzle-piece
+                permissions:
+                    - train.manage.project
+            train-plan:
                 label: 培训方案
                 url: samubra/train/plans
                 icon: icon-paper-plane
                 permissions:
                     - train.manage.plan
-            train.train.certificate:
+            train-certificate:
                 label: 培训证书
                 url: samubra/train/certificates
                 icon: icon-certificate

@@ -24,22 +24,27 @@ columns:
         label: 操作学时
         type: text
         searchable: true
+        invisible: true
     theory_hours:
         label: 理论学时
         type: text
         searchable: true
+        invisible: true
     address:
         label: 培训地址
         type: text
         searchable: true
+        invisible: true
     contact_name:
         label: 联系人
         type: text
         searchable: true
+        invisible: true
     contact_phone:
         label: 联系电话
         type: text
         searchable: true
+        invisible: true
     target:
         label: 培训对象
         type: text

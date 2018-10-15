@@ -1,0 +1,68 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    title:
+        label: 标题
+        type: text
+        searchable: true
+        sortable: true
+    plan_category:
+        label: 培训类别
+        type: partial
+        sortable: false
+        path: ~/plugins/samubra/train/models/project/_category_column.htm
+    status:
+        label: 培训状态
+        type: text
+        valueFrom: status_text
+    on_apply:
+        label: 接受申请
+        type: switch
+        searchable: true
+        sortable: true
+    start_date:
+        label: 开始日期
+        type: date
+        searchable: true
+        sortable: true
+    end_date:
+        label: 结束日期
+        type: date
+        searchable: true
+        sortable: true
+    exam_date:
+        label: 考试日期
+        type: date
+        searchable: true
+        sortable: true
+        invisible: true
+    end_apply_date:
+        label: 受理截止
+        type: date
+        searchable: true
+        sortable: true
+    price:
+        label: 收费
+        type: number
+    remark:
+        label: 备注
+        type: text
+        invisible: true
+    certiicate_filter:
+        label: 证书过滤
+        type: text
+        invisible: true
+    created_at:
+        label: 创建日期
+        type: datetime
+        searchable: true
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 最后更新
+        type: datetime
+        searchable: true
+        sortable: true

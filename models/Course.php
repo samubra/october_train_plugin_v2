@@ -50,4 +50,15 @@ class Course extends Model
         $type = self::$courseTypeMap;
         return $type[$this->course_type];
     }
+
+    public function getTeachingTypeOptions()
+    {
+        return ProjectCoursePivot::$teachingTypeMap;
+    }
+
+    public function getTeachingTypeTextAttribute()
+    {
+        $type = ProjectCoursePivot::$teachingTypeMap;
+        return $type[$this->teaching_type];
+    }
 }

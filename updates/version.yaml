@@ -27,3 +27,9 @@
 1.0.10:
     - 'Created table samubra_train_plans'
     - builder_table_create_samubra_train_plans.php
+1.0.11:
+    - 'Created table samubra_train_projects'
+    - builder_table_create_samubra_train_projects.php
+1.0.12:
+    - 'Created table samubra_train_project_courses'
+    - builder_table_create_samubra_train_project_courses.php

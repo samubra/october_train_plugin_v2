@@ -1,6 +1,7 @@
 <?php namespace Samubra\Train\Models;
 
 use Model;
+use RainLab\User\Models\User;
 
 /**
  * Model
@@ -94,9 +95,9 @@ class Certificate extends Model
 
     public $belongsTo = [
         'user' => [
-            \RainLab\User\Models\User::class,
+            User::class,
             'key' => 'user_id'
-        ],
+        ],                                                                                                                  
 
         'category' => [
             Category::class,
