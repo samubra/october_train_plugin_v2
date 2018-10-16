@@ -16,7 +16,7 @@ class BuilderTableCreateSamubraTrainProjectCourses extends Migration
             $table->dateTime('end')->nullable();
             $table->unsignedInteger('teacher_id');
             $table->decimal('hours', 10, 1)->default(4.0);
-            $table->string('teaching_type')->nullable();
+            $table->json('teaching_type')->nullable();
             $table->timestamps();
             
             $table->primary(['project_id','course_id']);

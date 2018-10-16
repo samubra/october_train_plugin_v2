@@ -5,9 +5,10 @@ fields:
         required: 1
         type: text
     plan:
-        label: 培训计划
+        label: 培训方案
         nameFrom: title
         descriptionFrom: category.name
+        prompt: '点击 %s 选择培训方案'
         list: $/samubra/train/models/plan/columns.yaml
         span: auto
         type: recordfinder
@@ -61,7 +62,7 @@ fields:
         type: repeater
         form:
             fields:
-                certificate_filter:
+                start:
                     label: 证书发证日期过滤
                     prompt: 添加条件
                     maxItems: '2'
@@ -84,4 +85,7 @@ fields:
         span: full
         cssClass: ''
         path: courses_field
+        context:
+            - update
+            - preview
         type: partial

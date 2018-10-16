@@ -22,6 +22,6 @@ class Certificates extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Samubra.Train', 'train', 'train.certificate');
+        BackendMenu::setContext('Samubra.Train', 'train', 'train-certificate');
     }
 }

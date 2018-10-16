@@ -17,6 +17,6 @@ class Plans extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Samubra.Train', 'train.train', 'train-train-plan');
+        BackendMenu::setContext('Samubra.Train', 'train', 'train-plan');
     }
 }

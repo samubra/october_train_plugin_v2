@@ -17,6 +17,6 @@ class Courses extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Samubra.Train', 'train-meta', 'train-meta-course');
+        BackendMenu::setContext('Samubra.Train', 'meta', 'meta-course');
     }
 }

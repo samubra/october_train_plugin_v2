@@ -59,7 +59,12 @@ class ProjectCoursePivot extends \October\Rain\Database\Pivot
 
     public function getCourseTeacherNameAttribute()
     {
-        return $this->teacher->name;
+        return $this->teacher->name.'('.$this->teacher->qualification_number.')';
+    }
+
+    public function getStartToEndAttribute()
+    {
+        return $this->start .'~'.$this->end;
     }
 
     public function getTeachingTypeOptions()
@@ -69,8 +74,13 @@ class ProjectCoursePivot extends \October\Rain\Database\Pivot
 
     public function getTeachingTypeTextAttribute()
     {
-        $type = self::$teachingTypeMap;
-        return $type[$this->teaching_type];
+        $typeList = self::$teachingTypeMap;
+        $value = '';
+        foreach($this->teaching_type as $type)
+        {
+            $value .= $typeList[$type].',';
+        }
+        return $value;
     }
 
 
