@@ -13,8 +13,10 @@ fields:
         label: 用户
         nameFrom: identity
         descriptionFrom: name
+        prompt: '点击 %s 选择所属用户'
         list: $/rainlab/user/models/user/columns.yaml
         span: auto
+        required: 1
         type: recordfinder
     category:
         label: 操作项目
@@ -22,7 +24,9 @@ fields:
         descriptionFrom: description
         span: auto
         required: 1
-        type: relation
+        prompt: '点击 %s 选择所操作项目'
+        list: $/samubra/train/models/category/columns.yaml
+        type: recordfinder
     organ:
         label: 发证机构
         nameFrom: name

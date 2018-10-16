@@ -7,10 +7,12 @@ fields:
     organ:
         label: 发证机关
         nameFrom: name
-        descriptionFrom: complete_type
+        descriptionFrom: complete_text
         span: auto
         required: 1
-        type: relation
+        prompt: '点击 %s 选择发证机构'
+        list: $/samubra/train/models/organ/columns.yaml
+        type: recordfinder
     parent:
         label: 上级分类
         nameFrom: name
