@@ -5,6 +5,11 @@ columns:
         sortable: true
         select: name
         relation: user
+    member_edu:
+        label: 文化程度
+        sortable: false
+        select: edu_id
+        relation: user
     member_identity:
         label: 身份证号码
         type: text
@@ -29,12 +34,10 @@ columns:
         label: 联系地址
         type: text
         searchable: true
-        invisible: true
     'pivot[company]':
         label: 单位名称
         type: text
         searchable: true
-        invisible: true
         sortable: true
     'pivot[pay]':
         label: 已缴费
@@ -51,7 +54,7 @@ columns:
         type: text
         searchable: true
         invisible: true
-        sortable: true
+        sortable: false
     'pivot[theory_score]':
         label: 理论成绩
         type: text

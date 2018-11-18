@@ -4,7 +4,7 @@ columns:
         type: number
         searchable: true
         sortable: true
-    member_id:
+    user_id:
         label: 培训学员ID
         type: text
     type_id:
@@ -12,16 +12,16 @@ columns:
         type: text
         searchable: true
         sortable: true
-    member_name:
+    user_name:
         label: 姓名
         type: text
         select: name
-        relation: member
-    member_identity:
+        relation: user
+    user_identity:
         label: 身份证号
         type: text
         select: identity
-        relation: member
+        relation: user
     type_name:
         label: 操作类别
         type: text

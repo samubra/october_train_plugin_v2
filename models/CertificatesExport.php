@@ -69,8 +69,8 @@ class CertificatesExport extends ExportXlsModel
         $certificateModel = Certificate::export($condition)->with('member','type')->get();
         $certificateModel->each(function($certificate) use ($columns) {
             $certificate->remark = json_encode($certificate->remark);
-            $certificate->member_name = $certificate->member->name;
-            $certificate->member_identity = '\''.$certificate->member->identity;
+            $certificate->user_name = $certificate->user->name;
+            $certificate->user_identity = '\''.$certificate->user->identity;
             $certificate->type_name = $certificate->type->title;
             $certificate->type_id = $certificate->type_id;
             $certificate->addVisible(array_keys($columns));
