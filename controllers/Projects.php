@@ -70,12 +70,26 @@ class Projects extends Controller
 		$data['certificate'] = $certificateModel;
 		$data['project'] = $projectModel;
 		$data['pivot'] = $certificateModel->projects[0]->pivot;
+
+		$data['user_sex'] = (int)substr($certificateModel->user->indentity,16,1)% 2 === 0 ? '女' : '男';
 		
 		
 		$data['url'] = Backend::url('samubra/train/projects/update/'.$projectModel->id);
 		
 		$data['date_now'] = Carbon::now(new \DateTimeZone('Asia/Chongqing'))->format('Y年m月d日');
-		
+
+		if(!$projectModel->plan->is_new){
+            $printDate = Carbon::createFromFormat('Y-m-d',$certificateModel->print_date);
+            $data['print_date'] = $printDate->format('Y年m月d日');
+            $data['print_end'] = $printDate->addDays(6)->format('Y年m月d日');
+        }
+
+
+		$data['start_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->start_date)->format('Y年m月d日');
+		$data['end_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->end_date)->format('Y年m月d日');
+		$data['hours'] = (Carbon::createFromFormat('Y-m-d',$projectModel->end_date)
+                            ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;
+
         return View::make('samubra.train::project.print', $data);
     }
 

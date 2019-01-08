@@ -1,18 +1,24 @@
+/*隐藏不打印的元素*/
+.control-list p{
+	line-height:35px;
+	font-size:20px;
+}
+.control-list table tr td{
+	border-color:#000000;
+	text-align: center;
+	vertical-align: middle;
+}
 @media print{
 
     /*隐藏不打印的元素*/
     .control-list p{
-        line-height:40px;
+        line-height:33px;
+		font-size:20px;
     }
-	.control-list .table{
-        bolder:1px,#000;
-		font-size:18px;
-    }
-	.control-list .table .rowspan{
-		height:auto
-    }
-	.control-list .sannian{
-		line-height:80%
+	.control-list table tr td{
+		border-color:#000000;
+		text-align: center;
+		vertical-align: middle;
 	}
     /*其他打印样式*/
 }
