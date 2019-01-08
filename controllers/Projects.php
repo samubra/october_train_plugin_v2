@@ -3,7 +3,11 @@
 use Backend\Classes\Controller;
 use BackendMenu;    
 use Samubra\Train\Models\Project;
+use Samubra\Train\Models\Certificate;
 use Flash;
+use View;
+use Backend;
+use Carbon\Carbon;
 
 class Projects extends Controller
 {
@@ -47,6 +51,32 @@ class Projects extends Controller
             Flash::error('请选择需要操作的证书进行操作！');
         }
         return $this->listRefresh();
+    }
+	
+	/**
+     * update
+     */
+    public function view($certificateId = null)
+    {
+		$this->addJs("/plugins/samubra/train/assets/js/jquery.jqprint-master/jquery.jqprint-0.3.js");
+		$this->addCss("/plugins/samubra/train/assets/css/print.css");
+		
+        $this->pageTitle = '打印';
+		
+        $this->vars['controller'] = $this->controllerName;
+		
+		$certificateModel = Certificate::find($certificateId);
+		$projectModel = $certificateModel->projects[0];
+		$data['certificate'] = $certificateModel;
+		$data['project'] = $projectModel;
+		$data['pivot'] = $certificateModel->projects[0]->pivot;
+		
+		
+		$data['url'] = Backend::url('samubra/train/projects/update/'.$projectModel->id);
+		
+		$data['date_now'] = Carbon::now(new \DateTimeZone('Asia/Chongqing'))->format('Y年m月d日');
+		
+        return View::make('samubra.train::project.print', $data);
     }
 
     public function onCopy()

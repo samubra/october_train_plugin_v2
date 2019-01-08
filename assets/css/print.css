@@ -1,0 +1,18 @@
+@media print{
+
+    /*隐藏不打印的元素*/
+    .control-list p{
+        line-height:40px;
+    }
+	.control-list .table{
+        bolder:1px,#000;
+		font-size:18px;
+    }
+	.control-list .table .rowspan{
+		height:auto
+    }
+	.control-list .sannian{
+		line-height:80%
+	}
+    /*其他打印样式*/
+}

@@ -1,4 +1,8 @@
 columns:
+    certificate_id:
+        label: 查看
+        type: partial
+        path: ~/plugins/samubra/train/controllers/projects/list/_view.htm
     member_name:
         label: 姓名
         type: text
