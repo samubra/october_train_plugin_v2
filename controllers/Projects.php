@@ -61,7 +61,7 @@ class Projects extends Controller
 		$this->addJs("/plugins/samubra/train/assets/js/jquery.jqprint-master/jquery.jqprint-0.3.js");
 		$this->addCss("/plugins/samubra/train/assets/css/print.css");
 		
-        $this->pageTitle = '打印';
+
 		
         $this->vars['controller'] = $this->controllerName;
 		
@@ -89,7 +89,7 @@ class Projects extends Controller
 		$data['end_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->end_date)->format('Y年m月d日');
 		$data['hours'] = (Carbon::createFromFormat('Y-m-d',$projectModel->end_date)
                             ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;
-
+        $this->pageTitle = '打印'.$certificateModel->user->name.'的申请表格';
         return View::make('samubra.train::project.print', $data);
     }
 
