@@ -70,8 +70,8 @@ class Projects extends Controller
 		$data['certificate'] = $certificateModel;
 		$data['project'] = $projectModel;
 		$data['pivot'] = $certificateModel->projects[0]->pivot;
-
-		$data['user_sex'] = (int)substr($certificateModel->user->indentity,17,1)% 2 === 0 ? '女' : '男';
+		
+		$data['user_sex'] = (int)substr($certificateModel->user->identity,-2,1)% 2 === 0 ? '女' : '男';
 		
 		
 		$data['url'] = Backend::url('samubra/train/projects/update/'.$projectModel->id);
