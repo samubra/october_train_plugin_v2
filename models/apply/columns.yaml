@@ -12,8 +12,8 @@ columns:
     member_edu:
         label: 文化程度
         sortable: false
-        select: edu_id
-        relation: user
+        type: partial
+        path: ~/plugins/samubra/train/controllers/projects/list/_view_edu.htm
     member_identity:
         label: 身份证号码
         type: text
