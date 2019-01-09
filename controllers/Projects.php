@@ -71,7 +71,7 @@ class Projects extends Controller
 		$data['project'] = $projectModel;
 		$data['pivot'] = $certificateModel->projects[0]->pivot;
 
-		$data['user_sex'] = (int)substr($certificateModel->user->indentity,16,1)% 2 === 0 ? '女' : '男';
+		$data['user_sex'] = (int)substr($certificateModel->user->indentity,17,1)% 2 === 0 ? '女' : '男';
 		
 		
 		$data['url'] = Backend::url('samubra/train/projects/update/'.$projectModel->id);
