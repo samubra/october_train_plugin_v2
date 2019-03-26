@@ -87,8 +87,9 @@ class Projects extends Controller
 
 		$data['start_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->start_date)->format('Y年m月d日');
 		$data['end_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->end_date)->format('Y年m月d日');
-		$data['hours'] = (Carbon::createFromFormat('Y-m-d',$projectModel->end_date)
-                            ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;
+		//$data['hours'] = (Carbon::createFromFormat('Y-m-d',$projectModel->end_date)
+                //            ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;
+		$data['hours'] = $projectModel->plan->operate_hours + $projectModel->plan->theory_hours;
         $this->pageTitle = '打印'.$certificateModel->user->name.'的申请表格';
         return View::make('samubra.train::project.print', $data);
     }
