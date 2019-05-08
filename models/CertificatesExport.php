@@ -66,7 +66,7 @@ class CertificatesExport extends ExportXlsModel
             $condition['printDate']['before'] = $this->print_date_end;
         if($this->company)
             $condition['company'] = $this->company;
-        $certificateModel = Certificate::export($condition)->with('member','type')->get();
+        $certificateModel = Certificate::export($condition)->with('user','type')->get();
         $certificateModel->each(function($certificate) use ($columns) {
             $certificate->remark = json_encode($certificate->remark);
             $certificate->user_name = $certificate->user->name;

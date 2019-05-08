@@ -23,7 +23,7 @@ class AppliesExport extends ExportXlsModel
     public $rules = [
         'export_by' => 'required|in:all,record,training,member',
         'record' => 'required_if:export_by,record|exists:samubra_train_records,id',
-        'member' => 'required_if:export_by,member|exists:samubra_train_members,id',
+        //'member' => 'required_if:export_by,member|exists:samubra_train_members,id',
         'training' => 'required_if:export_by,training|exists:samubra_train_training,id',
         'status' => 'nullable|exists:samubra_train_lookups,id',
         'health' => 'nullable|exists:samubra_train_lookups,id',
