@@ -81,7 +81,7 @@ class Projects extends Controller
 		if(!$projectModel->plan->is_new){
             $printDate = Carbon::createFromFormat('Y-m-d',$certificateModel->print_date);
             $data['print_date'] = $printDate->format('Y年m月d日');
-            $data['print_end'] = $printDate->addDays(6)->format('Y年m月d日');
+            $data['print_end'] = $printDate->addYears(6)->format('Y年m月d日');
         }
 
 
