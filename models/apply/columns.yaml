@@ -26,6 +26,14 @@ columns:
         sortable: true
         select: title
         relation: type
+    print_date:
+        label: 发证日期
+        type: text
+        default: 'N/A'
+    first_get_date:
+        label: 初领证日期
+        type: text
+        default: 'N/A'
     'pivot[apply_status]':
         label: 受理状态
         sortable: true
@@ -68,11 +76,12 @@ columns:
     'pivot[created_at]':
         label: 创建时间
         type: timetense
-        invisible: true
+        invisible: false
         sortable: true
     'pivot[updated_at]':
         label: 最后更新
         type: timetense
+        invisible: true`
         sortable: true
     'pivot[deleted_at]':
         label: 删除时间

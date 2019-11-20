@@ -27,18 +27,12 @@ fields:
         emptyOption: 请选择操作类别
         span: auto
         required: 1
-        context:
-            - create
-            - preview
         type: relation
     first_get_date:
         label: 初领证日期
         mode: date
         yearRange: '5'
         span: auto
-        context:
-            - create
-            - preview
         type: datepicker
     print_date:
         label: 发证日期

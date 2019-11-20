@@ -76,17 +76,17 @@ class Projects extends Controller
 		
 		$data['url'] = Backend::url('samubra/train/projects/update/'.$projectModel->id);
 		
-		$data['date_now'] = Carbon::now(new \DateTimeZone('Asia/Chongqing'))->format('Y年m月d日');
+		$data['date_now'] = Carbon::createFromFormat('Y-m-d H:i:s',$projectModel->pivot->created_at)->format('Y年n月j日');
 
 		if(!$projectModel->plan->is_new){
             $printDate = Carbon::createFromFormat('Y-m-d',$certificateModel->print_date);
-            $data['print_date'] = $printDate->format('Y年m月d日');
-            $data['print_end'] = $printDate->addYears(6)->format('Y年m月d日');
+            $data['print_date'] = $printDate->format('Y年n月j日');
+            $data['print_end'] = $printDate->addYears(6)->format('Y年n月j日');
         }
 
 
-		$data['start_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->start_date)->format('Y年m月d日');
-		$data['end_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->end_date)->format('Y年m月d日');
+		$data['start_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->start_date)->format('Y年n月j日');
+		$data['end_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->end_date)->format('Y年n月j日');
 		//$data['hours'] = (Carbon::createFromFormat('Y-m-d',$projectModel->end_date)
                 //            ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;
 		$data['hours'] = $projectModel->plan->operate_hours + $projectModel->plan->theory_hours;
