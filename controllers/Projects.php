@@ -8,6 +8,7 @@ use Flash;
 use View;
 use Backend;
 use Carbon\Carbon;
+use DB;
 
 class Projects extends Controller
 {
@@ -91,6 +92,8 @@ class Projects extends Controller
                 //            ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;
 		$data['hours'] = $projectModel->plan->operate_hours + $projectModel->plan->theory_hours;
         $this->pageTitle = '打印'.$certificateModel->user->name.'的申请表格';
+		
+		$data['apply_count'] = DB::table('train_certificate_project')->where('project_id',$projectModel->id)->where('created_at','<=',$data['pivot']->created_at)->count();
         return View::make('samubra.train::project.print', $data);
     }
 

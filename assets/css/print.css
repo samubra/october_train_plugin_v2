@@ -20,6 +20,9 @@
 		text-align: center;
 		vertical-align: middle;
 	}
+table td.w-100{
+	text-align: right;
+}
     .print_page{
 	hight:1123px;
 	width:794px;

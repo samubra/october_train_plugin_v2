@@ -42,7 +42,11 @@ navigation:
         url: samubra/train/projects
         icon: icon-user-secret
         permissions:
-            - manage_teacher
+            - manage_apply
+            - manage_record
+            - manage_training
+            - manage_plan
+            - manage_member
         sideMenu:
             record-item:
                 label: 证书管理
@@ -62,33 +66,31 @@ navigation:
                 icon: icon-table
                 permissions:
                     - manage_training
-
-
 permissions:
     manage_category:
-        tab: 管理分类
+        tab: 培训管理
         label: 分类管理
     manage_lookup:
-        tab: 管理元数据
+        tab: 培训管理
         label: 元数据管理
     manage_teacher:
-        tab: 管理教师
+        tab: 培训管理
         label: 教师管理
     manage_member:
-        tab: 管理培训学员
+        tab: 培训管理
         label: 培训学员管理
     manage_plan:
-        tab: 管理培训方案
+        tab: 培训管理
         label: 培训方案管理
     manage_course:
-        tab: 管理课程
+        tab: 培训管理
         label: 课程管理
     manage_training:
-        tab: 管理培训
-        label: 培训管理
+        tab: 培训管理
+        label: 培训项目管理
     manage_record:
-        tab: 管理操作证
+        tab: 培训管理
         label: 操作证管理
     manage_apply:
-        tab: 管理培训申请
+        tab: 培训管理
         label: 申请管理

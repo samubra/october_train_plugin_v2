@@ -223,117 +223,88 @@
 			<div class="row" id="print-bilings">
 				<div class="col-md-8">
 					<div class="order-product-title">
-						<div class="text-bold text-center p-order-product-title"><h1>报名信息反回执</h1></div>
+						<div class="text-bold text-center p-order-product-title"><h1> <u>#{{ apply_count }}</u> 报名信息回执</h1>(请凭此回执索取正规机打发票)</div>
 					</div>
 
 					<div class="control-list" >
-						<table class="table table-bordered w-500">
+						<table class="table data table-bordered w-500">
 							<tbody>
 							<tr>
-								<td class="w-150">姓名</td><td class="w-200">{{ certificate.user.name }}</td>
+								<td style="text-align: right;" class="w-100">姓名</td><td style="text-align: left;" class="w-200">{{ certificate.user.name }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">身份证号码</td><td class="w-200">{{ certificate.user.identity }}</td>
+								<td class="w-100" style="text-align: right;" > 份证号码</td><td style="text-align: left;" class="w-200">{{ certificate.user.identity }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">培训类别</td><td class="w-200">{{ project.plan.type.title }}（{% if project.plan.is_new %} 新训 {% else %} 复训 {% endif %}）</td>
+								<td class="w-100" style="text-align: right;" >培训类别</td><td style="text-align: left;" class="w-200">{{ project.plan.type.title }}（{% if project.plan.is_new %} 新训 {% else %} 复训 {% endif %}）</td>
 							</tr>
 							<tr>
-								<td class="w-150">联系电话</td><td class="w-200">{{ project.pivot.phone }}</td>
+								<td class="w-100" style="text-align: right;" >联系电话</td><td style="text-align: left;" class="w-200">{{ project.pivot.phone }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">联系地址</td><td class="w-200">{{ project.pivot.address }}</td>
+								<td class="w-100" style="text-align: right;" >单位名称</td><td style="text-align: left;" class="w-200">{{ project.pivot.company }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">单位名称</td><td class="w-200">{{ project.pivot.company }}</td>
-							</tr>
-							<tr>
-								<td class="w-150">申请时间</td><td class="w-200">{{ date_now }}</td>
+								<td class="w-100" style="text-align: right;" >申请时间</td><td style="text-align: left;" class="w-200">{{ date_now }}</td>
 							</tr>
 							
 							<tr>
-								<td class="w-150">受理时间</td><td class="w-200">{{ project.pivot.updated_at }}</td>
-							</tr>
-							<tbody>
-						<table>
-						<table class="table table-bordered w-400 m-l-10">
-							<tbody>
-							<tr>
-								<td class="w-150">应收费</td><td class="w-150">￥{{ project.pivot.pay }}元</td>
+								<td class="w-100" style="text-align: right;" >应收费</td><td style="text-align: left;" class="w-200">￥{{ project.cost }}元</td>
 							</tr>
 							<tr>
-								<td class="w-150">实际收费</td><td class="w-150">__________________________</td>
+								<td class="w-100" style="text-align: right;" >实际收费</td><td style="text-align: left;" class="w-200">￥{{ project.pivot.pay }}元</td>
 							</tr>
 							<tr>
-								<td class="w-150">收费人</td><td class="w-150">_____________________________</td>
+								<td class="w-100" style="text-align: right;" >收费人</td><td style="text-align: left;" class="w-200">_______________________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;巫溪县职业教育中心（盖章有效)</td>
 							</tr>
 							<tr>
-								<td class="w-150">收费日期</td><td class="w-150">________年_____月_____日</td>
+								<td class="w-100" style="text-align: right;" >收费日期</td><td style="text-align: left;" class="w-200">_______________________________________</td>
 							</tr>
-							<tr>
-								<td class="w-150">单位名称</td><td class="w-150">重庆市巫溪县职业教育中心</td>
-							</tr>
-							<tr>
-								<td class="w-300" colspan="2">提示：本回执单仅供证明报名收费用，如需索取机打发票，请稍后凭本回执到工作人员处换取机打发票。</td>
-							</tr>
-							<tbody>
-						<table>
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="order-product-title">
-						<div class="text-bold text-center p-order-product-title"><h1>报名信息反回执（存根）</h1></div>
+						<div class="text-bold text-center p-order-product-title"><h1> <u>#{{ apply_count }}</u> 报名信息回执（存根）</h1></div>
 					</div>
 
 					<div class="control-list" >
-						<table class="table table-bordered w-500">
+						<table class="table data table-bordered w-500">
 							<tbody>
 							<tr>
-								<td class="w-150">姓名</td><td class="w-200">{{ certificate.user.name }}</td>
+								<td style="text-align: right;"  class="w-100">姓名</td><td style="text-align: left;" class="w-200">{{ certificate.user.name }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">身份证号码</td><td class="w-200">{{ certificate.user.identity }}</td>
+								<td class="w-100" style="text-align: right;" >身份证号码</td><td style="text-align: left;" class="w-200">{{ certificate.user.identity }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">培训类别</td><td class="w-200">{{ project.plan.type.title }}（{% if project.plan.is_new %} 新训 {% else %} 复训 {% endif %}）</td>
+								<td class="w-100" style="text-align: right;" >培训类别</td><td style="text-align: left;" class="w-200">{{ project.plan.type.title }}（{% if project.plan.is_new %} 新训 {% else %} 复训 {% endif %}）</td>
 							</tr>
 							<tr>
-								<td class="w-150">联系电话</td><td class="w-200">{{ project.pivot.phone }}</td>
+								<td class="w-100" style="text-align: right;" >联系电话</td><td style="text-align: left;" class="w-200">{{ project.pivot.phone }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">联系地址</td><td class="w-200">{{ project.pivot.address }}</td>
+								<td class="w-100" style="text-align: right;" >单位名称</td><td style="text-align: left;" class="w-200">{{ project.pivot.company }}</td>
 							</tr>
 							<tr>
-								<td class="w-150">单位名称</td><td class="w-200">{{ project.pivot.company }}</td>
-							</tr>
-							<tr>
-								<td class="w-150">申请时间</td><td class="w-200">{{ date_now }}</td>
+								<td class="w-100" style="text-align: right;" >申请时间</td><td style="text-align: left;" class="w-200">{{ date_now }}</td>
 							</tr>
 							
 							<tr>
-								<td class="w-150">受理时间</td><td class="w-200">{{ project.pivot.updated_at }}</td>
-							</tr>
-							<tbody>
-						<table>
-						<table class="table table-bordered w-400 m-l-10">
-							<tbody>
-							<tr>
-								<td class="w-150">应收费</td><td class="w-150">￥{{ project.pivot.pay }}元</td>
+								<td class="w-100" style="text-align: right;" >应收费</td><td style="text-align: left;" class="w-200">￥{{ project.cost }}元</td>
 							</tr>
 							<tr>
-								<td class="w-150">实际收费</td><td class="w-150">__________________________</td>
+								<td class="w-100" style="text-align: right;" >实际收费</td><td style="text-align: left;" class="w-200">￥{{ project.pivot.pay }}元</td>
 							</tr>
 							<tr>
-								<td class="w-150">收费人</td><td class="w-150">_____________________________</td>
+								<td class="w-100" style="text-align: right;" >收费人</td><td style="text-align: left;" class="w-200">_______________________________________</td>
 							</tr>
 							<tr>
-								<td class="w-150">收费日期</td><td class="w-150">________年_____月_____日</td>
+								<td class="w-100" style="text-align: right;"  >收费日期</td><td style="text-align: left;" class="w-200">_______________________________________</td>
 							</tr>
-							<tr>
-								<td class="w-150">单位名称</td><td class="w-150">重庆市巫溪县职业教育中心</td>
-							</tr>
-							<tbody>
-						<table>
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<div class="col-md-4 hidden-print"><input type="button"  class="btn btn-primary" onclick=" print('print-bilings')" value="打印"></div>
