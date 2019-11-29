@@ -3,6 +3,10 @@
 use \Backend\Models\ImportModel;
 use Samubra\Train\Classes\ImportCertificateData;
 use Queue;
+use DB;
+use Auth;
+use Samubra\Train\Models\Certificate;
+use Validator;
 /**
  * Created by PhpStorm.
  * User: samubra
@@ -47,7 +51,8 @@ class CertificatesImport extends ImportModel
         //dd($results);
         try {
             foreach ($results as $value) {
-                Queue::push(ImportCertificateData::class, $value);
+                //Queue::push(ImportCertificateData::class, $value);
+                $this->insertData($value);
                 $this->logCreated();
             }
         }
@@ -55,5 +60,77 @@ class CertificatesImport extends ImportModel
             $this->logError(1, $ex->getMessage());
         }
     }
-
+    protected function insertData($value)
+    {
+        //trace_sql();
+        //foreach ($data as $row => $value) {
+            if(isset($value['certificate_id']) && isset($value['project_id'])) {
+                Db::table('train_certificate_project')
+                    ->where('certificate_id',$value['certificate_id'])
+                    ->where('project_id',$value['project_id'])
+                    ->update([
+                        'phone' => $value['phone'],
+                        'address' => $value['address'],
+                        'company' => $value['company'],
+                        'remark' => $value['remark'],
+                        'status_id' => $value['status_id'],
+                        'theory_score' => $value['theory_score'],
+                        'operate_score' => $value['operate_score'],
+                        'pay' => $value['pay'],
+                    ]);
+                Db::table('train_certificates')
+                    ->where('id',$value['certificate_id'])
+                    ->update([
+                        'phone' => $value['phone'],
+                        'address' => $value['address'],
+                        'company' => $value['company'],
+                        'print_date' => $value['print_date'],
+                        'is_valid' => [$value['is_valid']],
+                    ]);
+            }else{
+                $user = $this->getLoginUser($value);
+                if (Db::table('train_certificates')->where('user_id', $user->id)->where('type_id', $value['type_id'])->where('is_valid', $value['is_valid'])->count()) {
+                    $recordData = [
+                   // 'uuid' => Uuid::uuid4()->toString(),
+                    'user_id' => $user->id,
+                    'type_id' => $value['type_id'],
+                    'first_get_date' => $value['first_get_date'],
+                    'print_date' => $value['print_date'],
+                    'is_valid' => $value['is_valid'],
+                    'phone' => $value['phone'],
+                    'address' => $value['address'],
+                    'company' => $value['company'],
+                    //'remark' => [$value['remark']]
+                ];
+                
+                    DB::table('train_certificates')->insert($recordData);
+                    //trace_log($recordData);
+                    Auth::logout();
+                }
+            }
+        //}
+        //$job->delete();
+    }
+    protected function getLoginUser($data)
+    {
+        if (Auth::check()) {
+            return Auth::getUser();
+        } elseif ($user = Auth::findUserByLogin($data['identity'])) {
+            return $user;
+        }else{
+            return Auth::register([
+                'email'=>$data['identity'].'@site.com',
+                'username'=>$data['identity'],
+                'password'=>substr($data['identity'], -8),
+                'password_confirmation'=>substr($data['identity'], -8),
+                'phone'=>$data['phone'],
+                'name'=>$data['name'],
+                'surname'=>$data['name'],
+                'identity'=>$data['identity'],
+                'address' => $data['address'],
+                'edu_id' => $data['edu_id'],
+                'company' =>$data['company'],
+            ], true, true);
+        }
+    }
 }
