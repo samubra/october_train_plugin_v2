@@ -78,8 +78,8 @@ class ImportCertificateData
             return Auth::register([
                 'email'=>$data['identity'].'@site.com',
                 'username'=>$data['identity'],
-                'password'=>substr($data['identity'], -6),
-                'password_confirmation'=>substr($data['identity'], -6),
+                'password'=>substr($data['identity'], -8),
+                'password_confirmation'=>substr($data['identity'], -8),
                 'phone'=>$data['phone'],
                 'name'=>$data['name'],
                 'surname'=>$data['name'],
