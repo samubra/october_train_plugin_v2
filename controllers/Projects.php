@@ -87,6 +87,9 @@ class Projects extends Controller
 
 
 		$data['start_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->start_date)->format('Y年n月j日');
+		$data['inArray'] = in_array($projectModel->plan->type_id,['17','18','20','21']);
+
+		$data['courseCount'] = count($projectModel->courses);
 		$data['end_date'] = Carbon::createFromFormat('Y-m-d',$projectModel->end_date)->format('Y年n月j日');
 		//$data['hours'] = (Carbon::createFromFormat('Y-m-d',$projectModel->end_date)
                 //            ->diffInDays(Carbon::createFromFormat('Y-m-d',$projectModel->start_date),true)+1)*8;

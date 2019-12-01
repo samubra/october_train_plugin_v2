@@ -40,7 +40,7 @@
 
 		</div>
 		<div class="tab-pane">
-			{% if in_array(project.plan.type_id,['17','18','20','21']) %}
+			{% if inArray %}
 				<div class="row" id="print-kssq">
 					<div class="col-md-8">
 						<div class="order-product-title">
@@ -68,14 +68,14 @@
 									<td width='150px'>联系电话</td><td width='250px'>{{ pivot.phone }}</td>
 								</tr>
 								<tr>
-									<td width='150px'>作业类别</td><td width='250px' colspan="3">{{ project.plan.type.title }}</td>
+									<td width='150px'>培训类别</td><td width='250px' colspan="4">{{ project.plan.type.title }}</td>
 								</tr>
 								<tr>
 									<td width='150px'>培训时间</td><td width='250px' colspan="4">{{ start_date }} 至 {{ end_date }}，共 {{ hours }} 学时</td>
 								</tr>
 
 								<tr>
-									<td width='150px' rowspan="{{ count(project.courses) }}">培训课程</td>
+									<td width='150px' rowspan="{{ courseCount+1 }}">培训课程</td>
 									<td width='100px'>序号</td>
 									<td width='250px'>培训内容</td>
 									<td width='100px'>培训学时</td>
@@ -100,7 +100,7 @@
 									</td>
 								</tr>
 									<td width='250px' colspan="5">
-										<p>培训机构意见</p>
+										<p class="text-left">培训机构意见:</p>
 										<p></p><p></p>
 										<p class="text-right">__________________________</p>
 									</td>

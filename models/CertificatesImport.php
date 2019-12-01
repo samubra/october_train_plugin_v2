@@ -62,7 +62,7 @@ class CertificatesImport extends ImportModel
     }
     protected function insertData($value)
     {
-        //trace_sql();
+        trace_sql();
         //foreach ($data as $row => $value) {
             if(isset($value['certificate_id']) && isset($value['project_id'])) {
                 Db::table('train_certificate_project')
@@ -89,7 +89,7 @@ class CertificatesImport extends ImportModel
                     ]);
             }else{
                 $user = $this->getLoginUser($value);
-                if (Db::table('train_certificates')->where('user_id', $user->id)->where('type_id', $value['type_id'])->where('is_valid', $value['is_valid'])->count()) {
+                if (!Db::table('train_certificates')->where('user_id', $user->id)->where('type_id', $value['type_id'])->where('is_valid', $value['is_valid'])->count()) {
                     $recordData = [
                    // 'uuid' => Uuid::uuid4()->toString(),
                     'user_id' => $user->id,
