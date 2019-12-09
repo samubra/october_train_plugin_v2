@@ -230,8 +230,8 @@ class ApplyForm extends ComponentBase
             return Auth::register([
                 'email'=>post('identity').'@site.com',
                 'username'=>post('identity'),
-                'password'=>substr(post('identity'),-6),
-                'password_confirmation'=>substr(post('identity'),-6),
+                'password'=>substr(post('identity'),-8),
+                'password_confirmation'=>substr(post('identity'),-8),
                 'phone'=>post('phone'),
                 'name'=>post('name'),
                 'surname'=>post('name'),
