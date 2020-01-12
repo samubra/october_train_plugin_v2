@@ -3,6 +3,9 @@ columns:
         label: 打印表格
         type: partial
         path: ~/plugins/samubra/train/controllers/projects/list/_view.htm
+    id:
+        label: ID
+        type: text
     member_name:
         label: 姓名
         type: text
